@@ -32,3 +32,8 @@ class UploadBatchResponse(BaseModel):
 
 class BatchCommitRequest(BaseModel):
     skip_errors: bool = True
+
+class BatchReviewRequest(BaseModel):
+    decision: str  # APPROVED, REJECTED_NEEDS_CORRECTION, REJECTED
+    notes: Optional[str] = "Adjudicated by AICTE central review committee."
+

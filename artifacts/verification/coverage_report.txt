@@ -1,0 +1,110 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.10.11, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AICTE\backend
+plugins: anyio-4.15.1, cov-7.1.0
+collected 30 items
+
+tests\test_all_gates.py .......                                          [ 23%]
+tests\test_conflicts_and_anomalies.py ...                                [ 33%]
+tests\test_identity_and_approval_rules.py ....                           [ 46%]
+tests\test_ingestion_and_reconciliation.py ......                        [ 66%]
+tests\test_persistence_and_transactions.py ..                            [ 73%]
+tests\test_security_and_tenant_isolation.py ....                         [ 86%]
+tests\test_verification_receipts_and_certificates.py ....                [100%]
+
+============================== warnings summary ===============================
+venv\lib\site-packages\fastapi\testclient.py:1
+  D:\AICTE\backend\venv\lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+app\core\config.py:5
+  D:\AICTE\backend\app\core\config.py:5: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class Settings(BaseSettings):
+
+app\schemas\auth.py:23
+  D:\AICTE\backend\app\schemas\auth.py:23: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class UserResponse(BaseModel):
+
+app\schemas\institution.py:5
+  D:\AICTE\backend\app\schemas\institution.py:5: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class ProgrammeResponse(BaseModel):
+
+app\schemas\institution.py:15
+  D:\AICTE\backend\app\schemas\institution.py:15: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class ApprovalSnapshotResponse(BaseModel):
+
+app\schemas\institution.py:29
+  D:\AICTE\backend\app\schemas\institution.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class InstitutionResponse(BaseModel):
+
+app\schemas\batch.py:5
+  D:\AICTE\backend\app\schemas\batch.py:5: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class ValidationFindingResponse(BaseModel):
+
+app\schemas\batch.py:17
+  D:\AICTE\backend\app\schemas\batch.py:17: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class UploadBatchResponse(BaseModel):
+
+app\schemas\admission.py:5
+  D:\AICTE\backend\app\schemas\admission.py:5: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class StudentIdentityResponse(BaseModel):
+
+app\schemas\admission.py:17
+  D:\AICTE\backend\app\schemas\admission.py:17: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class AdmissionRecordResponse(BaseModel):
+
+app\schemas\conflict.py:6
+  D:\AICTE\backend\app\schemas\conflict.py:6: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class ConflictCaseResponse(BaseModel):
+
+app\schemas\anomaly.py:5
+  D:\AICTE\backend\app\schemas\anomaly.py:5: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class AnomalyCaseResponse(BaseModel):
+
+app\schemas\audit.py:5
+  D:\AICTE\backend\app\schemas\audit.py:5: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    class AuditEventResponse(BaseModel):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.10.11-final-0 _______________
+
+Name                                    Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------
+app\adapters\identity_interface.py         16      1    94%   27
+app\adapters\mock_apaar_adapter.py         24      0   100%
+app\api\deps.py                            37      7    81%   27, 34, 36, 42-47, 53
+app\api\v1\admissions.py                   72     40    44%   33-34, 37, 39, 41, 43, 45, 90-104, 129-205
+app\api\v1\anomalies.py                    41     26    37%   20-46, 54-62, 83-105
+app\api\v1\approvals.py                    28     15    46%   20-45, 56-57
+app\api\v1\audit.py                        19      6    68%   21-24, 35-36
+app\api\v1\auth.py                         32      7    78%   25, 57-63
+app\api\v1\conflicts.py                    39     22    44%   15-24, 49-88, 96-109, 132-144
+app\api\v1\dashboards.py                   54     44    19%   21-125
+app\api\v1\health.py                       17      2    88%   22-23
+app\api\v1\institutions.py                 31     17    45%   20-36, 44-48, 56-57
+app\api\v1\reports.py                      24     13    46%   20-54
+app\api\v1\uploads.py                      51     33    35%   23-38, 47-56, 64-71, 106-122
+app\api\v1\verification.py                 24      9    62%   21-32, 43, 51-60
+app\core\config.py                         19      0   100%
+app\core\database.py                       21      8    62%   18-21, 27-31
+app\core\hash_chain.py                     41      2    95%   90, 100
+app\core\security.py                       68      6    91%   17-18, 29, 55-57
+app\main.py                                28      3    89%   15-16, 54
+app\models\__init__.py                    214      0   100%
+app\schemas\admission.py                   46      0   100%
+app\schemas\anomaly.py                     20      0   100%
+app\schemas\audit.py                       25      0   100%
+app\schemas\auth.py                        28      0   100%
+app\schemas\batch.py                       29      0   100%
+app\schemas\conflict.py                    24      0   100%
+app\schemas\institution.py                 35      0   100%
+app\schemas\receipt.py                     29      0   100%
+app\services\anomaly_service.py            66     32    52%   21, 29, 42-66, 70-94, 98-122, 125-128, 156
+app\services\capacity_service.py           47      2    96%   88, 90
+app\services\conflict_service.py           47      4    91%   41, 93, 103-104
+app\services\receipt_service.py            71      9    87%   45, 183-205
+app\services\reconciliation_engine.py     192     25    87%   103-104, 170-171, 203-204, 214-221, 233-234, 247, 300, 302, 312, 335, 343, 355, 364-367, 459-461
+---------------------------------------------------------------------
+TOTAL                                    1559    333    79%
+====================== 30 passed, 13 warnings in 12.47s =======================

@@ -140,3 +140,39 @@ class AnomalyDetectionService:
                 )
 
         return detected_cases
+
+    @staticmethod
+    def review_anomaly(
+        db: Session,
+        anomaly_id: int,
+        new_status: str,
+        notes: str,
+        reviewed_by_user_id: int,
+        reviewed_by_email: str,
+        reviewed_by_role: str
+    ) -> AnomalyCase:
+        c = db.query(AnomalyCase).filter(AnomalyCase.id == anomaly_id).first()
+        if not c:
+            raise ValueError("Anomaly case not found.")
+        c.status = new_status
+        signals = dict(c.signals_json or {})
+        signals["review_notes"] = notes
+        c.signals_json = signals
+        db.commit()
+        db.refresh(c)
+
+        append_audit_event(
+            db=db,
+            action="ANOMALY_REVIEWED",
+            entity_type="AnomalyCase",
+            entity_id=str(c.id),
+            actor_id=reviewed_by_user_id,
+            actor_email=reviewed_by_email,
+            actor_role=reviewed_by_role,
+            metadata_json={
+                "case_number": c.case_number,
+                "new_status": new_status,
+                "review_notes": notes
+            }
+        )
+        return c

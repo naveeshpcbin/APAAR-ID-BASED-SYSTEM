@@ -118,7 +118,7 @@ export default function AuditPage() {
       {/* Audit Events Table */}
       <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold text-slate-900">Immutable Event Ledger</h2>
+          <h2 className="text-sm font-bold text-slate-900">Tamper-Evident Event Ledger</h2>
           <span className="text-xs text-slate-400 font-mono">
             {events.length} sequential cryptographically-linked entries
           </span>

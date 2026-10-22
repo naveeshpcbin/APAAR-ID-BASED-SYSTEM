@@ -1,0 +1,2 @@
+apaar_id,student_name,dob,gender,programme_code,category,admission_quota,nationality_type,enrollment_no
+123456789012,Student Full Name,YYYY-MM-DD,MALE/FEMALE/OTHER,PROG-CODE,OPEN/OBC_NCL/SC/ST/EWS,STATE_GOVT/TFW/MANAGEMENT_QUOTA/NRI,DOMESTIC/NRI/OCI/PIO,INST-ROLL-NUMBER

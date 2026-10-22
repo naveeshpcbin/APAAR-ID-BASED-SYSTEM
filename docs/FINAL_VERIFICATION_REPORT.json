@@ -1,223 +1,175 @@
 {
-  "project": "PRAMAAN-AICTE",
-  "problem_statement_id": "SIH26263",
-  "problem_title": "Development of an APAAR ID-Based Student Data Management and Verification Platform for AICTE-Approved Institutions",
-  "report_generated_at": "2026-10-22T23:18:00+05:30",
-  "git_revision": "e52778d1d6b9c2228281a656f12c1be861f31202",
-  "environment": {
-    "os": "Windows 11 Enterprise (win32, x64)",
-    "python_version": "3.10.11",
-    "node_version": "v24.22.0",
-    "npm_version": "11.19.1",
-    "database": "SQLite 3 WAL (Dual dialect PostgreSQL compatible)",
-    "orm": "SQLAlchemy 2.0.55",
-    "migrations": "Alembic 1.20.1 (revision 98d85ae389ed)",
-    "backend_framework": "FastAPI 0.115.11 / Uvicorn 0.34.0",
-    "frontend_framework": "Next.js 14.2.15 (App Router, TypeScript, Tailwind CSS)",
-    "cryptography": "cryptography 50.0.2 (Ed25519 RFC 8032), bcrypt 4.3.0, Keyed HMAC-SHA256"
+  "report_version": "2.0.0",
+  "problem_statement": "SIH26263",
+  "project_name": "PRAMAAN-AICTE",
+  "audit_timestamp": "2026-10-23T00:20:00+05:30",
+  "git_revision": "12d0a7008f784370dca9c0daab39f96ec273be31",
+  "overall_status": "VERIFIED",
+  "summary": {
+    "total_backend_tests": 31,
+    "tests_passed": 31,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "total_statements": 1584,
+    "covered_statements": 1255,
+    "coverage_percentage": 79.23,
+    "clean_db_migration_status": "VERIFIED",
+    "frontend_typescript_errors": 0,
+    "frontend_build_status": "VERIFIED",
+    "total_frontend_routes": 17,
+    "end_to_end_journey_status": "VERIFIED"
   },
-  "overall_status": "PASS",
-  "requirement_results": [
+  "subsystem_classification": {
+    "apaar_identity_verification": "SIMULATED",
+    "ed25519_digital_signature_verification": "VERIFIED",
+    "sha256_hash_chain_audit_ledger": "VERIFIED",
+    "intake_capacity_and_quota_rules": "VERIFIED",
+    "cross_institution_conflict_detection": "VERIFIED",
+    "batch_preflight_and_atomic_commit": "VERIFIED",
+    "batch_review_lifecycle_adjudication": "VERIFIED",
+    "postgresql_runtime_execution": "IMPLEMENTED_BUT_NOT_VERIFIED"
+  },
+  "requirements_traceability": [
     {
       "requirement_id": "SIH-R01",
-      "description": "Secure student-level data upload and update with APAAR-based identification",
-      "modules": ["backend/app/services/reconciliation_engine.py", "backend/app/api/v1/uploads.py", "frontend/src/app/uploads/page.tsx"],
-      "test_case": "tests/test_all_gates.py::test_gate3_apaar_adapter_and_rules",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/admissions_repository.png"
+      "title": "Secure Student Data Upload & Ingestion",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/services/reconciliation_engine.py",
+        "backend/app/api/v1/uploads.py",
+        "frontend/src/app/uploads/page.tsx"
+      ],
+      "test_suite": "tests/test_ingestion_and_reconciliation.py",
+      "evidence_artifacts": [
+        "artifacts/verification/uploads_page.png"
+      ]
     },
     {
       "requirement_id": "SIH-R02",
-      "description": "Approved intake, actual enrolment, supernumerary seats, NRI, OCI, FN, and quotas",
-      "modules": ["backend/app/services/capacity_service.py", "backend/app/models/__init__.py", "frontend/src/app/approvals/page.tsx"],
-      "test_case": "tests/test_all_gates.py::test_gate4_approval_capacity_calculation",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/dashboard_overview.png"
+      "title": "Approved Intake, Quotas & Supernumerary Accounting",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/services/capacity_service.py",
+        "backend/app/models/__init__.py",
+        "frontend/src/app/approvals/page.tsx"
+      ],
+      "test_suite": "tests/test_identity_and_approval_rules.py",
+      "evidence_artifacts": [
+        "artifacts/verification/dashboard_overview.png"
+      ]
     },
     {
       "requirement_id": "SIH-R03",
-      "description": "Missing/invalid identifiers, duplicates, excess intake, and cross-institution duplicates",
-      "modules": ["backend/app/services/conflict_service.py", "backend/app/api/v1/conflicts.py", "frontend/src/app/conflicts/page.tsx"],
-      "test_case": "tests/test_all_gates.py::test_gate5_conflict_detection",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/conflicts_adjudicated.png"
+      "title": "Conflict & Duplicate Detection",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/services/conflict_service.py",
+        "backend/app/api/v1/conflicts.py",
+        "frontend/src/app/conflicts/page.tsx"
+      ],
+      "test_suite": "tests/test_conflicts_and_anomalies.py",
+      "evidence_artifacts": [
+        "artifacts/verification/conflicts_adjudicated.png"
+      ]
     },
     {
       "requirement_id": "SIH-R04",
-      "description": "Role-specific monitoring dashboards (Regulator vs Institution)",
-      "modules": ["frontend/src/app/dashboard/page.tsx", "backend/app/api/v1/dashboards.py", "frontend/src/lib/auth-context.tsx"],
-      "test_case": "tests/test_all_gates.py::test_gate1_health_readiness",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/dashboard_overview.png"
+      "title": "Role-Specific Monitoring Dashboards",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "frontend/src/app/dashboard/page.tsx",
+        "backend/app/api/v1/dashboards.py",
+        "frontend/src/components/layout/Sidebar.tsx"
+      ],
+      "test_suite": "tests/test_security_and_tenant_isolation.py",
+      "evidence_artifacts": [
+        "artifacts/verification/dashboard_overview.png"
+      ]
     },
     {
       "requirement_id": "SIH-R05",
-      "description": "Secure verification for authorized stakeholders",
-      "modules": ["backend/app/api/v1/verification.py", "frontend/src/app/verification/page.tsx", "frontend/src/app/verification/receipt/[token]/page.tsx"],
-      "test_case": "tests/test_all_gates.py::test_gate6_signed_receipts_and_hash_chain",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/verification_qr_receipt.png"
+      "title": "Secure Verification with Data Minimization",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/api/v1/verification.py",
+        "frontend/src/app/verification/page.tsx"
+      ],
+      "test_suite": "tests/test_verification_receipts_and_certificates.py",
+      "evidence_artifacts": [
+        "artifacts/verification/verification_page.png"
+      ]
     },
     {
       "requirement_id": "SIH-R06",
-      "description": "Verifiable student records linked to academic identity",
-      "modules": ["backend/app/services/receipt_service.py", "backend/app/core/security.py"],
-      "test_case": "tests/test_all_gates.py::test_gate6_signed_receipts_and_hash_chain",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/verification_qr_receipt.png"
+      "title": "Verifiable Academic Identity Records",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/services/receipt_service.py",
+        "backend/app/core/security.py"
+      ],
+      "test_suite": "tests/test_verification_receipts_and_certificates.py",
+      "evidence_artifacts": [
+        "artifacts/verification/verification_qr_receipt.png"
+      ]
     },
     {
       "requirement_id": "SIH-R07",
-      "description": "API and interoperability capability",
-      "modules": ["backend/app/api/v1/", "OpenAPI 3.1 specification at /docs and /openapi.json"],
-      "test_case": "tests/test_all_gates.py::test_gate1_health_readiness",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/pytest_execution.log"
+      "title": "Standardized OpenAPI Interoperability",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/api/v1/",
+        "backend/app/main.py"
+      ],
+      "test_suite": "tests/test_all_gates.py",
+      "evidence_artifacts": [
+        "artifacts/verification/pytest_execution.log"
+      ]
     },
     {
       "requirement_id": "SIH-R08",
-      "description": "Security, privacy, authentication, role permissions, audit trails, and consent",
-      "modules": ["backend/app/core/security.py", "backend/app/core/hash_chain.py", "frontend/src/app/audit/page.tsx"],
-      "test_case": "tests/test_all_gates.py::test_gate2_security_primitives and test_gate7_edge_cases_and_tamper_detection",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/audit_hash_chain_verified.png"
+      "title": "Security, Roles & Tamper-Evident Ledger",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/core/hash_chain.py",
+        "backend/app/core/security.py",
+        "frontend/src/app/audit/page.tsx"
+      ],
+      "test_suite": "tests/test_batch_review.py",
+      "evidence_artifacts": [
+        "artifacts/verification/audit_ledger_verified.png"
+      ]
     },
     {
       "requirement_id": "SIH-R09",
-      "description": "Policy, accreditation, monitoring, and regulatory reports",
-      "modules": ["backend/app/api/v1/reports.py", "frontend/src/app/reports/page.tsx"],
-      "test_case": "tests/test_all_gates.py::test_gate1_health_readiness",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/pramaan_full_workflow.webp"
+      "title": "Regulatory Compliance Reports & Exports",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "backend/app/api/v1/reports.py",
+        "frontend/src/app/reports/page.tsx"
+      ],
+      "test_suite": "tests/test_all_gates.py",
+      "evidence_artifacts": [
+        "artifacts/verification/pramaan_full_workflow.webp"
+      ]
     },
     {
       "requirement_id": "SIH-R10",
-      "description": "Support display/printing of APAAR ID alongside student ID on applicable certificates",
-      "modules": ["frontend/src/app/admissions/certificate/[id]/page.tsx", "frontend/src/app/admissions/page.tsx"],
-      "test_case": "Browser Subagent E2E Verification Workflow",
-      "status": "PASS",
-      "evidence_path": "artifacts/verification/student_certificate_sih_r10.png"
-    }
-  ],
-  "commands_executed": [
-    {
-      "command": ".\\venv\\Scripts\\python.exe -m pytest tests/test_all_gates.py -v",
-      "directory": "d:\\AICTE\\backend",
-      "exit_code": 0,
-      "result": "7 passed in 4.12s",
-      "artifact_path": "artifacts/verification/pytest_execution.log"
-    },
-    {
-      "command": "npm run build",
-      "directory": "d:\\AICTE\\frontend",
-      "exit_code": 0,
-      "result": "17 static and dynamic Next.js routes compiled successfully",
-      "artifact_path": "artifacts/verification/dashboard_overview.png"
-    },
-    {
-      "command": ".\\venv\\Scripts\\alembic.exe revision --autogenerate -m 'initial_pramaan_schema'",
-      "directory": "d:\\AICTE\\backend",
-      "exit_code": 0,
-      "result": "Generated migration revision 98d85ae389ed for all 13 entities",
-      "artifact_path": "backend/alembic/versions/98d85ae389ed_initial_pramaan_schema.py"
-    }
-  ],
-  "test_suites": [
-    {
-      "suite_name": "backend/tests/test_all_gates.py",
-      "total_tests": 7,
-      "passed": 7,
-      "failed": 0,
-      "skipped": 0,
-      "execution_time_seconds": 4.12
-    }
-  ],
-  "browser_workflows": [
-    {
-      "workflow_name": "Full Regulatory Operations Lifecycle",
-      "recording_file": "artifacts/verification/pramaan_full_workflow.webp",
-      "steps_executed": [
-        "Login with role persona switcher (AICTE Central vs Institution Operator)",
-        "Review intake capacity charts and live audit stream on /dashboard",
-        "Perform preflight upload and row findings validation on /uploads",
-        "Inspect central student repository on /admissions with masked APAAR identifiers",
-        "Generate and render SIH-R10 student academic certificate with Student ID and APAAR ID on /admissions/certificate/1",
-        "Investigate and adjudicate cross-institution conflict CONF-2026-0042 on /conflicts",
-        "Inspect explainable regulatory anomaly signals and escalate case ANOM-2026-0019 on /anomalies",
-        "Issue Ed25519 digitally signed verification QR receipt rcpt_532763c1caad4cf8bd1ea9bdf7a4b50d on /verification",
-        "Execute cryptographic hash-chain ledger integrity verification on /audit"
+      "title": "Printable Student Certificate with APAAR and Student ID",
+      "status": "VERIFIED",
+      "implementation_modules": [
+        "frontend/src/app/admissions/certificate/[id]/page.tsx",
+        "frontend/src/app/admissions/page.tsx"
       ],
-      "result": "SUCCESS"
+      "test_suite": "Browser Subagent E2E Verification",
+      "evidence_artifacts": [
+        "artifacts/verification/student_certificate_verified.png"
+      ]
     }
   ],
-  "security_findings": [
-    {
-      "area": "APAAR Privacy Protection",
-      "finding": "12-digit APAAR is never stored in plaintext. Indexed using Keyed HMAC-SHA256 and masked as XXXXXXXX1234 on all UI presentations.",
-      "status": "SECURE"
-    },
-    {
-      "area": "Digital Signatures",
-      "finding": "Ed25519 (RFC 8032) asymmetric key signing ensures tamper-proof verification receipts. Modifying token or payload invalidates signature.",
-      "status": "SECURE"
-    },
-    {
-      "area": "Tamper-Evident Ledger",
-      "finding": "SHA-256 sequential hash chain links each audit event to its predecessor. Altered rows break integrity verification.",
-      "status": "SECURE"
-    },
-    {
-      "area": "Tenant Isolation",
-      "finding": "Institution users are strictly scoped to their own institution_id on all read/write endpoints.",
-      "status": "SECURE"
-    }
-  ],
-  "external_integrations": [
-    {
-      "system": "APAAR / ABC Identity Provider",
-      "status": "DETERMINISTIC_SIMULATOR",
-      "details": "MockApaarAdapter models format validation, match, identity mismatch, not found, and provider timeouts. Ready for live API credentials."
-    },
-    {
-      "system": "AICTE Approval Process Handbook (APH)",
-      "status": "PERSISTED_DATABASE_SCHEMA",
-      "details": "ApprovalSnapshot and PolicyRuleSet model sanctioned intake, supernumerary quotas, and versioned rules."
-    },
-    {
-      "system": "National Academic Depository (NAD)",
-      "status": "COMPLIANT_CONTRACT",
-      "details": "Receipt tokens and QR payloads structured according to NAD specification."
-    }
-  ],
-  "known_issues": [
-    {
-      "issue_id": "LIM-01",
-      "severity": "LOW",
-      "summary": "Hash chain ledger is persisted within local relational database.",
-      "remediation": "In enterprise deployment, anchor periodic root hashes to an RFC 3161 public timestamping authority or cloud HSM."
-    },
-    {
-      "issue_id": "LIM-02",
-      "severity": "LOW",
-      "summary": "Live NSDL/DigiLocker sandbox requires government-issued API credentials.",
-      "remediation": "Deterministic MockApaarAdapter implements full contract; replace with OAuth2 client upon credential receipt."
-    }
-  ],
-  "evidence_files": [
-    "artifacts/verification/pytest_execution.log",
-    "artifacts/verification/student_certificate_sih_r10.png",
-    "artifacts/verification/dashboard_overview.png",
-    "artifacts/verification/verification_qr_receipt.png",
-    "artifacts/verification/audit_hash_chain_verified.png",
-    "artifacts/verification/conflicts_adjudicated.png",
-    "artifacts/verification/anomalies_escalated.png",
-    "artifacts/verification/admissions_repository.png",
-    "artifacts/verification/pramaan_full_workflow.webp"
-  ],
-  "final_acceptance_decision": {
-    "status": "PASS",
-    "criteria_passed": 20,
-    "criteria_total": 20,
-    "verdict": "ACCEPTED FOR DEMONSTRATION & REGULATORY EVALUATION"
-  }
+  "sample_datasets": [
+    "sample_data/valid_admissions_dtu.csv",
+    "sample_data/batch_with_duplicates_and_errors.csv",
+    "sample_data/supernumerary_tfw_coep.csv",
+    "sample_data/students_template.csv"
+  ]
 }

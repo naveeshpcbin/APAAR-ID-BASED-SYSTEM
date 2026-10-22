@@ -100,7 +100,10 @@ export default function LoginPage() {
           {/* Quick Demo Switcher Section */}
           <div className="pt-4 border-t border-slate-200 space-y-2">
             <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider text-center">
-              SIH Evaluator Quick Access (One-Click Login)
+              SIH Evaluator Quick Access (Synthetic Test Personas)
+            </div>
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-2 text-[10px] text-amber-900 text-center font-medium">
+              Notice: Seeded test personas for local evaluation. Production environments require MeriPehchaan (Parichay NSSO) OAuth2 integration.
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <button

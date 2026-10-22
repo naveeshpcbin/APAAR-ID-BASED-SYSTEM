@@ -17,6 +17,7 @@ from app.core.hash_chain import append_audit_event
 from app.services.receipt_service import ReceiptService
 
 def seed_database():
+    print("[*] NOTICE: Initializing Synthetic Demonstration Database (SIH26263). Zero real PII.")
     print("[*] Initializing database schema...")
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()

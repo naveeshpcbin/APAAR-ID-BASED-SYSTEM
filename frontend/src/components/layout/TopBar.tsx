@@ -25,6 +25,13 @@ export function TopBar() {
             <span className="font-mono text-slate-800">AICTE-APH-2026-V1</span>
           </span>
         </div>
+
+        <div className="hidden lg:flex items-center border-l border-slate-200 pl-4">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-900 border border-amber-300 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            SIMULATION MODE (Synthetic APAAR Gateway)
+          </span>
+        </div>
       </div>
 
       {/* Right: Demo Persona Switcher & User Profile */}

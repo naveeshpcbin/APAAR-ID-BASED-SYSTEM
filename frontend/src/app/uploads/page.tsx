@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   UploadCloud,
   FileSpreadsheet,
@@ -328,6 +329,7 @@ export default function UploadsPage() {
                 <th className="px-3 py-2.5">Errors</th>
                 <th className="px-3 py-2.5">Status</th>
                 <th className="px-3 py-2.5">Submitted At</th>
+                <th className="px-3 py-2.5 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -343,9 +345,13 @@ export default function UploadsPage() {
                   <td className="px-3 py-2">
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                        b.status === "COMMITTED"
+                        b.status === "APPROVED"
                           ? "bg-emerald-100 text-emerald-800"
-                          : "bg-blue-100 text-blue-800"
+                          : b.status === "COMMITTED"
+                          ? "bg-blue-100 text-blue-800"
+                          : b.status === "REJECTED_NEEDS_CORRECTION"
+                          ? "bg-rose-100 text-rose-800"
+                          : "bg-amber-100 text-amber-800"
                       }`}
                     >
                       {b.status}
@@ -354,11 +360,19 @@ export default function UploadsPage() {
                   <td className="px-3 py-2 text-slate-500 font-mono">
                     {new Date(b.created_at).toLocaleString()}
                   </td>
+                  <td className="px-3 py-2 text-right">
+                    <Link
+                      href={`/uploads/${b.id}`}
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-govNavy-700 hover:text-govNavy-950 hover:underline"
+                    >
+                      Details & Review &rarr;
+                    </Link>
+                  </td>
                 </tr>
               ))}
               {batches.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="px-3 py-6 text-center text-slate-400">
+                  <td colSpan={10} className="px-3 py-6 text-center text-slate-400">
                     No upload batches recorded for this institution yet.
                   </td>
                 </tr>

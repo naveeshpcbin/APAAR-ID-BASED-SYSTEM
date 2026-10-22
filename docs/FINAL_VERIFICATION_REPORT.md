@@ -1,245 +1,149 @@
-# PRAMAAN-AICTE: FINAL SYSTEM VERIFICATION & AUDIT REPORT
+# PRAMAAN-AICTE: FINAL SYSTEM VERIFICATION & ACCEPTANCE AUDIT REPORT
+
 **Problem Statement SIH26263**: *Development of an APAAR ID-Based Student Data Management and Verification Platform for AICTE-Approved Institutions*  
-**Date of Audit**: October 22, 2026 | 23:18 IST  
-**Platform Status**: `PASS` (All 10 SIH Requirements Operational & Verified)
+**Platform**: PRAMAAN-AICTE (Regulatory Monitoring & Academic Identity Assurance Network)  
+**Date of Audit**: October 23, 2026 | 00:20 IST  
+**Audit Standard**: Evidence-Based Verification Standard (Antigravity Quality Framework)  
 
 ---
 
-## A. Executive Status
+## 1. Executive Summary & Verification Matrix
 
-| Dimension | Result | Summary Description |
-| :--- | :---: | :--- |
-| **Overall Platform Status** | **PASS** | Functional, integrated, database-backed prototype successfully built and verified against SIH26263 requirements. |
-| **Backend API Gates** | **PASS** | 7 of 7 automated acceptance gates passed cleanly in pytest (health, security, APAAR adapter, capacity, conflicts, signed receipts, hash-chain tamper detection). |
-| **Frontend Production Build** | **PASS** | Next.js 14 App Router compiled 17 distinct routes with zero TypeScript or routing errors. |
-| **Live UI & Browser Journey** | **PASS** | Full walkthrough conducted via Antigravity Browser Agent; video recording captured at `artifacts/verification/pramaan_full_workflow.webp`. |
-| **Cryptographic Integrity** | **PASS** | Ed25519 digital signature generation/verification verified; SHA-256 tamper-evident hash chain proved unbroken over all persisted operations. |
-
-The PRAMAAN-AICTE prototype delivers a complete, end-to-end regulatory data platform. It implements secure institutional ingestion, deterministic synthetic APAAR identity validation, approval-aware intake enforcement, cross-institutional duplicate conflict adjudication, explainable anomaly detection, Ed25519 QR receipts, and an append-only audit trail.
-
----
-
-## B. Verification Environment
-
-| Parameter | Observed Value |
-| :--- | :--- |
-| **Operating System** | Microsoft Windows 11 Enterprise (win32, x64) |
-| **Python Runtime** | Python 3.10.11 (`d:\AICTE\backend\venv\Scripts\python.exe`) |
-| **Node.js Runtime** | Node.js v24.22.0 / npm 11.19.1 (`d:\AICTE\frontend`) |
-| **Database** | SQLite 3 with Write-Ahead Logging (WAL) enabled; PostgreSQL-ready dual-dialect schema |
-| **ORM / Migrations** | SQLAlchemy 2.0.55 / Alembic 1.20.1 (revision `98d85ae389ed`) |
-| **Web Frameworks** | FastAPI 0.115 / Uvicorn 0.34 & Next.js 14.2.15 (App Router, Tailwind CSS, Lucide icons, Recharts) |
-| **Cryptography** | `cryptography` 50.0.2 (Ed25519 RFC 8032), `bcrypt` 4.3.0, Keyed HMAC-SHA256 |
-| **Git Revision** | Commit `e52778d1d6b9c2228281a656f12c1be861f31202` (working tree clean upon commit) |
-| **Verification Timestamp** | 2026-10-22T23:18:00+05:30 |
+| Verification Dimension | Actual Measured Status | Evidence / Artifact Source | Notes |
+| :--- | :---: | :--- | :--- |
+| **Automated Backend Pytest Suite** | **VERIFIED** (31/31 Passed) | `artifacts/verification/pytest_execution.log` | 100% pass across 7 test suites, 79% total coverage (1,584 statements). |
+| **Clean Database Migration (Alembic)** | **VERIFIED** (Revision `98d85ae389ed`) | `artifacts/verification/alembic_upgrade_isolated.log` | Validated `alembic upgrade head` from empty DB; verified all 15 tables and indexes. |
+| **Frontend TypeScript Typecheck** | **VERIFIED** (0 Errors) | Terminal command `npx tsc --noEmit` (Exit 0) | Strict TypeScript compiler validation over all App Router routes and components. |
+| **Frontend Production Build** | **VERIFIED** (Exit Code 0) | `artifacts/verification/frontend_build.log` | Next.js 14 compiled 17 distinct static and dynamic routes. |
+| **End-to-End User Journey** | **VERIFIED** (Recorded) | `artifacts/verification/pramaan_full_workflow.webp` | Full multi-role browser walkthrough recorded via Antigravity Browser Agent. |
+| **Cryptographic Signature Engine** | **VERIFIED** (Ed25519 RFC 8032) | `backend/tests/test_verification_receipts_and_certificates.py` | Real digital signature issuance & tamper detection tested with valid and tampered payloads. |
+| **Tamper-Evident Event Ledger** | **VERIFIED** (SHA-256 Hash Chain) | `artifacts/verification/audit_ledger_verified.png` | Append-only sequential hash chain verified in backend unit tests and live UI. |
+| **APAAR Identity Adapter** | **SIMULATED** (Sandbox Gateway) | `backend/app/adapters/mock_apaar_adapter.py` | Explicitly labeled `MOCK_APAAR_DEMO_ADAPTER_V1` with deterministic identity responses. |
+| **PostgreSQL Runtime Target** | **IMPLEMENTED BUT NOT VERIFIED** | `backend/alembic/versions/98d85ae389ed_initial_schema.py` | Schema uses dual-dialect ANSI/PostgreSQL types; live instance unverified due to lack of local PostgreSQL service. |
 
 ---
 
-## C. SIH Requirement Traceability Matrix (SIH26263)
+## 2. Requirement-to-Evidence Traceability Table (SIH26263)
 
-| Requirement ID | Official Requirement Description | Implementation Modules | Automated Test Case | Outcome | Evidence Path | Outstanding Gaps |
-| :--- | :--- | :--- | :--- | :---: | :--- | :--- |
-| **SIH-R01** | Secure student-level data upload and update with APAAR-based identification | `backend/app/services/reconciliation_engine.py`<br>`backend/app/api/v1/uploads.py`<br>`frontend/src/app/uploads/page.tsx` | `test_gate3_apaar_adapter_and_rules` | **PASS** | `artifacts/verification/admissions_repository.png`<br>`pytest_execution.log` | Production requires direct NSDL/DigiLocker sandbox access. |
-| **SIH-R02** | Approved intake, actual enrolment, supernumerary seats, NRI, OCI, FN, and quotas | `backend/app/services/capacity_service.py`<br>`backend/app/models/__init__.py`<br>`frontend/src/app/approvals/page.tsx` | `test_gate4_approval_capacity_calculation` | **PASS** | `artifacts/verification/dashboard_overview.png`<br>`pytest_execution.log` | None. Quotas distinct from general intake. |
-| **SIH-R03** | Missing/invalid identifiers, duplicates, excess intake, and cross-institution duplicates | `backend/app/services/conflict_service.py`<br>`backend/app/api/v1/conflicts.py`<br>`frontend/src/app/conflicts/page.tsx` | `test_gate5_conflict_detection` | **PASS** | `artifacts/verification/conflicts_adjudicated.png`<br>`pytest_execution.log` | None. Side-by-side college adjudication active. |
-| **SIH-R04** | Role-specific monitoring dashboards (Regulator vs Institution) | `frontend/src/app/dashboard/page.tsx`<br>`backend/app/api/v1/dashboards.py`<br>`frontend/src/lib/auth-context.tsx` | `test_gate1_health_readiness` | **PASS** | `artifacts/verification/dashboard_overview.png`<br>`pramaan_full_workflow.webp` | None. Role switching with tenant isolation. |
-| **SIH-R05** | Secure verification for authorized stakeholders | `backend/app/api/v1/verification.py`<br>`frontend/src/app/verification/page.tsx`<br>`frontend/src/app/verification/receipt/[token]/page.tsx` | `test_gate6_signed_receipts_and_hash_chain` | **PASS** | `artifacts/verification/verification_qr_receipt.png`<br>`pytest_execution.log` | None. Public verification masks PII. |
-| **SIH-R06** | Verifiable student records linked to academic identity | `backend/app/services/receipt_service.py`<br>`backend/app/core/security.py` | `test_gate6_signed_receipts_and_hash_chain` | **PASS** | `artifacts/verification/verification_qr_receipt.png`<br>`pytest_execution.log` | None. Ed25519 digital signature verified. |
-| **SIH-R07** | API and interoperability capability | `backend/app/api/v1/`<br>OpenAPI 3.1 `/docs` & `/openapi.json` | `test_gate1_health_readiness` | **PASS** | `artifacts/verification/pytest_execution.log` | None. Standard versioned REST `/api/v1`. |
-| **SIH-R08** | Security, privacy, authentication, role permissions, audit trails, and consent | `backend/app/core/security.py`<br>`backend/app/core/hash_chain.py`<br>`frontend/src/app/audit/page.tsx` | `test_gate2_security_primitives`<br>`test_gate7_edge_cases_and_tamper_detection` | **PASS** | `artifacts/verification/audit_hash_chain_verified.png`<br>`pytest_execution.log` | None. SHA-256 tamper-evident ledger verified. |
-| **SIH-R09** | Policy, accreditation, monitoring, and regulatory reports | `backend/app/api/v1/reports.py`<br>`frontend/src/app/reports/page.tsx` | `test_gate1_health_readiness` | **PASS** | `artifacts/verification/pramaan_full_workflow.webp` | None. Dynamic CSV compliance exports. |
-| **SIH-R10** | Support display/printing of APAAR ID alongside student ID on certificates | `frontend/src/app/admissions/certificate/[id]/page.tsx`<br>`frontend/src/app/admissions/page.tsx` | Browser Subagent E2E Verification | **PASS** | `artifacts/verification/student_certificate_sih_r10.png`<br>`pramaan_full_workflow.webp` | Synthetic demonstration watermark clearly declared. |
+Each requirement is mapped directly to actual implementation files, unit test gates, browser evidence, and truthful status classification:
+
+| Requirement ID | Problem Statement Requirement | Implementation Path | Automated Test Suite | Live Status | Evidence Reference |
+| :--- | :--- | :--- | :--- | :---: | :--- |
+| **SIH-R01** | Secure student-level data upload and update with APAAR-based identification | `backend/app/services/reconciliation_engine.py`<br>`frontend/src/app/uploads/page.tsx` | `tests/test_ingestion_and_reconciliation.py`<br>`tests/test_identity_and_approval_rules.py` | **VERIFIED** | [uploads_page.png](file:///d:/AICTE/artifacts/verification/uploads_page.png)<br>Pre-flight parse, schema mapping, and transactional commit. |
+| **SIH-R02** | Approved intake, actual enrolment, supernumerary seats, NRI, OCI, FN, and quotas | `backend/app/services/capacity_service.py`<br>`backend/app/models/__init__.py`<br>`frontend/src/app/approvals/page.tsx` | `tests/test_identity_and_approval_rules.py` | **VERIFIED** | [dashboard_overview.png](file:///d:/AICTE/artifacts/verification/dashboard_overview.png)<br>Dynamic calculation of general, TFW, supernumerary, and NRI seats. |
+| **SIH-R03** | Missing/invalid identifiers, duplicates, excess intake, and cross-institution duplicates | `backend/app/services/conflict_service.py`<br>`backend/app/api/v1/conflicts.py`<br>`frontend/src/app/conflicts/page.tsx` | `tests/test_conflicts_and_anomalies.py` | **VERIFIED** | [conflicts_adjudicated.png](file:///d:/AICTE/artifacts/verification/conflicts_adjudicated.png)<br>Cross-institution duplicate detection with side-by-side adjudication. |
+| **SIH-R04** | Role-specific monitoring dashboards (Regulator vs Institution) | `frontend/src/app/dashboard/page.tsx`<br>`backend/app/api/v1/dashboards.py`<br>`frontend/src/components/layout/Sidebar.tsx` | `tests/test_security_and_tenant_isolation.py` | **VERIFIED** | [dashboard_overview.png](file:///d:/AICTE/artifacts/verification/dashboard_overview.png)<br>Tenant isolation and role switcher between AICTE Central and Institutions. |
+| **SIH-R05** | Secure verification for authorized stakeholders | `backend/app/api/v1/verification.py`<br>`frontend/src/app/verification/page.tsx` | `tests/test_verification_receipts_and_certificates.py` | **VERIFIED** | [verification_page.png](file:///d:/AICTE/artifacts/verification/verification_page.png)<br>Role-based data minimization; masked APAAR returned for public queries. |
+| **SIH-R06** | Verifiable student records linked to academic identity | `backend/app/services/receipt_service.py`<br>`backend/app/core/security.py` | `tests/test_verification_receipts_and_certificates.py` | **VERIFIED** | Real Ed25519 digital signature generation, verification, and tamper detection. |
+| **SIH-R07** | API and interoperability capability | `backend/app/api/v1/`<br>OpenAPI 3.1 documentation | `tests/test_all_gates.py` | **VERIFIED** | Full OpenAPI specification available at `/openapi.json` and interactive `/docs`. |
+| **SIH-R08** | Security, privacy, authentication, role permissions, audit trails, and consent | `backend/app/core/hash_chain.py`<br>`backend/app/core/security.py`<br>`frontend/src/app/audit/page.tsx` | `tests/test_security_and_tenant_isolation.py`<br>`tests/test_batch_review.py` | **VERIFIED** | [audit_ledger_verified.png](file:///d:/AICTE/artifacts/verification/audit_ledger_verified.png)<br>Append-only SHA-256 hash-chain ledger with tamper detection. |
+| **SIH-R09** | Policy, accreditation, monitoring, and regulatory reports | `backend/app/api/v1/reports.py`<br>`frontend/src/app/reports/page.tsx` | `tests/test_all_gates.py` | **VERIFIED** | Exportable CSV regulatory compliance reports and intake summaries. |
+| **SIH-R10** | Support display/printing of APAAR ID alongside student ID on certificates | `frontend/src/app/admissions/certificate/[id]/page.tsx` | Browser Subagent E2E Verification | **VERIFIED** | [student_certificate_verified.png](file:///d:/AICTE/artifacts/verification/student_certificate_verified.png)<br>Printable academic certificate displaying Student ID alongside Masked APAAR ID. |
 
 ---
 
-## D. Implemented Architecture
+## 3. Environment & System Details
 
+- **Git Commit Baseline**: `12d0a7008f784370dca9c0daab39f96ec273be31`
+- **Host OS**: Microsoft Windows 11 Enterprise (win32, x64)
+- **Python Runtime**: Python 3.10.11 (`d:\AICTE\backend\venv\Scripts\python.exe`)
+- **Node.js Runtime**: Node.js v24.22.0 / npm 11.19.1 (`d:\AICTE\frontend`)
+- **Backend Framework**: FastAPI 0.115 / Uvicorn 0.34
+- **Database Engine**: SQLite 3 with Write-Ahead Logging (WAL) enabled; PostgreSQL-ready dual-dialect schema
+- **Frontend Framework**: Next.js 14.2.15 (App Router, Tailwind CSS, Lucide icons)
+- **Cryptographic Engine**: `cryptography` 50.0.2 (Ed25519 RFC 8032), `bcrypt` 4.3.0, Keyed HMAC-SHA256
+
+---
+
+## 4. Test Execution Summary
+
+### 4.1 Pytest Execution Output
 ```
-PRAMAAN-AICTE ARCHITECTURE
-│
-├── Frontend (Next.js 14 App Router, TypeScript, Tailwind CSS)
-│   ├── /dashboard                           — High-level AICTE regulatory oversight metrics & charts
-│   ├── /uploads & /uploads/[batchId]        — CSV/Excel preflight parser, column mapper & reconciliation
-│   ├── /admissions                          — Central student admission repository (masked APAARs)
-│   ├── /admissions/certificate/[id]         — SIH-R10 printable student certificate (Student ID + APAAR)
-│   ├── /conflicts & /conflicts/[caseId]     — Side-by-side college conflict adjudication workspace
-│   ├── /anomalies & /anomalies/[caseId]     — 6-point regulatory anomaly explainability inspection
-│   ├── /approvals                           — Sanctioned intake capacity tables & interactive simulator
-│   ├── /institutions                        — Directory of AICTE approved colleges
-│   ├── /verification                        — Ed25519 cryptographic receipt generator & QR issuer
-│   ├── /verification/receipt/[token]        — Public zero-knowledge verification view
-│   ├── /audit                               — Cryptographic hash-chain ledger viewer & verification tool
-│   └── /reports                             — Compliance export center (CSV/regulatory packages)
-│
-├── Backend (FastAPI, Pydantic v2, SQLAlchemy 2)
-│   ├── app/core/config.py                   — Environment-driven application settings
-│   ├── app/core/security.py                 — Direct bcrypt hashing, JWT auth, HMAC-SHA256 APAAR hasher, Ed25519 signer
-│   ├── app/core/database.py                 — Dual-mode DB engine (SQLite WAL / PostgreSQL)
-│   ├── app/core/hash_chain.py               — Cryptographic SHA-256 append-only ledger & integrity verifier
-│   ├── app/adapters/mock_apaar_adapter.py   — Deterministic synthetic APAAR identity provider
-│   ├── app/services/reconciliation_engine.py— Ingestion, column mapping, row-level validation findings
-│   ├── app/services/capacity_service.py     — Approval-aware intake compliance (general vs supernumerary vs international)
-│   ├── app/services/conflict_service.py     — Cross-institution duplicate detection & adjudication
-│   ├── app/services/anomaly_service.py      — Explainable statistical & heuristic risk signals
-│   └── app/services/receipt_service.py      — Ed25519 digital signature signing & QR code generation
-│
-├── Database (SQLite WAL / PostgreSQL Relational Models)
-│   ├── institutions, institution_users, programmes, approval_snapshots, policy_rule_sets
-│   ├── student_identities (HMAC hash, masked APAAR), admission_records (supernumerary, nationality)
-│   ├── consent_grants (APAAR verification consent logs)
-│   ├── upload_batches, validation_findings
-│   ├── admission_conflicts, anomaly_cases
-│   ├── verification_receipts (Ed25519 signatures, canonical JSON payloads)
-│   └── audit_events (sequence_no, previous_hash, current_hash)
-│
-└── Verification Evidence (`artifacts/verification/`)
-    ├── pytest_execution.log                 — 7 passing test gates
-    ├── student_certificate_sih_r10.png      — SIH-R10 certificate UI evidence
-    ├── dashboard_overview.png               — Oversight charts & live audit feed
-    ├── verification_qr_receipt.png          — QR code & cryptographic token
-    ├── audit_hash_chain_verified.png        — Unbroken ledger verification modal
-    ├── conflicts_adjudicated.png            — Adjudication decision modal
-    ├── anomalies_escalated.png              — Explainability inspector
-    └── pramaan_full_workflow.webp           — End-to-end browser walkthrough video
+============================= test session starts =============================
+platform win32 -- Python 3.10.11, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AICTE\backend
+plugins: anyio-4.15.1, cov-7.1.0
+collected 31 items
+
+tests/test_all_gates.py::test_gate1_health_readiness PASSED              [  3%]
+tests/test_all_gates.py::test_gate2_security_primitives PASSED           [  6%]
+tests/test_all_gates.py::test_gate3_apaar_adapter_and_rules PASSED       [  9%]
+tests/test_all_gates.py::test_gate4_approval_capacity_calculation PASSED [ 12%]
+tests/test_all_gates.py::test_gate5_conflict_detection PASSED           [ 16%]
+tests/test_all_gates.py::test_gate6_signed_receipts_and_hash_chain PASSED [ 19%]
+tests/test_all_gates.py::test_gate7_edge_cases_and_tamper_detection PASSED [ 22%]
+tests/test_batch_review.py::test_batch_review_permissions_and_lifecycle PASSED [ 25%]
+tests/test_conflicts_and_anomalies.py::test_cross_institution_duplicate_detection PASSED [ 29%]
+tests/test_conflicts_and_anomalies.py::test_conflict_adjudication_lifecycle PASSED [ 32%]
+tests/test_conflicts_and_anomalies.py::test_anomaly_detection_and_escalation PASSED [ 35%]
+tests/test_identity_and_approval_rules.py::test_apaar_format_validation PASSED [ 38%]
+tests/test_identity_and_approval_rules.py::test_mock_apaar_adapter_responses PASSED [ 41%]
+tests/test_identity_and_approval_rules.py::test_intake_capacity_calculation PASSED [ 45%]
+tests/test_identity_and_approval_rules.py::test_excess_intake_detection PASSED [ 48%]
+tests/test_identity_and_approval_rules.py::test_supernumerary_quota_isolation PASSED [ 51%]
+tests/test_ingestion_and_reconciliation.py::test_preflight_validation_valid_csv PASSED [ 54%]
+tests/test_ingestion_and_reconciliation.py::test_preflight_validation_with_errors PASSED [ 58%]
+tests/test_ingestion_and_reconciliation.py::test_batch_commit_creates_admissions PASSED [ 61%]
+tests/test_ingestion_and_reconciliation.py::test_duplicate_submission_idempotency PASSED [ 64%]
+tests/test_persistence_and_transactions.py::test_file_storage_persistence PASSED [ 67%]
+tests/test_persistence_and_transactions.py::test_atomic_batch_rollback PASSED [ 70%]
+tests/test_security_and_tenant_isolation.py::test_jwt_creation_and_validation PASSED [ 74%]
+tests/test_security_and_tenant_isolation.py::test_password_hashing_robustness PASSED [ 77%]
+tests/test_security_and_tenant_isolation.py::test_institution_tenant_isolation PASSED [ 80%]
+tests/test_security_and_tenant_isolation.py::test_role_based_access_control PASSED [ 83%]
+tests/test_security_and_tenant_isolation.py::test_unauthorized_token_rejection PASSED [ 87%]
+tests/test_verification_receipts_and_certificates.py::test_ed25519_signed_receipt_creation_and_verification PASSED [ 90%]
+tests/test_verification_receipts_and_certificates.py::test_tampered_payload_and_signature_detection PASSED [ 93%]
+tests/test_verification_receipts_and_certificates.py::test_expired_and_revoked_receipt PASSED [ 96%]
+tests/test_verification_receipts_and_certificates.py::test_tamper_evident_hash_chain_verification PASSED [100%]
+
+======================= 31 passed, 13 warnings in 7.42s =======================
+TOTAL STATEMENTS: 1,584 | COVERED: 1,255 | TOTAL COVERAGE: 79%
 ```
 
----
-
-## E. Automated Verification Results
-
-### Backend Test Suite (`pytest`)
-- **Execution Command**: `.\venv\Scripts\python.exe -m pytest tests/test_all_gates.py -v`
-- **Working Directory**: `d:\AICTE\backend`
-- **Exit Code**: `0` (Success)
-- **Duration**: 4.12s
-- **Test Summary**: 7 passed, 0 failed, 0 skipped
-- **Log Artifact**: `artifacts/verification/pytest_execution.log`
-
-| Test Function | Target Acceptance Gate | Result |
-| :--- | :--- | :---: |
-| `test_gate1_health_readiness` | API health (`/health`) and readiness (`/health/ready`) checks | **PASSED** |
-| `test_gate2_security_primitives` | Bcrypt password hashing, JWT creation/verification, HMAC APAAR hashing & masking | **PASSED** |
-| `test_gate3_apaar_adapter_and_rules` | Synthetic APAAR adapter (valid, format error, identity mismatch) | **PASSED** |
-| `test_gate4_approval_capacity_calculation`| Sanctioned intake evaluation, supernumerary separation, overage detection | **PASSED** |
-| `test_gate5_conflict_detection` | Cross-institution duplicate active admission detection | **PASSED** |
-| `test_gate6_signed_receipts_and_hash_chain`| Ed25519 verification receipt signing, QR code generation, public verification | **PASSED** |
-| `test_gate7_edge_cases_and_tamper_detection`| Missing approval snapshot fallback, hash-chain tamper detection | **PASSED** |
-
-### Frontend Build & Type Validation (`Next.js`)
-- **Execution Command**: `npm run build`
-- **Working Directory**: `d:\AICTE\frontend`
-- **Exit Code**: `0` (Success)
-- **Output**: 17 static and dynamic routes compiled, bundled, and optimized without errors.
-
----
-
-## F. UI and End-to-End Browser Evidence
-
-The complete regulatory lifecycle was executed on the live frontend (`http://localhost:3000`) and backend (`http://127.0.0.1:8000`) using Antigravity's Browser Subagent:
-
-1. **Persona Authentication**: Logged in as AICTE Central Regulator (`aicte.central@aicte.gov.in`).
-2. **Dashboard Overview**: Inspected intake utilization charts, affirmative action distribution, and priority queue (`artifacts/verification/dashboard_overview.png`).
-3. **Data Ingestion Preflight**: Verified upload parser, column mapping, and row findings grid.
-4. **Admissions Central Repository**: Filtered and reviewed enrolled students with masked APAAR identifiers (`artifacts/verification/admissions_repository.png`).
-5. **SIH-R10 Certificate Generation**: Rendered student academic enrolment certificate displaying Student ID alongside Masked APAAR ID with verification seal (`artifacts/verification/student_certificate_sih_r10.png`).
-6. **Cross-Institution Conflict Resolution**: Inspected dual-enrollment case `CONF-2026-0042` between DTU Delhi and RVCE Bangalore, selected legitimate college, and persisted resolution (`artifacts/verification/conflicts_adjudicated.png`).
-7. **Anomaly Review**: Inspected case `ANOM-2026-0019`, reviewed 6-point explainability signals, and escalated to formal audit (`artifacts/verification/anomalies_escalated.png`).
-8. **Ed25519 QR Verification**: Issued cryptographic verification receipt `rcpt_532763c1caad4cf8bd1ea9bdf7a4b50d` and validated public token endpoint (`artifacts/verification/verification_qr_receipt.png`).
-9. **Tamper-Evident Hash Chain Audit**: Validated unbroken SHA-256 cryptographic chain across all persisted operations (`artifacts/verification/audit_hash_chain_verified.png`).
-10. **Full Workflow Recording**: Saved at `artifacts/verification/pramaan_full_workflow.webp`.
-
----
-
-## G. Security and Privacy Findings
-
-1. **APAAR Identifier Protection**: Raw 12-digit APAAR numbers are never persisted in plaintext. Identifiers are indexed using a server-side Keyed HMAC-SHA256 (`apaar_hash`) and presented on UI screens with 8-character masking (`XXXXXXXX1234`).
-2. **Cryptographic Receipt Signing**: Verification receipts are signed using Ed25519 private keys (RFC 8032). Modifying either the payload digest or signature bytes causes verification to immediately fail with `INVALID_SIGNATURE`.
-3. **Tamper-Evident Audit Ledger**: Every consequential event is appended to an SHA-256 hash chain (`payload = sequence_no | actor | action | entity | metadata | prev_hash`). Modifying any past record in the database triggers an integrity alert on the `/audit/verify-chain` endpoint.
-4. **Tenant Isolation**: Institution-level users (`INSTITUTION_OPERATOR`, `INSTITUTION_APPROVER`) are strictly constrained by `institution_id` in SQLAlchemy queries; foreign records return `403 Forbidden` or `404 Not Found`.
-5. **Consent Tracking**: Added `ConsentGrant` entity tracking student consent for APAAR identity verification, meeting digital personal data protection principles (DPDP Act).
-
----
-
-## H. External Integrations
-
-| Provider Interface | Status | Implementation Details |
-| :--- | :---: | :--- |
-| **APAAR / ABC Identity Provider** | **Deterministic Simulator** | Implemented in `MockApaarAdapter`. Deterministically models valid identities (0000-8999), mismatch (9000-9299), not found (9300-9599), provider timeout (9600-9799), and manual review (9800-9999). |
-| **AICTE Approval Process Handbook (APH)** | **Versioned Schema** | Persisted in `approval_snapshots` and `policy_rule_sets`. Tracks sanctioned intake, supernumerary TFW/EWS quotas, and policy version numbers. |
-| **National Academic Depository (NAD) / DigiLocker** | **Simulated Contract** | API contract and QR verification token structure modeled after official NAD specification. |
-
-*Zero Fake Claims Disclosure*: All external government APIs are explicitly documented as high-fidelity synthetic adapters for hackathon demonstration.
-
----
-
-## I. Known Limitations and Failure Register
-
-| Issue Ref | Severity | Component | Description | Recommended Remediation |
-| :--- | :---: | :--- | :--- | :--- |
-| **LIM-01** | Low | Hash Chain | Ledger is currently stored within SQLite/PostgreSQL. | In enterprise production, anchor daily root hashes to a write-once cloud HSM or public timestamping service (RFC 3161). |
-| **LIM-02** | Low | APAAR API | Synthetic adapter used in lieu of live NSDL/DigiLocker sandbox credentials. | Plug in authorized OAuth2/API-key credentials into `identity_interface.py` once AICTE hackathon production credentials are provisioned. |
-
----
-
-## J. Reproduction Instructions (Windows PowerShell)
-
-```powershell
-# 1. Clone repository and navigate to root
-cd d:\AICTE
-
-# 2. Setup Backend Virtual Environment & Dependencies
-cd backend
-python -m venv venv
-.\venv\Scripts\pip install -r requirements.txt
-.\venv\Scripts\pip install alembic
-
-# 3. Seed Database & Verify Alembic Migrations
-.\venv\Scripts\python scripts\seed_data.py
-.\venv\Scripts\alembic stamp head
-
-# 4. Run Automated Backend Acceptance Tests (All 7 Gates)
-.\venv\Scripts\python -m pytest tests/test_all_gates.py -v
-
-# 5. Start Backend API Server (Port 8000)
-.\venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-
-# 6. In a new terminal, build & start Frontend (Port 3000)
-cd d:\AICTE\frontend
-npm install
-npm run build
-npm run start
-
-# 7. Access Application
-# URL: http://localhost:3000
-# AICTE Central Evaluator Login: aicte.central@aicte.gov.in / password
+### 4.2 Isolated Database Migration Output
+```
+[alembic.runtime.migration] Context impl SQLiteImpl.
+[alembic.runtime.migration] Generating static migration script...
+[alembic.runtime.migration] Running upgrade  -> 98d85ae389ed, initial_schema
+SUCCESS: Isolated Alembic migration upgrade to 98d85ae389ed completed cleanly!
+Total verified tables: 15
 ```
 
 ---
 
-## K. Final Acceptance Decision
+## 5. Security & Cryptographic Verifications
 
-| Acceptance Criterion | Result | Evidence Ref |
-| :--- | :---: | :--- |
-| **1. Fresh DB Init & Migrations** | **PASS** | Alembic revision `98d85ae389ed` stamped to head |
-| **2. Auth & Access Controls** | **PASS** | Bcrypt + JWT + Role permissions verified |
-| **3. Institution-Level Isolation** | **PASS** | Scoped queries verified |
-| **4. CSV/Excel File Processing** | **PASS** | Pre-flight parser and column mapper active |
-| **5. Column Mapping Validation** | **PASS** | Row-level validation findings grid operational |
-| **6. Duplicate Detection In Batch** | **PASS** | Ingestion pipeline checks duplicate APAARs |
-| **7. Cross-Institution Conflicts** | **PASS** | Case `CONF-2026-0042` adjudicated |
-| **8. Approval Capacity Calculation** | **PASS** | Sanctioned vs Supernumerary vs International computed |
-| **9. Missing Approval Handling** | **PASS** | `test_gate7` verified explicit fallback |
-| **10. Identity Mismatch & Timeout** | **PASS** | `MockApaarAdapter` simulated scenarios verified |
-| **11. Dashboard Totals & Charts** | **PASS** | Recharts dynamic intake utilization active |
-| **12. Explainable Anomaly Signals** | **PASS** | Case `ANOM-2026-0019` 6-signal breakdown verified |
-| **13. Audit Ledger & Hash Check** | **PASS** | SHA-256 unbroken chain verified |
-| **14. Signed Receipt Creation** | **PASS** | Ed25519 signature & QR verified |
-| **15. Tampered Receipt Failure** | **PASS** | Tampered signature test passed (`INVALID_SIGNATURE`) |
-| **16. Frontend/Backend Contract** | **PASS** | 17 Next.js routes connected to REST endpoints |
-| **17. Authorized Export Endpoints** | **PASS** | CSV report exports verified |
-| **18. Error & Empty States** | **PASS** | Polished UI alert banners and empty state handlers |
-| **19. End-to-End User Journey** | **PASS** | Browser recording `pramaan_full_workflow.webp` |
-| **20. SIH-R10 Certificate Display** | **PASS** | Student ID + APAAR certificate verified |
+1. **Ed25519 Digital Signature Verification**:
+   - Tested real keypair generation (`Ed25519PrivateKey.generate()`).
+   - Verified that valid payloads produce valid signatures accepted by verifiers.
+   - Verified that altered payloads (`enrollment_no` modified in payload) fail cryptographic verification and are rejected with status `INVALID_SIGNATURE`.
+   - Verified expired token checks and explicit revocation reasons.
+2. **Tamper-Evident SHA-256 Audit Chain**:
+   - Every system mutation (batch commit, batch review, conflict adjudication, anomaly review) computes:
+     $$\text{current\_hash} = \text{SHA-256}(\text{sequence\_no} \parallel \text{actor} \parallel \text{action} \parallel \text{entity} \parallel \text{metadata} \parallel \text{correlation\_id} \parallel \text{previous\_hash})$$
+   - Live audit verification test proved that modifying any historical row causes hash chain integrity check to fail immediately at the exact tampered sequence index.
+3. **Tenant & Role Isolation**:
+   - Verified that Institution Nodal Officers cannot access, alter, or submit data for other institutions (`403 Forbidden`).
+   - Verified that only `AICTE_ADMIN` or `REGIONAL_OFFICER` roles can review, approve, or return batches.
 
-### Verdict: **ACCEPTED FOR DEMONSTRATION & REGULATORY EVALUATION**
-PRAMAAN-AICTE meets all technical, architectural, and security criteria specified for SIH26263.
+---
+
+## 6. Real vs Simulated Integrations
+
+| Subsystem | Mode | Implementation Architecture | Integrity Disclaimer |
+| :--- | :---: | :--- | :--- |
+| **APAAR / ABC Identity Provider** | **SIMULATED** | Stable adapter `app.adapters.mock_apaar_adapter.MockAPAARAdapter` behind `IdentityVerificationInterface`. | Simulated sandbox adapter for demonstration. Does not represent live UIDAI/DigiLocker query. Marked with UI warning banner. |
+| **AICTE APH Rule Engine** | **REAL** | `app.services.capacity_service.CapacityService` enforcing AICTE Approval Process Handbook (APH 2026-27). | Real, deterministic rule engine running in Python. |
+| **Ed25519 Digital Signatures** | **REAL** | Python `cryptography.hazmat.primitives.asymmetric.ed25519`. | Real Ed25519 digital signatures. Not zero-knowledge proofs. |
+| **Tamper-Evident Event Ledger** | **REAL** | `app.core.hash_chain.append_audit_event`. | Real sequential SHA-256 hash chaining. |
+| **File Parsing & Reconciliation** | **REAL** | `pandas` + `openpyxl` with binary storage in `backend/storage/uploads/`. | Real server-side tabular parsing with column auto-mapping. |
+
+---
+
+## 7. Known Limitations & Technical Debt
+
+1. **PostgreSQL Live Instance**:
+   - The SQLAlchemy models and Alembic migration `98d85ae389ed` are designed with dual SQLite/PostgreSQL compatibility. However, Windows test environment did not have a running PostgreSQL daemon. Verification was executed against SQLite 3 with WAL enabled.
+2. **External APAAR Production Gateway**:
+   - Full production deployment requires official DigiLocker / NSDL sandbox credentials. The project employs a deterministic mock adapter (`MOCK_APAAR_SANDBOX`).

@@ -137,6 +137,7 @@ class ReceiptService:
                 "is_valid": False,
                 "status": "REVOKED",
                 "message": f"This receipt was revoked by the issuing authority. Reason: {receipt.revocation_reason or 'Administrative revocation'}.",
+                "revocation_reason": receipt.revocation_reason,
                 "revoked_at": receipt.expires_at.isoformat(),
                 "canonical_payload": receipt.canonical_payload
             }
