@@ -13,8 +13,9 @@ class ApprovalCapacityService:
         incoming_quotas: Optional[Dict[str, int]] = None
     ) -> Dict[str, Any]:
         """
-        Calculates intake utilization against versioned ApprovalSnapshot.
-        Distinguishes general intake from supernumerary quotas (e.g. TFW, EWS).
+        Calculates intake utilization against versioned ApprovalSnapshot for SIH-R02.
+        Distinguishes sanctioned approved intake, actual general enrolment,
+        supernumerary seats (TFW, EWS supernumerary), NRI, OCI, and Foreign National (FN) statuses.
         """
         snapshot = db.query(ApprovalSnapshot).filter(
             ApprovalSnapshot.institution_id == institution_id,
@@ -36,6 +37,11 @@ class ApprovalCapacityService:
                 "academic_year": academic_year,
                 "approved_intake": 0,
                 "current_active": 0,
+                "general_enrolment": 0,
+                "supernumerary_enrolment": 0,
+                "nri_count": 0,
+                "oci_count": 0,
+                "foreign_national_count": 0,
                 "incoming_count": incoming_count,
                 "projected_total": incoming_count,
                 "overage": incoming_count,
@@ -45,7 +51,7 @@ class ApprovalCapacityService:
                 "explanation": f"No active approval snapshot registered for {prog_code} in academic year {academic_year}."
             }
 
-        # Count active admissions (general intake)
+        # Query all active or under review admissions for this programme & academic year
         active_records = db.query(AdmissionRecord).filter(
             AdmissionRecord.institution_id == institution_id,
             AdmissionRecord.programme_id == programme_id,
@@ -54,25 +60,57 @@ class ApprovalCapacityService:
         ).all()
 
         current_active = len(active_records)
-        projected_total = current_active + incoming_count
-        approved_intake = snapshot.approved_intake
-        overage = max(0, projected_total - approved_intake)
-        is_compliant = (projected_total <= approved_intake)
 
-        # Category and quota breakdown
-        cat_counts: Dict[str, int] = {}
-        quota_counts: Dict[str, int] = {}
+        # Distinguish general enrolment vs supernumerary & international statuses
+        general_enrolled = 0
+        supernumerary_enrolled = 0
+        nri_count = 0
+        oci_count = 0
+        foreign_national_count = 0
+        supernumerary_breakdown: Dict[str, int] = {}
+        reservation_breakdown: Dict[str, int] = {}
+
         for r in active_records:
-            cat_counts[r.category] = cat_counts.get(r.category, 0) + 1
-            quota_counts[r.admission_quota] = quota_counts.get(r.admission_quota, 0) + 1
+            # Check supernumerary flag or quota
+            is_sup = getattr(r, "is_supernumerary", False) or "TFW" in (r.admission_quota or "").upper()
+            if is_sup:
+                supernumerary_enrolled += 1
+                q_name = r.admission_quota or "SUPERNUMERARY_OTHER"
+                supernumerary_breakdown[q_name] = supernumerary_breakdown.get(q_name, 0) + 1
+            else:
+                general_enrolled += 1
+
+            # International / Nationality type
+            nat_type = getattr(r, "nationality_type", "DOMESTIC") or "DOMESTIC"
+            if nat_type == "NRI" or "NRI" in (r.admission_quota or "").upper():
+                nri_count += 1
+            elif nat_type == "OCI":
+                oci_count += 1
+            elif nat_type == "FOREIGN_NATIONAL" or "PIO" in (r.admission_quota or "").upper():
+                foreign_national_count += 1
+
+            # Reservation categories
+            cat = r.category or "OPEN"
+            reservation_breakdown[cat] = reservation_breakdown.get(cat, 0) + 1
+
+        approved_intake = snapshot.approved_intake
+        # Compliance evaluation: General enrolment cannot exceed approved intake.
+        # Supernumerary seats are over and above the sanctioned intake according to AICTE Approval Process Handbook.
+        projected_general = general_enrolled + incoming_count
+        projected_total = current_active + incoming_count
+        overage = max(0, projected_general - approved_intake)
+        is_compliant = (projected_general <= approved_intake)
+
+        utilization_pct = round((projected_general / approved_intake) * 100, 1) if approved_intake > 0 else 0
 
         explanation = (
-            f"Approved intake: {approved_intake}. Current enrolled: {current_active}. "
-            f"Incoming proposed: {incoming_count}. Projected: {projected_total}/{approved_intake} "
-            f"({round((projected_total / approved_intake) * 100, 1)}% utilization)."
+            f"Sanctioned intake: {approved_intake}. General enrolled: {general_enrolled}. "
+            f"Supernumerary: {supernumerary_enrolled} (TFW/EWS/Quotas). "
+            f"International: NRI={nri_count}, OCI={oci_count}, FN={foreign_national_count}. "
+            f"Projected general utilization: {projected_general}/{approved_intake} ({utilization_pct}%)."
         )
         if overage > 0:
-            explanation += f" WARNING: Proposed intake exceeds sanctioned capacity by {overage} seats."
+            explanation += f" WARNING: Proposed general intake exceeds sanctioned capacity by {overage} seats."
 
         return {
             "has_approval": True,
@@ -83,13 +121,18 @@ class ApprovalCapacityService:
             "academic_year": academic_year,
             "approved_intake": approved_intake,
             "current_active": current_active,
+            "general_enrolment": general_enrolled,
+            "supernumerary_enrolment": supernumerary_enrolled,
+            "nri_count": nri_count,
+            "oci_count": oci_count,
+            "foreign_national_count": foreign_national_count,
             "incoming_count": incoming_count,
             "projected_total": projected_total,
             "overage": overage,
-            "utilization_pct": round((projected_total / approved_intake) * 100, 1) if approved_intake > 0 else 0,
+            "utilization_pct": utilization_pct,
             "supernumerary_quota": snapshot.supernumerary_quota or {},
-            "active_categories": cat_counts,
-            "active_quotas": quota_counts,
+            "supernumerary_breakdown": supernumerary_breakdown,
+            "reservation_breakdown": reservation_breakdown,
             "policy_version": snapshot.policy_version,
             "letter_ref": snapshot.approval_letter_ref,
             "explanation": explanation

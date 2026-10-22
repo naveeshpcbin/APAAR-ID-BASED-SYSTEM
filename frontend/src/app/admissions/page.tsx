@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   XCircle,
   Download,
+  Award,
 } from "lucide-react";
 import { apiRequest } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
@@ -215,13 +216,23 @@ export default function AdmissionsPage() {
                   </span>
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <Link
-                    href={`/verification`}
-                    className="p-1.5 hover:bg-govTeal-50 text-govTeal-700 rounded transition inline-flex items-center gap-1 font-semibold text-[11px]"
-                  >
-                    <QrCode className="w-3.5 h-3.5" />
-                    <span>Issue Receipt</span>
-                  </Link>
+                  <div className="flex items-center justify-end gap-1.5">
+                    <Link
+                      href={`/admissions/certificate/${adm.id}`}
+                      className="p-1.5 hover:bg-slate-100 text-slate-700 rounded transition inline-flex items-center gap-1 font-semibold text-[11px]"
+                      title="View Academic Enrolment Certificate (SIH-R10)"
+                    >
+                      <Award className="w-3.5 h-3.5 text-govTeal-700" />
+                      <span>Certificate</span>
+                    </Link>
+                    <Link
+                      href={`/verification`}
+                      className="p-1.5 hover:bg-govTeal-50 text-govTeal-700 rounded transition inline-flex items-center gap-1 font-semibold text-[11px]"
+                    >
+                      <QrCode className="w-3.5 h-3.5" />
+                      <span>Receipt</span>
+                    </Link>
+                  </div>
                 </td>
               </tr>
             ))}

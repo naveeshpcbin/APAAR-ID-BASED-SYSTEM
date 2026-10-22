@@ -26,6 +26,8 @@ class AdmissionRecordResponse(BaseModel):
     enrollment_no: str
     category: str
     admission_quota: str
+    nationality_type: str = "DOMESTIC"
+    is_supernumerary: bool = False
     admission_date: date
     status: str
     notes: Optional[str] = None
@@ -44,4 +46,6 @@ class ManualAdmissionCreate(BaseModel):
     enrollment_no: str
     category: str = "OPEN"
     admission_quota: str = "STATE_GOVT"
+    nationality_type: str = "DOMESTIC"
+    is_supernumerary: bool = False
     admission_date: date = date.today()

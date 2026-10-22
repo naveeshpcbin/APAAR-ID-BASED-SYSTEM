@@ -225,3 +225,43 @@ def test_gate6_signed_receipts_and_hash_chain(db_session, client):
     v_fake = ReceiptService.verify_receipt(db=db_session, receipt_token="rcpt_forged_token_123")
     assert v_fake["is_valid"] is False
     assert v_fake["status"] == "NOT_FOUND"
+
+    # Test tampered receipt signature
+    receipt_obj = db_session.query(app.models.VerificationReceipt).filter(
+        app.models.VerificationReceipt.receipt_token == receipt["receipt_token"]
+    ).first()
+    original_sig = receipt_obj.ed25519_signature
+    receipt_obj.ed25519_signature = "a" * 128  # Invalid 64-byte hex signature
+    db_session.commit()
+
+    v_tampered = ReceiptService.verify_receipt(db=db_session, receipt_token=receipt["receipt_token"])
+    assert v_tampered["is_valid"] is False
+    assert v_tampered["status"] in ["INVALID_SIGNATURE", "SIGNATURE_INVALID", "VERIFICATION_FAILED"]
+    # Restore signature
+    receipt_obj.ed25519_signature = original_sig
+    db_session.commit()
+
+# GATE 7: Edge Cases - Missing Approval & Hash Chain Tamper Detection
+def test_gate7_edge_cases_and_tamper_detection(db_session):
+    # Missing approval returns has_approval=False
+    eval_missing = ApprovalCapacityService.evaluate_programme_capacity(
+        db=db_session,
+        institution_id=99999,
+        programme_id=99999,
+        academic_year="2026-27",
+        incoming_count=10
+    )
+    assert eval_missing["has_approval"] is False
+    assert eval_missing["is_compliant"] is False
+    assert "No active approval snapshot" in eval_missing["explanation"]
+
+    # Tamper detection in Hash Chain
+    ev = append_audit_event(db=db_session, action="LEGIT_EVENT", entity_type="Policy", entity_id="10")
+    # Tamper with event payload in database
+    ev.action = "TAMPERED_ACTION"
+    db_session.commit()
+
+    tamper_result = verify_hash_chain_integrity(db=db_session)
+    assert tamper_result["is_valid"] is False
+    assert "Cryptographic integrity failed" in tamper_result["reason"] or "mismatch" in tamper_result["reason"]
+

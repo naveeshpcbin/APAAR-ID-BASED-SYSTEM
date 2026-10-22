@@ -107,6 +107,7 @@ class StudentIdentity(Base):
 
     admissions = relationship("AdmissionRecord", back_populates="student")
     receipts = relationship("VerificationReceipt", back_populates="student")
+    consent_grants = relationship("ConsentGrant", back_populates="student")
 
 
 class UploadBatch(Base):
@@ -160,6 +161,8 @@ class AdmissionRecord(Base):
     enrollment_no = Column(String(64), nullable=False)
     category = Column(String(32), default="OPEN")  # OPEN, OBC_NCL, SC, ST, EWS
     admission_quota = Column(String(32), default="STATE_GOVT")  # STATE_GOVT, AICTE_TFW, MANAGEMENT, NRI, PIO
+    nationality_type = Column(String(32), default="DOMESTIC")  # DOMESTIC, NRI, OCI, FOREIGN_NATIONAL
+    is_supernumerary = Column(Boolean, default=False)
     admission_date = Column(Date, default=date.today)
     status = Column(String(32), default="ACTIVE")  # ACTIVE, UNDER_REVIEW, WITHDRAWN, TRANSFERRED, CANCELLED
     notes = Column(Text, nullable=True)
@@ -171,6 +174,21 @@ class AdmissionRecord(Base):
     programme = relationship("Programme", back_populates="admissions")
     batch = relationship("UploadBatch", back_populates="admissions")
     receipts = relationship("VerificationReceipt", back_populates="admission")
+
+
+class ConsentGrant(Base):
+    __tablename__ = "consent_grants"
+
+    id = Column(Integer, primary_key=True, index=True)
+    student_id = Column(Integer, ForeignKey("student_identities.id", ondelete="CASCADE"), nullable=False, index=True)
+    consent_type = Column(String(64), default="APAAR_IDENTITY_VERIFICATION")
+    granted_by = Column(String(32), default="STUDENT")  # STUDENT, PARENT_GUARDIAN
+    is_granted = Column(Boolean, default=True)
+    grant_timestamp = Column(DateTime, default=datetime.utcnow)
+    ip_address = Column(String(45), nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    student = relationship("StudentIdentity", back_populates="consent_grants")
 
 
 class AdmissionConflict(Base):
