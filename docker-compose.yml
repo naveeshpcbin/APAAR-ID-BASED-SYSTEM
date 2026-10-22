@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: pramaan_postgres
+    environment:
+      POSTGRES_USER: pramaan_user
+      POSTGRES_PASSWORD: pramaan_password
+      POSTGRES_DB: pramaan_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pramaan_user -d pramaan_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pramaan_backend
+    environment:
+      DATABASE_URL: postgresql://pramaan_user:pramaan_password@postgres:5432/pramaan_db
+      SECRET_KEY: pramaan_docker_dev_secret_key_sih2026
+      HMAC_APAAR_KEY: pramaan_docker_apaar_salt_2026
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pramaan_frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:8000/api/v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
