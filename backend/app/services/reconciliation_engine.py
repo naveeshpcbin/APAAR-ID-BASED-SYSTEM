@@ -38,6 +38,26 @@ class ReconciliationEngine:
         self.identity_adapter = MockApaarAdapter()
 
     @staticmethod
+    def resolve_programme(code: str, prog_by_code: Dict[str, Any]) -> Optional[Any]:
+        """Resolves programme codes with tolerance for hyphen inversion, spaces, and punctuation."""
+        if not code:
+            return None
+        code_clean = code.upper().strip()
+        if code_clean in prog_by_code:
+            return prog_by_code[code_clean]
+        parts = code_clean.split("-")
+        if len(parts) == 2:
+            swapped = f"{parts[1]}-{parts[0]}"
+            if swapped in prog_by_code:
+                return prog_by_code[swapped]
+        condensed = code_clean.replace("-", "").replace(" ", "").replace(".", "")
+        for k, v in prog_by_code.items():
+            k_condensed = k.replace("-", "").replace(" ", "").replace(".", "")
+            if condensed == k_condensed:
+                return v
+        return None
+
+    @staticmethod
     def detect_column_mappings(incoming_columns: List[str]) -> Tuple[Dict[str, str], List[str]]:
         """
         Normalizes headers and maps incoming column names to canonical schema.
@@ -229,7 +249,8 @@ class ReconciliationEngine:
                     ))
 
             # Check 4: Programme existence
-            if prog_code and prog_code not in prog_by_code:
+            matched_prog = self.resolve_programme(prog_code, prog_by_code)
+            if prog_code and not matched_prog:
                 has_error = True
                 findings.append(ValidationFinding(
                     batch_id=batch.id,
@@ -351,7 +372,8 @@ class ReconciliationEngine:
                     category = str(row.get(canonical_to_source.get("category", "OPEN"), "OPEN")).strip().upper() or "OPEN"
                     quota = str(row.get(canonical_to_source.get("admission_quota", "STATE_GOVT"), "STATE_GOVT")).strip() or "STATE_GOVT"
 
-                    if not raw_apaar or not name or prog_code not in prog_by_code:
+                    matched_prog = self.resolve_programme(prog_code, prog_by_code)
+                    if not raw_apaar or not name or not matched_prog:
                         continue
 
                     cleaned_apaar = raw_apaar.replace(" ", "").replace("-", "")
@@ -389,7 +411,7 @@ class ReconciliationEngine:
                     nat_type = "NRI" if "NRI" in quota.upper() else "DOMESTIC"
 
                     enr_no = raw_enr or f"ENR-{uuid.uuid4().hex[:8].upper()}"
-                    prog = prog_by_code[prog_code]
+                    prog = matched_prog
 
                     adm = AdmissionRecord(
                         student_id=student.id,
