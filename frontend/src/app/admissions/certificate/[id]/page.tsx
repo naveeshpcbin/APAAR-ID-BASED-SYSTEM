@@ -29,7 +29,15 @@ export default function StudentCertificatePage() {
     const fetchAdmission = async () => {
       try {
         setLoading(true);
-        // We can fetch from /admissions endpoint
+        try {
+          const direct = await apiRequest(`/admissions/${id}`);
+          if (direct && direct.id) {
+            setAdmission(direct);
+            return;
+          }
+        } catch {
+          // fallback to list search
+        }
         const data = await apiRequest(`/admissions?limit=200`);
         const found = data.find((a: any) => String(a.id) === String(id));
         if (found) {

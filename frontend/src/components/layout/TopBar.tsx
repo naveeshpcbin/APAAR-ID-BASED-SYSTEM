@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { User, LogOut, Shield, ChevronDown, CheckCircle2 } from "lucide-react";
-import { useAuth, DEMO_CREDENTIALS } from "@/lib/auth-context";
+import { User, LogOut, CheckCircle2 } from "lucide-react";
+import { useAuth } from "@/lib/auth-context";
 
 export function TopBar() {
-  const { user, logout, switchDemoUser } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <header className="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between select-none">
@@ -34,43 +34,24 @@ export function TopBar() {
         </div>
       </div>
 
-      {/* Right: Demo Persona Switcher & User Profile */}
+      {/* Right: Authoritative Scope & User Profile */}
       <div className="flex items-center gap-3">
-        {/* Quick Role Switcher for SIH Evaluators */}
-        <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 p-1 rounded-lg text-xs">
-          <span className="text-[11px] font-semibold text-slate-500 px-1.5">
-            Role Switcher:
+        {/* Authoritative Scope Indicator (No mock role switching) */}
+        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+            Active Scope:
           </span>
-          <button
-            onClick={() => switchDemoUser("admin")}
-            className={`px-2 py-1 rounded text-xs font-medium transition ${
-              user?.role === "AICTE_ADMIN"
-                ? "bg-govNavy-900 text-white shadow-xs"
-                : "text-slate-600 hover:bg-slate-200/60"
-            }`}
-          >
-            AICTE Central
-          </button>
-          <button
-            onClick={() => switchDemoUser("dtu")}
-            className={`px-2 py-1 rounded text-xs font-medium transition ${
-              user?.email === DEMO_CREDENTIALS.dtu.email
-                ? "bg-govNavy-900 text-white shadow-xs"
-                : "text-slate-600 hover:bg-slate-200/60"
-            }`}
-          >
-            DTU Delhi
-          </button>
-          <button
-            onClick={() => switchDemoUser("coep")}
-            className={`px-2 py-1 rounded text-xs font-medium transition ${
-              user?.email === DEMO_CREDENTIALS.coep.email
-                ? "bg-govNavy-900 text-white shadow-xs"
-                : "text-slate-600 hover:bg-slate-200/60"
-            }`}
-          >
-            COEP Pune
-          </button>
+          {user?.role === "AICTE_ADMIN" || user?.role === "REGIONAL_OFFICER" ? (
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 text-blue-900 border border-blue-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+              Central Government Regulator (AICTE HQ)
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-900 border border-emerald-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+              {user?.institutionName || "College Portal Nodal"}
+            </span>
+          )}
         </div>
 
         {/* User Card */}
@@ -87,9 +68,10 @@ export function TopBar() {
             </div>
           </div>
           <button
-            onClick={logout}
+            id="topbar-logout-btn"
+            onClick={() => logout()}
             title="Sign out"
-            className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-md transition"
+            className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-md transition cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
           </button>

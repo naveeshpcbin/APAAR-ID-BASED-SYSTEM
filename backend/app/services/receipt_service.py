@@ -8,7 +8,7 @@ from typing import Dict, Any, Optional
 import qrcode
 from sqlalchemy.orm import Session
 
-from app.models import VerificationReceipt, AdmissionRecord, StudentIdentity, Institution, Programme
+from app.models import VerificationReceipt, AdmissionRecord, StudentIdentity, Institution, Programme, ConsentGrant
 from app.core.security import ReceiptSigner
 from app.core.hash_chain import append_audit_event
 from app.core.config import settings
@@ -150,6 +150,26 @@ class ReceiptService:
                 "canonical_payload": receipt.canonical_payload
             }
 
+        # DPDP Act 2023: Check student consent status
+        if receipt.student_id:
+            latest_consent = db.query(ConsentGrant).filter(
+                ConsentGrant.student_id == receipt.student_id
+            ).order_by(ConsentGrant.created_at.desc()).first()
+            
+            if latest_consent and not latest_consent.is_granted:
+                return {
+                    "is_valid": False,
+                    "status": "CONSENT_REVOKED",
+                    "message": "Verification denied: Student has explicitly revoked academic verification consent under DPDP Act 2023.",
+                    "canonical_payload": {
+                        "token": receipt.receipt_token,
+                        "student_name": "[PROTECTED - CONSENT WITHDRAWN]",
+                        "apaar_masked": "XXXXXXXXXXXX",
+                        "institution_name": receipt.canonical_payload.get("institution_name", "Confidential"),
+                        "claim_scope": "RESTRICTED"
+                    }
+                }
+
         # Cryptographically verify the Ed25519 signature
         canonical_bytes = json.dumps(receipt.canonical_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
         is_sig_valid = ReceiptSigner.verify_signature(canonical_bytes, receipt.ed25519_signature)
@@ -164,12 +184,13 @@ class ReceiptService:
         return {
             "is_valid": True,
             "status": "AUTHENTIC_AND_VERIFIED",
-            "message": "Cryptographic Ed25519 digital signature verified. Record is authentic and currently active.",
+            "message": "Cryptographic Ed25519 digital signature verified. Record is authentic, currently active, and authorized under DPDP Act 2023 student consent.",
             "canonical_payload": receipt.canonical_payload,
             "signature": receipt.ed25519_signature,
             "payload_digest": receipt.payload_digest,
             "public_key": ReceiptSigner.get_public_key_b64(),
-            "expires_at": receipt.expires_at.isoformat()
+            "expires_at": receipt.expires_at.isoformat(),
+            "consent_status": "ACTIVE_GRANTED"
         }
 
     @staticmethod
@@ -206,4 +227,84 @@ class ReceiptService:
             "receipt_token": receipt_token,
             "is_revoked": True,
             "revocation_reason": reason
+        }
+
+    @staticmethod
+    def get_student_consent(db: Session, student_id: int) -> Dict[str, Any]:
+        latest = db.query(ConsentGrant).filter(
+            ConsentGrant.student_id == student_id
+        ).order_by(ConsentGrant.created_at.desc()).first()
+        if not latest:
+            # By default, verified admissions are created with initial implicit consent, but we make it explicit
+            return {
+                "student_id": student_id,
+                "is_granted": True,
+                "consent_type": "APAAR_IDENTITY_VERIFICATION",
+                "granted_by": "STUDENT",
+                "grant_timestamp": datetime.utcnow().isoformat(),
+                "status": "DEFAULT_GRANTED"
+            }
+        return {
+            "student_id": student_id,
+            "id": latest.id,
+            "is_granted": latest.is_granted,
+            "consent_type": latest.consent_type,
+            "granted_by": latest.granted_by,
+            "grant_timestamp": latest.grant_timestamp.isoformat(),
+            "status": "EXPLICIT_GRANTED" if latest.is_granted else "REVOKED"
+        }
+
+    @staticmethod
+    def set_student_consent(
+        db: Session,
+        student_id: int,
+        is_granted: bool,
+        consent_type: str = "APAAR_IDENTITY_VERIFICATION",
+        granted_by: str = "STUDENT",
+        ip_address: Optional[str] = None,
+        actor_id: Optional[int] = None,
+        actor_email: Optional[str] = "student@aicte.gov.in",
+        actor_role: str = "STUDENT"
+    ) -> Dict[str, Any]:
+        student = db.query(StudentIdentity).filter(StudentIdentity.id == student_id).first()
+        if not student:
+            raise ValueError(f"Student identity #{student_id} not found.")
+
+        grant = ConsentGrant(
+            student_id=student_id,
+            consent_type=consent_type,
+            granted_by=granted_by,
+            is_granted=is_granted,
+            ip_address=ip_address,
+            grant_timestamp=datetime.utcnow()
+        )
+        db.add(grant)
+        db.commit()
+        db.refresh(grant)
+
+        # Chained audit event
+        append_audit_event(
+            db=db,
+            action="CONSENT_UPDATED" if is_granted else "CONSENT_REVOKED",
+            entity_type="ConsentGrant",
+            entity_id=str(grant.id),
+            actor_id=actor_id,
+            actor_email=actor_email,
+            actor_role=actor_role,
+            metadata_json={
+                "student_id": student_id,
+                "is_granted": is_granted,
+                "consent_type": consent_type,
+                "granted_by": granted_by
+            }
+        )
+
+        return {
+            "id": grant.id,
+            "student_id": student_id,
+            "consent_type": grant.consent_type,
+            "granted_by": grant.granted_by,
+            "is_granted": grant.is_granted,
+            "grant_timestamp": grant.grant_timestamp,
+            "message": "Student verification consent granted successfully." if is_granted else "Student verification consent revoked. External verifier queries will be blocked under DPDP Act 2023."
         }

@@ -46,6 +46,10 @@ def list_conflicts(
     db: Session = Depends(get_db),
     current_user: InstitutionUser = Depends(get_current_user)
 ):
+    # Verifiers have no access to conflict adjudication data
+    if current_user.role == "VERIFIER":
+        raise HTTPException(status_code=403, detail="Verifiers are not authorized to access conflict cases")
+
     query = db.query(AdmissionConflict).join(StudentIdentity)
 
     # Institution users only see conflicts involving their institution
@@ -93,6 +97,9 @@ def get_conflict_detail(
     db: Session = Depends(get_db),
     current_user: InstitutionUser = Depends(get_current_user)
 ):
+    if current_user.role == "VERIFIER":
+        raise HTTPException(status_code=403, detail="Verifiers are not authorized to access conflict cases")
+
     c = db.query(AdmissionConflict).filter(AdmissionConflict.id == conflict_id).first()
     if not c:
         raise HTTPException(status_code=404, detail="Conflict case not found")

@@ -31,3 +31,28 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class InstitutionRegisterRequest(BaseModel):
+    # Institutional Identity & AICTE Approval
+    aicte_id: str
+    name: str
+    state: str
+    district: str
+    institution_type: str = "PRIVATE_UNAIDED"
+    contact_email: Optional[str] = None
+
+    # Nodal Officer Credentials
+    nodal_name: str
+    nodal_email: str
+    password: str
+
+    # Primary Approved Academic Programme & Sanctioned Capacity
+    programme_code: str = "BTECH-CSE"
+    programme_name: str = "B.Tech in Computer Science & Engineering"
+    degree_level: str = "UG"
+    approved_intake: int = 120
+    tfw_quota: int = 6
+    academic_year: str = "2026-27"
+    approval_letter_ref: Optional[str] = None
+

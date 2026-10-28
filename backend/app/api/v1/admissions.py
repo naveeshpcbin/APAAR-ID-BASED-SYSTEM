@@ -61,6 +61,11 @@ def list_admissions(
             verification_status=r.student.verification_status,
             provider_name=r.student.provider_name
         )
+        is_consent = True
+        if r.student and r.student.consent_grants:
+            latest_cg = sorted(r.student.consent_grants, key=lambda x: x.created_at)[-1]
+            is_consent = latest_cg.is_granted
+
         results.append(AdmissionRecordResponse(
             id=r.id,
             student_id=r.student_id,
@@ -73,8 +78,11 @@ def list_admissions(
             enrollment_no=r.enrollment_no,
             category=r.category,
             admission_quota=r.admission_quota,
+            nationality_type=getattr(r, "nationality_type", "DOMESTIC") or "DOMESTIC",
+            is_supernumerary=bool(getattr(r, "is_supernumerary", False)),
             admission_date=r.admission_date,
             status=r.status,
+            consent_granted=is_consent,
             notes=r.notes,
             student=student_resp
         ))
@@ -101,6 +109,11 @@ def get_admission_detail(
         verification_status=r.student.verification_status,
         provider_name=r.student.provider_name
     )
+    is_consent = True
+    if r.student and r.student.consent_grants:
+        latest_cg = sorted(r.student.consent_grants, key=lambda x: x.created_at)[-1]
+        is_consent = latest_cg.is_granted
+
     return AdmissionRecordResponse(
         id=r.id,
         student_id=r.student_id,
@@ -113,8 +126,11 @@ def get_admission_detail(
         enrollment_no=r.enrollment_no,
         category=r.category,
         admission_quota=r.admission_quota,
+        nationality_type=getattr(r, "nationality_type", "DOMESTIC") or "DOMESTIC",
+        is_supernumerary=bool(getattr(r, "is_supernumerary", False)),
         admission_date=r.admission_date,
         status=r.status,
+        consent_granted=is_consent,
         notes=r.notes,
         student=student_resp
     )
@@ -170,6 +186,8 @@ def create_manual_admission(
         enrollment_no=data.enrollment_no,
         category=data.category,
         admission_quota=data.admission_quota,
+        nationality_type=data.nationality_type or "DOMESTIC",
+        is_supernumerary=bool(data.is_supernumerary),
         admission_date=data.admission_date,
         status=status_val
     )
@@ -197,6 +215,8 @@ def create_manual_admission(
         metadata_json={
             "enrollment_no": record.enrollment_no,
             "programme_code": prog.programme_code,
+            "nationality_type": record.nationality_type,
+            "is_supernumerary": record.is_supernumerary,
             "status": record.status
         }
     )
@@ -214,6 +234,8 @@ def create_manual_admission(
         enrollment_no=record.enrollment_no,
         category=record.category,
         admission_quota=record.admission_quota,
+        nationality_type=record.nationality_type,
+        is_supernumerary=record.is_supernumerary,
         admission_date=record.admission_date,
         status=record.status,
         student=StudentIdentityResponse(

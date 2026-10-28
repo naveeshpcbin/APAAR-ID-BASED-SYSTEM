@@ -17,6 +17,10 @@ def list_anomalies(
     db: Session = Depends(get_db),
     current_user: InstitutionUser = Depends(get_current_user)
 ):
+    # Verifiers have no access to anomaly intelligence data
+    if current_user.role == "VERIFIER":
+        raise HTTPException(status_code=403, detail="Verifiers are not authorized to access anomaly cases")
+
     query = db.query(AnomalyCase).join(Institution)
 
     if current_user.role not in ["AICTE_ADMIN", "REGIONAL_OFFICER"]:

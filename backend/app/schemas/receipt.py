@@ -31,3 +31,22 @@ class ReceiptVerificationResponse(BaseModel):
 class ReceiptRevokeRequest(BaseModel):
     receipt_token: str
     reason: str
+
+class ConsentGrantRequest(BaseModel):
+    student_id: int
+    consent_type: str = "APAAR_IDENTITY_VERIFICATION"
+    granted_by: str = "STUDENT"  # STUDENT, PARENT_GUARDIAN
+    is_granted: bool = True
+
+class ConsentGrantResponse(BaseModel):
+    id: int
+    student_id: int
+    consent_type: str
+    granted_by: str
+    is_granted: bool
+    grant_timestamp: datetime
+    message: str
+
+class ConsentRevokeRequest(BaseModel):
+    student_id: int
+    reason: Optional[str] = "Student revoked digital consent"

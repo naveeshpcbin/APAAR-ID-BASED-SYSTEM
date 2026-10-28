@@ -5,7 +5,8 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.models import VerificationReceipt, InstitutionUser
 from app.schemas.receipt import (
-    ReceiptIssueRequest, ReceiptIssueResponse, ReceiptVerificationResponse, ReceiptRevokeRequest
+    ReceiptIssueRequest, ReceiptIssueResponse, ReceiptVerificationResponse, ReceiptRevokeRequest,
+    ConsentGrantRequest, ConsentGrantResponse
 )
 from app.services.receipt_service import ReceiptService
 from app.api.deps import get_current_user, require_roles
@@ -55,6 +56,44 @@ def revoke_receipt(
             reason=req.reason,
             actor_id=current_user.id,
             actor_email=current_user.email
+        )
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.get("/consent/{student_id}")
+def get_student_consent(
+    student_id: int,
+    db: Session = Depends(get_db),
+    current_user: InstitutionUser = Depends(get_current_user)
+):
+    """
+    DPDP Act 2023 Consent Inquiry: Retrieves the active data-sharing consent status for a student.
+    """
+    try:
+        return ReceiptService.get_student_consent(db=db, student_id=student_id)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.post("/consent", response_model=ConsentGrantResponse)
+def set_student_consent(
+    req: ConsentGrantRequest,
+    db: Session = Depends(get_db),
+    current_user: InstitutionUser = Depends(get_current_user)
+):
+    """
+    DPDP Act 2023 Consent Management: Allows student or authorized institution nodal officer
+    to grant or revoke digital verification consent with tamper-evident audit logging.
+    """
+    try:
+        return ReceiptService.set_student_consent(
+            db=db,
+            student_id=req.student_id,
+            is_granted=req.is_granted,
+            consent_type=req.consent_type,
+            granted_by=req.granted_by,
+            actor_id=current_user.id,
+            actor_email=current_user.email,
+            actor_role=current_user.role
         )
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

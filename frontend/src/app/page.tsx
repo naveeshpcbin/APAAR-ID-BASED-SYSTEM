@@ -2,19 +2,31 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
 
 export default function Home() {
   const router = useRouter();
+  const { user, isLoading } = useAuth();
 
   useEffect(() => {
-    router.replace("/dashboard");
-  }, [router]);
+    if (!isLoading) {
+      if (!user) {
+        router.replace("/login");
+      } else if (user.role === "AICTE_ADMIN" || user.role === "REGIONAL_OFFICER") {
+        router.replace("/dashboard");
+      } else {
+        router.replace("/uploads");
+      }
+    }
+  }, [user, isLoading, router]);
 
   return (
-    <div className="flex h-screen items-center justify-center bg-slate-50">
-      <div className="text-center">
-        <div className="inline-block w-8 h-8 border-4 border-govTeal-600 border-t-transparent rounded-full animate-spin mb-3"></div>
-        <p className="text-sm font-medium text-slate-600">Loading PRAMAAN-AICTE Regulatory Workspace...</p>
+    <div className="flex h-screen items-center justify-center bg-slate-900">
+      <div className="text-center space-y-3">
+        <div className="inline-block w-8 h-8 border-3 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs font-medium text-slate-400 tracking-wide uppercase">
+          Routing to authorized workspace...
+        </p>
       </div>
     </div>
   );

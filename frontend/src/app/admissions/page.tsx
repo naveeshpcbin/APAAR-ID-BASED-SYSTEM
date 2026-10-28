@@ -14,7 +14,7 @@ import {
   Download,
   Award,
 } from "lucide-react";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, downloadFileWithAuth } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 
 export default function AdmissionsPage() {
@@ -37,6 +37,8 @@ export default function AdmissionsPage() {
     enrollment_no: "DTU/2026/CSE/220",
     category: "OPEN",
     admission_quota: "STATE_GOVT",
+    nationality_type: "DOMESTIC",
+    is_supernumerary: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -86,14 +88,31 @@ export default function AdmissionsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Title */}
+      {/* Title & Scope */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-            Central Student Admission Repository
-          </h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-bold text-slate-900 tracking-tight">
+              {user?.role === "INSTITUTION_NODAL"
+                ? `${user?.institutionName || "College"} Student Admissions Roll`
+                : "AICTE Central Student Admission Repository"}
+            </h1>
+            <span
+              className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${
+                user?.role === "INSTITUTION_NODAL"
+                  ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                  : "bg-blue-50 text-blue-800 border-blue-300"
+              }`}
+            >
+              {user?.role === "INSTITUTION_NODAL"
+                ? `INSTITUTION SCOPE: #${user?.institutionId || "COLLEGE"}`
+                : "CENTRAL REGULATOR SCOPE"}
+            </span>
+          </div>
           <p className="text-xs text-slate-500 mt-0.5">
-            Verified technical education enrolments anchored by 12-digit APAAR academic identifiers.
+            {user?.role === "INSTITUTION_NODAL"
+              ? "Your institution's technical education enrolments anchored by 12-digit APAAR academic identifiers."
+              : "National technical education enrolments anchored by 12-digit APAAR academic identifiers across all institutions."}
           </p>
         </div>
 
@@ -105,14 +124,20 @@ export default function AdmissionsPage() {
             <Plus className="w-4 h-4" />
             <span>Manual Student Entry</span>
           </button>
-          <a
-            href="http://localhost:8000/api/v1/reports/admissions.csv"
-            download
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-lg shadow-xs transition"
+          <button
+            onClick={async () => {
+              try {
+                const filename = `admissions_${user?.institutionName ? user.institutionName.replace(/\s+/g, "_") : "export"}.csv`;
+                await downloadFileWithAuth("/reports/admissions.csv", filename);
+              } catch (err: any) {
+                alert(err.message || "Failed to download export.");
+              }
+            }}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-lg shadow-xs transition cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export CSV</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -194,7 +219,19 @@ export default function AdmissionsPage() {
                 </td>
                 <td className="px-4 py-3 font-mono text-slate-600">{adm.enrollment_no}</td>
                 <td className="px-4 py-3 text-slate-600">
-                  {adm.category} ({adm.admission_quota})
+                  <div className="font-medium text-slate-900">{adm.category} ({adm.admission_quota})</div>
+                  <div className="flex items-center gap-1 mt-1 flex-wrap">
+                    {adm.is_supernumerary ? (
+                      <span className="px-1.5 py-0.5 bg-purple-100 text-purple-800 rounded text-[9px] font-bold uppercase">
+                        Supernumerary
+                      </span>
+                    ) : null}
+                    {adm.nationality_type && adm.nationality_type !== "DOMESTIC" ? (
+                      <span className="px-1.5 py-0.5 bg-indigo-100 text-indigo-800 rounded text-[9px] font-bold uppercase">
+                        {adm.nationality_type}
+                      </span>
+                    ) : null}
+                  </div>
                 </td>
                 <td className="px-4 py-3">
                   <span
@@ -345,6 +382,33 @@ export default function AdmissionsPage() {
                     <option value="STATE_GOVT">STATE_GOVT</option>
                     <option value="AICTE_TFW">AICTE_TFW (Fee Waiver)</option>
                     <option value="MANAGEMENT">MANAGEMENT</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                <div>
+                  <label className="block text-slate-700 font-medium mb-1">Nationality / Status (Req. 2)</label>
+                  <select
+                    value={manualForm.nationality_type}
+                    onChange={(e) => setManualForm({ ...manualForm, nationality_type: e.target.value })}
+                    className="w-full border border-slate-300 rounded-lg p-2 bg-white font-medium"
+                  >
+                    <option value="DOMESTIC">Indian / Domestic (General)</option>
+                    <option value="NRI">NRI (Non-Resident Indian)</option>
+                    <option value="OCI">OCI (Overseas Citizen of India)</option>
+                    <option value="FOREIGN_NATIONAL">FN (Foreign National Status)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-slate-700 font-medium mb-1">Supernumerary Seat</label>
+                  <select
+                    value={manualForm.is_supernumerary ? "true" : "false"}
+                    onChange={(e) => setManualForm({ ...manualForm, is_supernumerary: e.target.value === "true" })}
+                    className="w-full border border-slate-300 rounded-lg p-2 bg-white font-medium"
+                  >
+                    <option value="false">No (Sanctioned Intake)</option>
+                    <option value="true">Yes (Supernumerary Intake)</option>
                   </select>
                 </div>
               </div>

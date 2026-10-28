@@ -1,5 +1,6 @@
 import urllib.request
 import json
+import time
 
 # 1. Login as DTU Nodal
 login_data = json.dumps({'email': 'nodal.dtu@dtu.ac.in', 'password': 'College@12345'}).encode('utf-8')
@@ -8,18 +9,26 @@ res = json.loads(urllib.request.urlopen(req).read())
 token = res['access_token']
 print('1. DTU Login OK: Token acquired')
 
-# 2. Upload sample_data/valid_admissions_dtu.csv to /uploads/preflight
+# 2. Upload with dynamic timestamp to test full ingestion pipeline
 boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW'
-with open('d:/AICTE/sample_data/valid_admissions_dtu.csv', 'rb') as f:
-    file_content = f.read()
+# Read original CSV and append a new valid row to create a fresh batch for testing
+with open('d:/AICTE/sample_data/valid_admissions_dtu.csv', 'r', encoding='utf-8') as f:
+    raw_lines = f.readlines()
+
+header = raw_lines[0]
+data_rows = raw_lines[1:]
+# Add a unique test enrollment to change the file hash
+unique_id = int(time.time()) % 100000
+new_row = f"789012345678,Vikram Malhotra,2005-02-14,MALE,BTECH-CSE,OPEN,STATE_GOVT,DOMESTIC,DTU-2026-CSE-{unique_id}\n"
+file_content = (header + "".join(data_rows) + new_row).encode('utf-8')
 
 part1 = (
     f'--{boundary}\r\n'
-    f'Content-Disposition: form-data; name="institution_id"\r\n\r\n1\r\n'
+    f'Content-Disposition: form-data; name="institution_id"\r\n\r\n2\r\n'
     f'--{boundary}\r\n'
     f'Content-Disposition: form-data; name="academic_year"\r\n\r\n2026-27\r\n'
     f'--{boundary}\r\n'
-    f'Content-Disposition: form-data; name="file"; filename="valid_admissions_dtu.csv"\r\n'
+    f'Content-Disposition: form-data; name="file"; filename="valid_admissions_dtu_test.csv"\r\n'
     f'Content-Type: text/csv\r\n\r\n'
 ).encode('utf-8')
 part2 = file_content
@@ -65,3 +74,4 @@ review_req = urllib.request.Request(
 )
 res4 = json.loads(urllib.request.urlopen(review_req).read())
 print('4. AICTE Review Approval Result:', res4)
+print('ALL 4 STAGES PASSED VERIFICATION!')

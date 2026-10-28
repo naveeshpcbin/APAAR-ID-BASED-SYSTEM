@@ -6,7 +6,8 @@ from app.core.config import settings
 from app.core.database import Base, engine
 from app.api.v1 import (
     auth, institutions, approvals, uploads, admissions,
-    conflicts, anomalies, verification, dashboards, reports, audit, health
+    conflicts, anomalies, verification, dashboards, reports, audit, health,
+    reference_data
 )
 
 @asynccontextmanager
@@ -34,6 +35,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def security_headers_middleware(request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["X-Pramaan-Security-Layer"] = "Ed25519-HMAC-SHA256-AuditChain-Active"
+    response.headers["X-Privacy-Standard"] = "DPDP-Act-2023-Consent-Compliant"
+    return response
+
 # Register API v1 Routers
 api_v1 = settings.API_V1_STR
 app.include_router(health.router, prefix=api_v1)
@@ -48,6 +60,7 @@ app.include_router(verification.router, prefix=api_v1)
 app.include_router(dashboards.router, prefix=api_v1)
 app.include_router(reports.router, prefix=api_v1)
 app.include_router(audit.router, prefix=api_v1)
+app.include_router(reference_data.router, prefix=api_v1)
 
 @app.get("/")
 def root():

@@ -16,8 +16,8 @@ export interface UserContextType {
 interface AuthContextValue {
   user: UserContextType | null;
   isLoading: boolean;
-  login: (email: string, pass: string) => Promise<void>;
-  logout: () => void;
+  login: (email: string, pass: string) => Promise<UserContextType>;
+  logout: (redirectUrl?: string) => void;
   switchDemoUser: (persona: "admin" | "dtu" | "coep" | "verifier") => Promise<void>;
 }
 
@@ -65,10 +65,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } catch {
         localStorage.removeItem("pramaan_user");
         localStorage.removeItem("pramaan_token");
+        setUser(null);
       }
     } else {
-      // Auto-login as admin by default for smooth evaluation
-      switchDemoUser("admin").catch(() => {});
+      setUser(null);
     }
     setIsLoading(false);
   }, []);
@@ -92,15 +92,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem("pramaan_token", res.access_token);
       localStorage.setItem("pramaan_user", JSON.stringify(userData));
       setUser(userData);
+      return userData;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const logout = () => {
+  const logout = (redirectUrl: string = "/login") => {
     localStorage.removeItem("pramaan_token");
     localStorage.removeItem("pramaan_user");
     setUser(null);
+    if (typeof window !== "undefined") {
+      window.location.href = redirectUrl;
+    }
   };
 
   const switchDemoUser = async (persona: "admin" | "dtu" | "coep" | "verifier") => {

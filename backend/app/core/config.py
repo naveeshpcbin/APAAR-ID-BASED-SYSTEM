@@ -1,8 +1,14 @@
 import os
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Optional
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        case_sensitive=True,
+        extra="ignore"
+    )
+
     PROJECT_NAME: str = "PRAMAAN-AICTE"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
@@ -16,7 +22,13 @@ class Settings(BaseSettings):
     HMAC_APAAR_KEY: str = os.getenv("HMAC_APAAR_KEY", "pramaan_apaar_hmac_salt_2026_confidential")
     
     # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./pramaan.db")
+    BACKEND_DIR: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")).replace("\\", "/")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", f"sqlite:///{BACKEND_DIR}/pramaan.db")
+    
+    # Supabase Cloud Database & Registry Configuration
+    SUPABASE_URL: Optional[str] = os.getenv("SUPABASE_URL", None)
+    SUPABASE_KEY: Optional[str] = os.getenv("SUPABASE_KEY", None)
+    SUPABASE_DATABASE_URL: Optional[str] = os.getenv("SUPABASE_DATABASE_URL", None)
     
     # Upload limits
     MAX_UPLOAD_SIZE_BYTES: int = 10 * 1024 * 1024  # 10 MB
@@ -24,9 +36,5 @@ class Settings(BaseSettings):
     
     # Verifier settings
     VERIFIER_TOKEN_EXPIRY_DAYS: int = 30
-    
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
 
 settings = Settings()

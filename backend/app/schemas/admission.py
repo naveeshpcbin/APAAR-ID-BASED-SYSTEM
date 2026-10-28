@@ -30,6 +30,7 @@ class AdmissionRecordResponse(BaseModel):
     is_supernumerary: bool = False
     admission_date: date
     status: str
+    consent_granted: bool = True
     notes: Optional[str] = None
     student: Optional[StudentIdentityResponse] = None
 
