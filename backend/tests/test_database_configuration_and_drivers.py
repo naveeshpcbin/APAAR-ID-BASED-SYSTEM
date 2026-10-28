@@ -12,7 +12,7 @@ def test_sanitize_postgres_scheme_and_driver_selection():
     
     # Must normalize 'postgres://' to 'postgresql://' or 'postgresql+psycopg2://'
     assert sanitized.startswith("postgresql")
-    assert "postgres:mysecretpass" in sanitized
+    assert "postgres.xvuqedqfdeybryvbablt:mysecretpass" in sanitized
     assert "aws-0-ap-south-1.pooler.supabase.com:6543/postgres" in sanitized
 
 def test_sanitize_password_brackets_stripped():
@@ -32,11 +32,12 @@ def test_sanitize_special_chars_url_encoded():
     assert "pass%23123" in sanitized
 
 def test_sanitize_host_brackets_stripped():
-    raw_url = "postgresql://user:pass@aws-0-[ap-southeast-2].pooler.supabase.com:6543/postgres"
+    raw_url = "postgresql://postgres:pass@aws-0-[ap-southeast-2].pooler.supabase.com:6543/postgres"
     sanitized = sanitize_db_url(raw_url)
     assert "[" not in sanitized
     assert "]" not in sanitized
-    assert "@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres" in sanitized
+    assert "postgres.xvuqedqfdeybryvbablt" in sanitized
+    assert "@aws-0-ap-south-1.pooler.supabase.com:6543/postgres" in sanitized
 
 def test_postgresql_driver_engine_instantiation():
     # Verify SQLAlchemy can successfully instantiate the engine with the sanitized URL without ImportError

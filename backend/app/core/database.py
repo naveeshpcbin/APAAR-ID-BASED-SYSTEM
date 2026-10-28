@@ -37,11 +37,25 @@ def sanitize_db_url(raw_url: str) -> str:
                         scheme = "postgresql+psycopg2"
                     except ImportError:
                         pass
+                # If connecting to Supabase pooler, username must be postgres.<project_ref>
+            project_ref = "xvuqedqfdeybryvbablt"
+            if settings.SUPABASE_URL and "supabase.co" in settings.SUPABASE_URL:
+                try:
+                    project_ref = settings.SUPABASE_URL.split("://")[1].split(".")[0]
+                except Exception:
+                    pass
+            
             # Clean any accidental brackets in host_part (e.g. aws-0-[ap-southeast-2].pooler.supabase.com)
-        if "[" in host_part or "]" in host_part:
-            host_part = host_part.replace("[", "").replace("]", "")
+            if "[" in host_part or "]" in host_part:
+                host_part = host_part.replace("[", "").replace("]", "")
 
-        return f"{scheme}://{username}:{password}@{host_part}"
+            if "pooler.supabase.com" in host_part:
+                if "." not in username and project_ref:
+                    username = f"{username}.{project_ref}"
+                if "ap-southeast-2" in host_part:
+                    host_part = host_part.replace("ap-southeast-2", "ap-south-1")
+
+            return f"{scheme}://{username}:{password}@{host_part}"
     return raw_url
 
 # Select database URL: prioritize SUPABASE_DATABASE_URL if provided, else fallback to DATABASE_URL
