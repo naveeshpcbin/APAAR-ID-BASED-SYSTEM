@@ -22,3 +22,4 @@ def dump_full(pptx_path, out_file):
 dump_full(r'D:\AICTE\demoppt\TCE_Yquanto_SIH26263.pptx', r'D:\AICTE\dump_tce_yquanto.txt')
 dump_full(r'D:\AICTE\demoppt\PRAMAAN-AICTE_SIH2026_Idea_Presentation.pptx', r'D:\AICTE\dump_pramaan_old.txt')
 print("Dumped both full presentations successfully.")
+
