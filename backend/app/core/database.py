@@ -52,8 +52,6 @@ def sanitize_db_url(raw_url: str) -> str:
             if "pooler.supabase.com" in host_part:
                 if "." not in username and project_ref:
                     username = f"{username}.{project_ref}"
-                if "ap-southeast-2" in host_part:
-                    host_part = host_part.replace("ap-southeast-2", "ap-south-1")
 
             return f"{scheme}://{username}:{password}@{host_part}"
     return raw_url

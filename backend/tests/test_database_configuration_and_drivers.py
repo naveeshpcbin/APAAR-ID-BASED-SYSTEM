@@ -37,7 +37,7 @@ def test_sanitize_host_brackets_stripped():
     assert "[" not in sanitized
     assert "]" not in sanitized
     assert "postgres.xvuqedqfdeybryvbablt" in sanitized
-    assert "@aws-0-ap-south-1.pooler.supabase.com:6543/postgres" in sanitized
+    assert "@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres" in sanitized
 
 def test_postgresql_driver_engine_instantiation():
     # Verify SQLAlchemy can successfully instantiate the engine with the sanitized URL without ImportError
