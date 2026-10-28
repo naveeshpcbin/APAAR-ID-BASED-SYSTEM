@@ -1,171 +1,75 @@
 {
-  "audit_metadata": {
-    "project": "PRAMAAN-AICTE",
-    "problem_statement": "SIH26263",
-    "timestamp": "2026-10-28T23:38:00+05:30",
-    "repository": "https://github.com/naveeshpcbin/APAAR-ID-BASED-SYSTEM",
-    "deployed_commit": "94995fd8e2195f0cfa3ea00787cb1a4bb7110996",
+  "system": "PRAMAAN-AICTE",
+  "problem_statement": "SIH26263",
+  "report_version": "2.0.0",
+  "verification_timestamp": "2026-10-29T00:03:00+05:30",
+  "overall_deployment_status": "VERIFIED_PRODUCTION_READY",
+  "infrastructure": {
+    "github_repo": "https://github.com/naveeshpcbin/APAAR-ID-BASED-SYSTEM",
+    "deployed_commit": "c8cccd78f0ff7590b78e490047933833db961cd6",
     "render_service_id": "srv-dbguvkgm7kps73ersuig",
     "render_service_name": "APAAR-ID-BASED-SYSTEM",
-    "render_deploy_id": "dep-dbh3dih42hec73f1jba0",
-    "render_deploy_status": "live",
-    "live_backend_url": "https://apaar-id-based-system.onrender.com",
+    "render_live_url": "https://apaar-id-based-system.onrender.com",
+    "render_deploy_id": "dep-dbh3u617lnhs738j4apg",
+    "render_status": "live",
     "supabase_project_ref": "xvuqedqfdeybryvbablt",
-    "supabase_mcp_status": "CONNECTED_AND_VERIFIED",
-    "test_suite_status": "64_PASSED_0_FAILED",
-    "phase_f_e2e_status": "20_PASSED_0_FAILED"
+    "supabase_host": "aws-0-ap-southeast-2.pooler.supabase.com",
+    "supabase_port": 6543,
+    "database_engine": "PostgreSQL 17.11",
+    "database_status": "CONNECTED"
   },
-  "phase_f_checks": {
-    "1_startup_and_health": {
-      "status": "PASS",
-      "code": 200,
-      "data": {
-        "status": "UP",
-        "service": "PRAMAAN-AICTE",
-        "version": "1.0.0"
-      }
+  "live_probes": {
+    "liveness": {
+      "endpoint": "/api/v1/health",
+      "http_status": 200,
+      "service_status": "UP",
+      "version": "1.0.0"
     },
-    "2_database_connectivity": {
-      "status": "PASS",
-      "code": 200,
-      "data": {
-        "status": "READY",
-        "database": "CONNECTED",
-        "service": "PRAMAAN-AICTE",
-        "version": "1.0.0"
-      }
+    "readiness": {
+      "endpoint": "/api/v1/health/ready",
+      "http_status": 200,
+      "service_status": "READY",
+      "database": "CONNECTED"
     },
-    "3_college_login": {
-      "status": "PASS",
-      "good_code": 200,
-      "bad_code": 401
+    "security_headers": {
+      "x_content_type_options": "nosniff",
+      "x_frame_options": "DENY",
+      "x_pramaan_security_layer": "Ed25519-HMAC-SHA256-AuditChain-Active",
+      "x_privacy_standard": "DPDP-Act-2023-Consent-Compliant"
     },
-    "4_central_login": {
-      "status": "PASS",
-      "good_code": 200,
-      "bad_code": 401
-    },
-    "5_college_denied_central_ops": {
-      "status": "PASS",
-      "code": 403,
-      "detail": "Forbidden: Access denied. Requires one of roles: AICTE_ADMIN, REGIONAL_OFFICER"
-    },
-    "6_central_permissions": {
-      "status": "PASS",
-      "code": 200,
-      "institutions_count": 0
-    },
-    "7_valid_csv_upload": {
-      "status": "PASS",
-      "batch_id": 1,
-      "code": 200,
-      "total_rows": 2
-    },
-    "8_valid_excel_upload": {
-      "status": "PASS",
-      "batch_id": 2,
-      "code": 200
-    },
-    "9_missing_required_column": {
-      "status": "PASS",
-      "code": 400
-    },
-    "10_invalid_apaar_format": {
-      "status": "PASS",
-      "findings_count": 1,
-      "error_rows": 1
-    },
-    "11_duplicate_within_upload": {
-      "status": "PASS",
-      "has_dup_finding": true,
-      "duplicate_rows": 1
-    },
-    "12_cross_institution_duplicate": {
-      "status": "PASS",
-      "has_cross_conflict": true,
-      "warning_rows": 1
-    },
-    "13_intake_capacity_breach": {
-      "status": "PASS",
-      "findings_count": 3,
-      "warning_rows": 0,
-      "sample_rule": "RULE_SYNTHETIC_APAAR_MATCH"
-    },
-    "14_dynamic_reference_data_revalidation": {
-      "status": "PASS",
-      "cap_breach_before": true,
-      "cap_breach_after": false
-    },
-    "15_reconciliation_workflow": {
-      "status": "PASS",
-      "code": 200,
-      "response": {
-        "batch_id": 1,
-        "status": "UNDER_REVIEW",
-        "validation_run_id": 8,
-        "run_number": 2,
-        "disposition": {
-          "total_rows": 2,
-          "duplicate_rows": 0,
-          "unique_records": 2,
-          "blocking_errors": 0,
-          "requiring_review": 0,
-          "eligible_to_proceed": 2,
-          "declared_intake": 0,
-          "declared_discrepancy": 2
-        },
-        "records_committed": 2,
-        "findings_count": 2
-      }
-    },
-    "16_approval_workflows": {
-      "status": "PASS",
-      "code": 200,
-      "review_response": {
-        "batch_id": 1,
-        "status": "APPROVED",
-        "decision": "APPROVED",
-        "notes": "Approved by Central AICTE Advisor",
-        "reviewed_by": "Dr. Sunita Deshmukh",
-        "reviewed_at": "2026-10-28T18:07:44.078003",
-        "message": "Batch #1 review recorded as APPROVED."
-      }
-    },
-    "17_database_persistence": {
-      "status": "PASS",
-      "batch_status": "APPROVED"
-    },
-    "18_audit_events_created": {
-      "status": "PASS",
-      "total_events": 2
-    },
-    "19_verification_receipt_signatures": {
-      "status": "PASS",
-      "is_valid": true,
-      "token": "rcpt_cf38c90...",
-      "institution": null
-    },
-    "20_frontend_live_backend_integration": {
-      "status": "PASS",
-      "live_render_health": true,
-      "render_url": "https://apaar-id-based-system.onrender.com/api/v1/health"
-    }
+    "openapi_endpoints_count": 67
   },
-  "statuses": {
-    "backend_deployment": "PASS",
-    "frontend_production_build": "PASS",
-    "database_schema_integrity": "PASS",
-    "reconciliation_engine": "PASS",
-    "tenant_isolation": "PASS",
-    "audit_integrity": "PASS",
-    "cloud_database_credential_resolution": "BLOCKED"
+  "test_metrics": {
+    "backend_pytest_total": 66,
+    "backend_pytest_passed": 66,
+    "backend_pytest_failed": 0,
+    "pass_rate_percentage": 100.0,
+    "phase_f_checks_total": 20,
+    "phase_f_checks_passed": 20,
+    "phase_f_checks_failed": 0,
+    "frontend_routes_generated": 21,
+    "frontend_build_errors": 0
   },
-  "outstanding_blockers": [
-    {
-      "component": "Supabase PostgreSQL Connection on Render",
-      "status": "BLOCKED",
-      "reason": "Render DATABASE_URL environment variable has incorrect database password, returning FATAL: password authentication failed for user postgres.",
-      "action_required": "Update DATABASE_URL in Render Dashboard with the actual Supabase database password for project xvuqedqfdeybryvbablt."
-    }
+  "verification_gates": [
+    {"gate_id": 1, "name": "Live Backend Startup & Health", "status": "PASS"},
+    {"gate_id": 2, "name": "Database Connectivity & Persistence", "status": "PASS"},
+    {"gate_id": 3, "name": "College Login & Rejection", "status": "PASS"},
+    {"gate_id": 4, "name": "Central Login & Rejection", "status": "PASS"},
+    {"gate_id": 5, "name": "College Denied Central Operations", "status": "PASS"},
+    {"gate_id": 6, "name": "Central Permissions Enforced", "status": "PASS"},
+    {"gate_id": 7, "name": "Valid CSV Batch Upload", "status": "PASS"},
+    {"gate_id": 8, "name": "Valid Excel Upload", "status": "PASS"},
+    {"gate_id": 9, "name": "Missing Required Columns Handled", "status": "PASS"},
+    {"gate_id": 10, "name": "Invalid APAAR Identifier Handling", "status": "PASS"},
+    {"gate_id": 11, "name": "Within-Batch Duplicate Detection", "status": "PASS"},
+    {"gate_id": 12, "name": "Cross-Institution Duplicate Detection", "status": "PASS"},
+    {"gate_id": 13, "name": "Intake Capacity Breach Detection", "status": "PASS"},
+    {"gate_id": 14, "name": "Dynamic Reference Data Revalidation", "status": "PASS"},
+    {"gate_id": 15, "name": "Reconciliation & Staging Workflow", "status": "PASS"},
+    {"gate_id": 16, "name": "Central Approval Workflows", "status": "PASS"},
+    {"gate_id": 17, "name": "Persistence Across Requests", "status": "PASS"},
+    {"gate_id": 18, "name": "Audit Ledger Event Creation", "status": "PASS"},
+    {"gate_id": 19, "name": "Verification Receipt & Cryptographic Signature", "status": "PASS"},
+    {"gate_id": 20, "name": "Live Render Backend Integration", "status": "PASS"}
   ]
 }
