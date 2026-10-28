@@ -1,0 +1,136 @@
+{
+  "1_startup_and_health": {
+    "status": "PASS",
+    "code": 200,
+    "data": {
+      "status": "UP",
+      "service": "PRAMAAN-AICTE",
+      "version": "1.0.0"
+    }
+  },
+  "2_database_connectivity": {
+    "status": "PASS",
+    "code": 200,
+    "data": {
+      "status": "READY",
+      "database": "CONNECTED",
+      "service": "PRAMAAN-AICTE",
+      "version": "1.0.0"
+    }
+  },
+  "3_college_login": {
+    "status": "PASS",
+    "good_code": 200,
+    "bad_code": 401
+  },
+  "4_central_login": {
+    "status": "PASS",
+    "good_code": 200,
+    "bad_code": 401
+  },
+  "5_college_denied_central_ops": {
+    "status": "PASS",
+    "code": 403,
+    "detail": "Forbidden: Access denied. Requires one of roles: AICTE_ADMIN, REGIONAL_OFFICER"
+  },
+  "6_central_permissions": {
+    "status": "PASS",
+    "code": 200,
+    "institutions_count": 0
+  },
+  "7_valid_csv_upload": {
+    "status": "PASS",
+    "batch_id": 1,
+    "code": 200,
+    "total_rows": 2
+  },
+  "8_valid_excel_upload": {
+    "status": "PASS",
+    "batch_id": 2,
+    "code": 200
+  },
+  "9_missing_required_column": {
+    "status": "PASS",
+    "code": 400
+  },
+  "10_invalid_apaar_format": {
+    "status": "PASS",
+    "findings_count": 1,
+    "error_rows": 1
+  },
+  "11_duplicate_within_upload": {
+    "status": "PASS",
+    "has_dup_finding": true,
+    "duplicate_rows": 1
+  },
+  "12_cross_institution_duplicate": {
+    "status": "PASS",
+    "has_cross_conflict": true,
+    "warning_rows": 1
+  },
+  "13_intake_capacity_breach": {
+    "status": "PASS",
+    "findings_count": 3,
+    "warning_rows": 0,
+    "sample_rule": "RULE_SYNTHETIC_APAAR_MATCH"
+  },
+  "14_dynamic_reference_data_revalidation": {
+    "status": "PASS",
+    "cap_breach_before": true,
+    "cap_breach_after": false
+  },
+  "15_reconciliation_workflow": {
+    "status": "PASS",
+    "code": 200,
+    "response": {
+      "batch_id": 1,
+      "status": "UNDER_REVIEW",
+      "validation_run_id": 8,
+      "run_number": 2,
+      "disposition": {
+        "total_rows": 2,
+        "duplicate_rows": 0,
+        "unique_records": 2,
+        "blocking_errors": 0,
+        "requiring_review": 0,
+        "eligible_to_proceed": 2,
+        "declared_intake": 0,
+        "declared_discrepancy": 2
+      },
+      "records_committed": 2,
+      "findings_count": 2
+    }
+  },
+  "16_approval_workflows": {
+    "status": "PASS",
+    "code": 200,
+    "review_response": {
+      "batch_id": 1,
+      "status": "APPROVED",
+      "decision": "APPROVED",
+      "notes": "Approved by Central AICTE Advisor",
+      "reviewed_by": "Dr. Sunita Deshmukh",
+      "reviewed_at": "2026-10-28T18:07:44.078003",
+      "message": "Batch #1 review recorded as APPROVED."
+    }
+  },
+  "17_database_persistence": {
+    "status": "PASS",
+    "batch_status": "APPROVED"
+  },
+  "18_audit_events_created": {
+    "status": "PASS",
+    "total_events": 2
+  },
+  "19_verification_receipt_signatures": {
+    "status": "PASS",
+    "is_valid": true,
+    "token": "rcpt_cf38c90...",
+    "institution": null
+  },
+  "20_frontend_live_backend_integration": {
+    "status": "PASS",
+    "live_render_health": true,
+    "render_url": "https://apaar-id-based-system.onrender.com/api/v1/health"
+  }
+}
