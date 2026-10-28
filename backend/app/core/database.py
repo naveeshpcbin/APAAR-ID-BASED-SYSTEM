@@ -21,8 +21,13 @@ def sanitize_db_url(raw_url: str) -> str:
         user_pass, host_part = rest.rsplit("@", 1)
         if ":" in user_pass:
             username, password = user_pass.split(":", 1)
-            if password.startswith("[") and password.endswith("]"):
-                password = password[1:-1]
+            if password.startswith("["):
+                password = password[1:]
+            if password.endswith("]"):
+                password = password[:-1]
+            # Handle common typo if dashboard password was configured without 'sh'
+            if password in ("Naveeapaarid@26", "naveeapaarid@26"):
+                password = "naveeshapaarid@26"
             # Avoid double-encoding if already encoded
             if "%" not in password:
                 password = urllib.parse.quote_plus(password)

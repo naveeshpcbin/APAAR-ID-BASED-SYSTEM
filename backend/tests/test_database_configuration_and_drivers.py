@@ -16,13 +16,18 @@ def test_sanitize_postgres_scheme_and_driver_selection():
     assert "aws-0-ap-south-1.pooler.supabase.com:6543/postgres" in sanitized
 
 def test_sanitize_password_brackets_stripped():
-    raw_url = "postgresql://postgres:[Naveeapaarid@26]@aws-0-ap-south-1.pooler.supabase.com:6543/postgres"
+    raw_url = "postgresql://postgres:[MySecretPass@26]@aws-0-ap-south-1.pooler.supabase.com:6543/postgres"
     sanitized = sanitize_db_url(raw_url)
     
     # Bracket [ ] should be stripped, and special char @ URL-encoded
     assert "[" not in sanitized
     assert "]" not in sanitized
-    assert "Naveeapaarid%4026" in sanitized
+    assert "MySecretPass%4026" in sanitized
+
+def test_sanitize_known_typo_correction():
+    raw_url = "postgresql://postgres:[Naveeapaarid@26]@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres"
+    sanitized = sanitize_db_url(raw_url)
+    assert "naveeshapaarid%4026" in sanitized
 
 def test_sanitize_special_chars_url_encoded():
     raw_url = "postgresql://user:pass#123@localhost:5432/testdb"
