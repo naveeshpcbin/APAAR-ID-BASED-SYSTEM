@@ -28,7 +28,10 @@ The existing Next.js frontend in `frontend/` has been successfully deployed to V
 
 - **Vercel Project Name:** `pramaan-aicte`
 - **Vercel Scope / Team:** `prime-86f4e431`
-- **Production Public URL:** [https://pramaan-aicte.vercel.app](https://pramaan-aicte.vercel.app)
+- **Production Public Custom Domains:**
+  - [https://brainforge.info](https://brainforge.info) (Apex root domain — **LIVE & SSL VERIFIED**)
+  - [https://pramaan.brainforge.info](https://pramaan.brainforge.info) (App subdomain — **LIVE & SSL VERIFIED**)
+- **Production Vercel Domain:** [https://pramaan-aicte.vercel.app](https://pramaan-aicte.vercel.app)
 - **Deployment URL (Immutable):** [https://pramaan-aicte-eamkc0j2i-prime-86f4e431.vercel.app](https://pramaan-aicte-eamkc0j2i-prime-86f4e431.vercel.app)
 - **Vercel Inspect URL:** `https://vercel.com/prime-86f4e431/pramaan-aicte/FyM1CG34odWXiEAYBYiwVW3nbAsC`
 - **Backend Service URL:** `https://apaar-id-based-system.onrender.com`
@@ -94,3 +97,4 @@ For live evaluator testing on [https://pramaan-aicte.vercel.app](https://pramaan
    - **Role:** College Nodal Officer (Delhi Technological University — Uploads, Reconciliations, Seat Intake)
 3. **Public Verification Portal** (`/verification`):
    - Open verification for students and corporate employers with Ed25519 cryptographic receipts and QR code verification.
+
