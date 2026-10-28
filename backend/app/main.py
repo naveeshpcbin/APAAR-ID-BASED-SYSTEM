@@ -40,8 +40,14 @@ if not configured_origins:
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:8000",
-        "http://127.0.0.1:8000"
+        "http://127.0.0.1:8000",
+        "https://pramaan-aicte.vercel.app",
+        "https://pramaan-aicte-eamkc0j2i-prime-86f4e431.vercel.app"
     ]
+else:
+    for o in ["https://pramaan-aicte.vercel.app", "https://pramaan-aicte-eamkc0j2i-prime-86f4e431.vercel.app"]:
+        if o not in configured_origins:
+            configured_origins.append(o)
 
 app.add_middleware(
     CORSMiddleware,
