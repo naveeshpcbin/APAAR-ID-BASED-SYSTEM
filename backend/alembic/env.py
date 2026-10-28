@@ -20,12 +20,13 @@ from os.path import abspath, dirname
 sys.path.insert(0, dirname(dirname(abspath(__file__))))
 
 from app.core.config import settings
-from app.core.database import Base
+from app.core.database import Base, sanitize_db_url
 import app.models  # register all models
 
 target_metadata = Base.metadata
 
-db_url = os.getenv("DATABASE_URL", settings.DATABASE_URL)
+raw_db_url = os.getenv("DATABASE_URL", settings.DATABASE_URL)
+db_url = sanitize_db_url(raw_db_url)
 config.set_main_option("sqlalchemy.url", db_url)
 
 

@@ -9,6 +9,7 @@ def sanitize_db_url(raw_url: str) -> str:
     - Strips surrounding brackets like [password] or [Naveeapaarid@26]
     - URL-encodes special characters in passwords (e.g. '@', '#', '%')
     - Normalizes postgres:// to postgresql://
+    - Enforces explicit driver dialect (psycopg2 fallback) to prevent SQLAlchemy 2.1+ ModuleNotFoundError: No module named 'psycopg'
     """
     if not raw_url or raw_url.startswith("sqlite"):
         return raw_url
@@ -25,6 +26,17 @@ def sanitize_db_url(raw_url: str) -> str:
             # Avoid double-encoding if already encoded
             if "%" not in password:
                 password = urllib.parse.quote_plus(password)
+            
+            # Ensure safe driver selection if generic postgresql:// was provided
+            if scheme == "postgresql":
+                try:
+                    import psycopg  # noqa: F401
+                except ImportError:
+                    try:
+                        import psycopg2  # noqa: F401
+                        scheme = "postgresql+psycopg2"
+                    except ImportError:
+                        pass
             return f"{scheme}://{username}:{password}@{host_part}"
     return raw_url
 
