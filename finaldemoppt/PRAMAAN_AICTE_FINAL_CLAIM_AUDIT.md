@@ -187,3 +187,4 @@ Here is why the website is completely independent of the local computer and Anti
 - **Institution:** Thiagarajar College of Engineering, Madurai
 - **Target Competition:** Smart India Hackathon 2026
 - **Final Verdict:** **APPROVED FOR SUBMISSION AND JURY EVALUATION**
+

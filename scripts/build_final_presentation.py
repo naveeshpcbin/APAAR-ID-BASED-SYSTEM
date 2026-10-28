@@ -1,13 +1,10 @@
 """
-PRAMAAN-AICTE: Final SIH 2026 Presentation Builder (Optimized Visual Hierarchy)
-Reconstructs the presentation according to SIH reference decks (sih-winning-ppt-1.pdf)
-and audited codebase facts:
-- Exactly 6 slides in 16:9 widescreen format
-- Native editable PowerPoint shapes and text
-- Factually verified against actual codebase (66/66 passing tests, 20 tables with RLS)
-- Real application screenshots embedded
-- Clean unicode typography (no encoding artifacts)
-- Live verified production URLs (brainforge.info & apaar-id-based-system.onrender.com)
+PRAMAAN-AICTE: Final SIH 2026 Presentation Builder (Strict Official Demo Template Structure)
+Reconstructs the presentation adhering strictly to the official SIH 2026 master template:
+- Slide 1: EXACT Demo PPT Structure (Official illustration Picture 4 preserved, Title 7, Subtitle 3, SIH Logo, verified metadata in TextBox 9)
+- Slides 2-6: High-clarity 1920x1032 verified screenshots on right sides with clear captions and explainable callouts
+- 100% verified against live codebase, Supabase PostgreSQL, Render backend, and Vercel custom domains
+- Clean unicode typography, zero text clipping, 16:9 widescreen format
 """
 
 import os
@@ -19,7 +16,7 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.dml.color import RGBColor
 
-# Professional Color Palette matching SIH Reference 1
+# Professional Color Palette matching SIH Reference Standards
 NAVY = RGBColor(17, 34, 102)          # #112266 - SIH Official Navy
 TEAL = RGBColor(0, 140, 110)         # #008C6E - Government Trust Teal
 DARK_BLUE = RGBColor(26, 54, 93)     # #1A365D - Deep Slate Blue
@@ -33,6 +30,8 @@ BORDER_COLOR = RGBColor(203, 213, 225) # #CBD5E1 - Slate Border
 FOOTER_BLUE = RGBColor(0, 111, 191)  # #006FBF - SIH Footer Blue
 
 TEMPLATE_PATH = r"D:\AICTE\finaldemoppt\SIH2026-IDEA-Presentation-Format.pptx"
+SLIDE_IMAGES_DIR = r"D:\AICTE\artifacts\slide_images"
+
 OUT_PATHS = [
     r"D:\AICTE\finaldemoppt\PRAMAAN_AICTE_SIH2026_FINAL.pptx",
     r"D:\AICTE\deck\final\PRAMAAN-AICTE_SIH2026_Final.pptx"
@@ -152,48 +151,75 @@ def build_presentation():
         del prs.slides._sldIdLst[6]
 
     # =========================================================================
-    # SLIDE 1: TITLE PAGE
+    # SLIDE 1: TITLE PAGE (STRICT OFFICIAL DEMO PPT STRUCTURE)
     # =========================================================================
-    print("Building Slide 1 (Title Page)...")
+    print("Building Slide 1 (Strict Official Demo PPT Structure)...")
     s1 = prs.slides[0]
 
-    # Hide default 'TITLE PAGE' subtitle placeholder if present
+    # Configure Title 7: 'SMART INDIA HACKATHON 2026'
     for shp in s1.shapes:
-        if shp.name.startswith("Subtitle"):
-            shp.text_frame.clear()
+        if shp.name == "Title 7":
+            shp.left = Inches(0.40)
+            shp.top = Inches(0.20)
+            shp.width = Inches(10.20)
+            shp.height = Inches(0.90)
+            tf = shp.text_frame
+            tf.word_wrap = True
+            p = tf.paragraphs[0]
+            p.text = "SMART INDIA HACKATHON 2026"
+            p.font.name = "Arial"
+            p.font.size = Pt(28)
+            p.font.bold = True
+            p.font.color.rgb = NAVY
+            p.alignment = PP_ALIGN.LEFT
 
-    for shp in s1.shapes:
-        if shp.name == "TextBox 9":
-            shp.left = Inches(0.50)
-            shp.top = Inches(1.50)
-            shp.width = Inches(6.60)
-            shp.height = Inches(5.30)
+        elif shp.name == "Subtitle 3":
+            shp.left = Inches(0.40)
+            shp.top = Inches(0.95)
+            shp.width = Inches(6.50)
+            shp.height = Inches(0.40)
+            tf = shp.text_frame
+            tf.word_wrap = True
+            tf.clear()
+            p = tf.paragraphs[0]
+            p.text = "TITLE PAGE"
+            p.font.name = "Arial"
+            p.font.size = Pt(14)
+            p.font.bold = True
+            p.font.color.rgb = TEAL
+            p.alignment = PP_ALIGN.LEFT
+
+        elif shp.name == "TextBox 9":
+            shp.left = Inches(0.40)
+            shp.top = Inches(1.55)
+            shp.width = Inches(6.80)
+            shp.height = Inches(5.25)
             tf = shp.text_frame
             tf.word_wrap = True
             tf.clear()
 
             title_rows = [
-                ("Problem Statement ID", "SIH26263", NAVY, Pt(13.5), True),
+                ("Problem Statement ID", "SIH26263", NAVY, Pt(13), True),
                 ("Problem Statement Title", "Development of an APAAR ID-Based Student Data Management and Verification Platform for AICTE-Approved Institutions", DARK_BLUE, Pt(11), False),
-                ("Theme", "Smart Automation", CHARCOAL, Pt(11.5), False),
-                ("PS Category", "Software", CHARCOAL, Pt(11.5), False),
-                ("Team ID", "TCE_Yquanto", CHARCOAL, Pt(11.5), False),
-                ("Team Name", "TCE_Yquanto (Thiagarajar College of Engineering, Madurai)", NAVY, Pt(12), True),
-                ("Live Web Platform", "https://brainforge.info  |  https://pramaan.brainforge.info", TEAL, Pt(11), True),
+                ("Theme", "Smart Automation", CHARCOAL, Pt(11), False),
+                ("PS Category", "Software", CHARCOAL, Pt(11), False),
+                ("Team ID", "TCE_Yquanto", CHARCOAL, Pt(11), False),
+                ("Team Name", "TCE_Yquanto (Thiagarajar College of Engineering, Madurai)", NAVY, Pt(11.5), True),
+                ("Institute Name", "Thiagarajar College of Engineering, Madurai, Tamil Nadu", DARK_BLUE, Pt(11), False),
+                ("Live Web Platform", "https://brainforge.info  |  https://pramaan.brainforge.info", TEAL, Pt(10.5), True),
                 ("Live Backend & API", "https://apaar-id-based-system.onrender.com/docs", TEAL, Pt(10.5), True),
                 ("Source Repository", "https://github.com/naveeshpcbin/APAAR-ID-BASED-SYSTEM", ACCENT_BLUE, Pt(10.5), True),
-                ("Architecture Baseline", "Next.js 14 + FastAPI + PostgreSQL (20 Tables, RLS) + Deterministic 3-Way Reconciliation", DARK_BLUE, Pt(10), False),
-                ("Verification Status", "66/66 Passing Tests | 20/20 E2E Checks | Live Cloud Deployment Verified", TEAL, Pt(10.5), True),
+                ("Verification Status", "66/66 Passing Tests | 20 Tables with RLS | Live Cloud Verified", TEAL, Pt(10.5), True),
             ]
 
             for idx, (label, val, val_color, val_size, val_bold) in enumerate(title_rows):
                 p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
-                p.space_before = Pt(4.5) if idx > 0 else Pt(0)
+                p.space_before = Pt(4.0) if idx > 0 else Pt(0)
 
                 r_lbl = p.add_run()
                 r_lbl.text = f"{label}: "
                 r_lbl.font.name = "Arial"
-                r_lbl.font.size = Pt(11)
+                r_lbl.font.size = Pt(10.8)
                 r_lbl.font.bold = True
                 r_lbl.font.color.rgb = NAVY
 
@@ -204,15 +230,7 @@ def build_presentation():
                 r_val.font.bold = val_bold
                 r_val.font.color.rgb = val_color
 
-    # Add right card on Slide 1 for Architecture Preview & Live Badges
-    card1_rt = create_card(s1, Inches(7.30), Inches(1.50), Inches(5.60), Inches(5.30))
-    create_header_badge(s1, Inches(7.45), Inches(1.38), Inches(5.30), Inches(0.32), "DEPLOYED & VERIFIED SYSTEM ARCHITECTURE", NAVY)
-
-    arch_img = r"D:\AICTE\artifacts\pramaan_system_architecture.png"
-    if os.path.exists(arch_img):
-        s1.shapes.add_picture(arch_img, Inches(7.45), Inches(1.80), Inches(5.30), Inches(4.70))
-
-    # Add bottom footer strip on Slide 1 matching the deck styling
+    # Add bottom footer strip on Slide 1 matching official styling
     footer_bar_1 = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.0), Inches(6.95), Inches(13.333), Inches(0.55))
     footer_bar_1.fill.solid()
     footer_bar_1.fill.fore_color.rgb = FOOTER_BLUE
@@ -308,15 +326,15 @@ def build_presentation():
             r_text.font.size = Pt(8.0)
             r_text.font.color.rgb = CHARCOAL
 
-    # RIGHT COLUMN: Live Application Screenshot Container
+    # RIGHT COLUMN: High-Resolution Screenshot of AICTE Central Command Console
     rt_x = Inches(6.75)
     rt_w = Inches(6.15)
     create_card(s2, rt_x, Inches(1.22), rt_w, Inches(4.93))
     create_header_badge(s2, rt_x + Inches(0.15), Inches(1.10), rt_w - Inches(0.30), Inches(0.30), "AICTE CENTRAL APEX COMMAND & RECONCILIATION DASHBOARD", NAVY)
 
-    dash_img = r"D:\AICTE\artifacts\live_screenshots\01_central_dashboard_overview.png"
-    if os.path.exists(dash_img):
-        s2.shapes.add_picture(dash_img, rt_x + Inches(0.12), Inches(1.48), rt_w - Inches(0.24), Inches(3.20))
+    s2_img = os.path.join(SLIDE_IMAGES_DIR, "slide_2_Picture 3.png")
+    if os.path.exists(s2_img):
+        s2.shapes.add_picture(s2_img, rt_x + Inches(0.12), Inches(1.48), rt_w - Inches(0.24), Inches(3.20))
 
     tb_cap = s2.shapes.add_textbox(rt_x + Inches(0.12), Inches(4.75), rt_w - Inches(0.24), Inches(1.30))
     tf_cap = tb_cap.text_frame
@@ -447,19 +465,19 @@ def build_presentation():
         r_d.font.size = Pt(8.1)
         r_d.font.color.rgb = CHARCOAL
 
-    # RIGHT COLUMN BOTTOM: Genuine Application Quarantine Sandbox Preview
+    # RIGHT COLUMN BOTTOM: High-Resolution Screenshot of Smart Ingestion Desk
     create_card(s3, rt_x, Inches(3.60), rt_w, Inches(3.04))
-    create_header_badge(s3, rt_x + Inches(0.15), Inches(3.48), rt_w - Inches(0.30), Inches(0.30), "INTERACTIVE QUARANTINE SANDBOX & ROW-LEVEL FINDINGS", TEAL)
+    create_header_badge(s3, rt_x + Inches(0.15), Inches(3.48), rt_w - Inches(0.30), Inches(0.30), "PROTOTYPE EVIDENCE: SMART INGESTION DESK", TEAL)
 
-    sandbox_img = r"D:\AICTE\artifacts\live_screenshots\07_interactive_spreadsheet_sandbox.png"
-    if os.path.exists(sandbox_img):
-        s3.shapes.add_picture(sandbox_img, rt_x + Inches(0.12), Inches(3.82), rt_w - Inches(0.24), Inches(2.40))
+    s3_img = os.path.join(SLIDE_IMAGES_DIR, "slide_3_Picture 3.png")
+    if os.path.exists(s3_img):
+        s3.shapes.add_picture(s3_img, rt_x + Inches(0.12), Inches(3.82), rt_w - Inches(0.24), Inches(2.15))
 
-    tb_sb = s3.shapes.add_textbox(rt_x + Inches(0.12), Inches(6.25), rt_w - Inches(0.24), Inches(0.35))
+    tb_sb = s3.shapes.add_textbox(rt_x + Inches(0.12), Inches(6.05), rt_w - Inches(0.24), Inches(0.50))
     tf_sb = tb_sb.text_frame
     tf_sb.word_wrap = True
     p_sb = tf_sb.paragraphs[0]
-    p_sb.text = "Implemented UI: In-browser editable spreadsheet sandbox isolates validation findings before central commit."
+    p_sb.text = "Smart Ingestion Desk: Automated schema mapping, pre-flight validation status, row findings ledger, and atomic batch commitment."
     p_sb.font.name = "Arial"
     p_sb.font.size = Pt(7.8)
     p_sb.font.color.rgb = MUTED_GRAY
@@ -508,58 +526,55 @@ def build_presentation():
         r_text.font.size = Pt(8.3)
         r_text.font.color.rgb = CHARCOAL
 
-    # RIGHT COLUMN: Governance Risks & Technical Countermeasures
+    # RIGHT COLUMN TOP: Governance Risks & Technical Countermeasures
     r_left = Inches(6.75)
     r_w = Inches(6.15)
-    create_card(s4, r_left, Inches(1.22), r_w, f_h)
-    create_header_badge(s4, r_left + Inches(0.15), Inches(1.10), r_w - Inches(0.30), Inches(0.32), "GOVERNANCE RISKS & TECHNICAL COUNTERMEASURES", ALERT_RED)
+    create_card(s4, r_left, Inches(1.22), r_w, Inches(2.26))
+    create_header_badge(s4, r_left + Inches(0.15), Inches(1.10), r_w - Inches(0.30), Inches(0.30), "GOVERNANCE RISKS & TECHNICAL COUNTERMEASURES", ALERT_RED)
 
-    tb_risk = s4.shapes.add_textbox(r_left + Inches(0.15), Inches(1.50), r_w - Inches(0.30), Inches(5.00))
+    tb_risk = s4.shapes.add_textbox(r_left + Inches(0.15), Inches(1.48), r_w - Inches(0.30), Inches(1.92))
     tf_risk = tb_risk.text_frame
     tf_risk.word_wrap = True
     tf_risk.margin_left = tf_risk.margin_right = tf_risk.margin_top = tf_risk.margin_bottom = 0
 
     risks = [
-        ("Risk: Inconsistent Institutional Spreadsheets", "Colleges use varying ERP schemas and column headers (e.g. apaar_id vs uid vs student_apaar).",
-         "Header alias normalizer maps 50+ divergent column variants into standard canonical schema automatically."),
-        ("Risk: Student Identifier Privacy Exposure", "Storing plaintext 12-digit student APAAR identifiers risks data leakage under DPDP Act 2023.",
-         "Keyed HMAC-SHA256 pseudonymized indexing and dynamic masking (XXXX-XXXX-9012) ensure zero plaintext PII exposure."),
-        ("Risk: Multi-Institution Concurrent Admissions", "Students admitted concurrently across different institutions leading to seat blocking.",
-         "Cross-institution collision radar cross-checks active admissions against centralized reference records and flags duplicates."),
-        ("Risk: Regulatory Non-Repudiation & Tampering", "Unauthorized insider tampering with approved intake capacity or admission records.",
-         "Append-only sequential SHA-256 hash chaining (Hash_n = SHA256(Record_n || Hash_n-1)) mathematically exposes any tampering."),
-        ("Risk: Database Driver & Cloud Connection Mismatch", "Container deployment failures caused by PostgreSQL driver compatibility or pooler SSL configuration.",
-         "Implemented smart connection URI sanitization and dynamic psycopg3/psycopg2 driver fallback with automated readiness health check.")
+        ("Inconsistent Spreadsheets", "Colleges use varying ERP column headers.", "Header alias normalizer maps 50+ divergent column variants into standard canonical schema."),
+        ("Identifier Privacy Exposure", "Storing plaintext student APAAR IDs risks data leakage.", "Keyed HMAC-SHA256 pseudonymized indexing and dynamic masking ensure zero plaintext PII exposure."),
+        ("Concurrent Admissions", "Students admitted concurrently across different institutions.", "Cross-institution collision radar cross-checks active admissions against central records and flags duplicates.")
     ]
 
     for r_idx, (r_title, r_desc, r_mit) in enumerate(risks):
         p_t = tf_risk.paragraphs[0] if r_idx == 0 else tf_risk.add_paragraph()
-        p_t.space_before = Pt(6) if r_idx > 0 else Pt(0)
+        p_t.space_before = Pt(3.5) if r_idx > 0 else Pt(0)
         r_t = p_t.add_run()
         r_t.text = f"- {r_title}: "
         r_t.font.name = "Arial"
-        r_t.font.size = Pt(8.7)
+        r_t.font.size = Pt(8.5)
         r_t.font.bold = True
         r_t.font.color.rgb = ALERT_RED
         r_td = p_t.add_run()
-        r_td.text = r_desc
+        r_td.text = f"{r_desc} -> Control: {r_mit}"
         r_td.font.name = "Arial"
-        r_td.font.size = Pt(8.2)
+        r_td.font.size = Pt(8.0)
         r_td.font.color.rgb = CHARCOAL
 
-        p_m = tf_risk.add_paragraph()
-        p_m.space_before = Pt(1.5)
-        r_m = p_m.add_run()
-        r_m.text = f"  * Control: "
-        r_m.font.name = "Arial"
-        r_m.font.size = Pt(8.5)
-        r_m.font.bold = True
-        r_m.font.color.rgb = TEAL
-        r_md = p_m.add_run()
-        r_md.text = r_mit
-        r_md.font.name = "Arial"
-        r_md.font.size = Pt(8.2)
-        r_md.font.color.rgb = CHARCOAL
+    # RIGHT COLUMN BOTTOM: High-Resolution Screenshot of Duplicate Collision Radar
+    create_card(s4, r_left, Inches(3.60), r_w, Inches(3.04))
+    create_header_badge(s4, r_left + Inches(0.15), Inches(3.48), r_w - Inches(0.30), Inches(0.30), "PROTOTYPE EVIDENCE: DUPLICATE COLLISION RADAR", TEAL)
+
+    s4_img = os.path.join(SLIDE_IMAGES_DIR, "slide_4_Picture 3.png")
+    if os.path.exists(s4_img):
+        s4.shapes.add_picture(s4_img, r_left + Inches(0.12), Inches(3.82), r_w - Inches(0.24), Inches(2.15))
+
+    tb_r_cap = s4.shapes.add_textbox(r_left + Inches(0.12), Inches(6.05), r_w - Inches(0.24), Inches(0.50))
+    tf_r_cap = tb_r_cap.text_frame
+    tf_r_cap.word_wrap = True
+    p_rc = tf_r_cap.paragraphs[0]
+    p_rc.text = "Duplicate Collision Radar: Side-by-side college enrollment audit, quota verification, and regulatory adjudication controls."
+    p_rc.font.name = "Arial"
+    p_rc.font.size = Pt(7.8)
+    p_rc.font.color.rgb = MUTED_GRAY
+    p_rc.alignment = PP_ALIGN.CENTER
 
     # =========================================================================
     # SLIDE 5: IMPACT AND BENEFITS
@@ -608,11 +623,11 @@ def build_presentation():
     cert_left = Inches(6.75)
     cert_w = Inches(6.15)
     create_card(s5, cert_left, Inches(1.22), cert_w, imp_h)
-    create_header_badge(s5, cert_left + Inches(0.15), Inches(1.10), cert_w - Inches(0.30), Inches(0.32), "CRYPTOGRAPHICALLY VERIFIABLE DEGREE CERTIFICATE & QR PROOF", NAVY)
+    create_header_badge(s5, cert_left + Inches(0.15), Inches(1.10), cert_w - Inches(0.30), Inches(0.32), "SIH-R10 ACADEMIC CERTIFICATE & ED25519 QR PROOF", NAVY)
 
-    cert_img = r"D:\AICTE\artifacts\live_screenshots\10_degree_certificate_sample.png"
-    if os.path.exists(cert_img):
-        s5.shapes.add_picture(cert_img, cert_left + Inches(0.12), Inches(1.48), cert_w - Inches(0.24), Inches(3.20))
+    s5_img = os.path.join(SLIDE_IMAGES_DIR, "slide_5_Picture 3.png")
+    if os.path.exists(s5_img):
+        s5.shapes.add_picture(s5_img, cert_left + Inches(0.12), Inches(1.48), cert_w - Inches(0.24), Inches(3.20))
 
     tb_cert = s5.shapes.add_textbox(cert_left + Inches(0.12), Inches(4.75), cert_w - Inches(0.24), Inches(1.80))
     tf_cert = tb_cert.text_frame
@@ -692,10 +707,10 @@ def build_presentation():
     # RIGHT COLUMN TOP: Scope Differentiation (Prior Art vs PRAMAAN-AICTE)
     res_left = Inches(6.75)
     res_w = Inches(6.15)
-    create_card(s6, res_left, Inches(1.22), res_w, Inches(2.55))
+    create_card(s6, res_left, Inches(1.22), res_w, Inches(2.26))
     create_header_badge(s6, res_left + Inches(0.15), Inches(1.10), res_w - Inches(0.30), Inches(0.30), "SCOPE DIFFERENTIATION (PRIOR ART VS PRAMAAN-AICTE)", TEAL)
 
-    tb_diff = s6.shapes.add_textbox(res_left + Inches(0.15), Inches(1.48), res_w - Inches(0.30), Inches(2.20))
+    tb_diff = s6.shapes.add_textbox(res_left + Inches(0.15), Inches(1.48), res_w - Inches(0.30), Inches(1.92))
     tf_diff = tb_diff.text_frame
     tf_diff.word_wrap = True
     tf_diff.margin_left = tf_diff.margin_right = tf_diff.margin_top = tf_diff.margin_bottom = 0
@@ -708,7 +723,7 @@ def build_presentation():
     ]
     for d_idx, (d_lead, d_text) in enumerate(diff_points):
         p = tf_diff.paragraphs[0] if d_idx == 0 else tf_diff.add_paragraph()
-        p.space_before = Pt(3.5) if d_idx > 0 else Pt(0)
+        p.space_before = Pt(3.0) if d_idx > 0 else Pt(0)
         r_l = p.add_run()
         r_l.text = f"- {d_lead}: "
         r_l.font.name = "Arial"
@@ -721,35 +736,39 @@ def build_presentation():
         r_t.font.size = Pt(8.0)
         r_t.font.color.rgb = CHARCOAL
 
-    # RIGHT COLUMN BOTTOM: Verified Project Resources & Environment Status
-    create_card(s6, res_left, Inches(3.95), res_w, Inches(2.69))
-    create_header_badge(s6, res_left + Inches(0.15), Inches(3.82), res_w - Inches(0.30), Inches(0.30), "VERIFIED PROJECT RESOURCES & LIVE DEPLOYMENT STATUS", DARK_BLUE)
+    # RIGHT COLUMN BOTTOM: High-Resolution Screenshot of Audit Ledger + Live Resources
+    create_card(s6, res_left, Inches(3.60), res_w, Inches(3.04))
+    create_header_badge(s6, res_left + Inches(0.15), Inches(3.48), r_w - Inches(0.30), Inches(0.30), "TAMPER-EVIDENT AUDIT LEDGER & LIVE DEPLOYMENT", DARK_BLUE)
 
-    tb_res = s6.shapes.add_textbox(res_left + Inches(0.15), Inches(4.20), res_w - Inches(0.30), Inches(2.35))
+    s6_img = os.path.join(SLIDE_IMAGES_DIR, "slide_6_Picture 3.png")
+    if os.path.exists(s6_img):
+        s6.shapes.add_picture(s6_img, res_left + Inches(0.12), Inches(3.82), res_w - Inches(0.24), Inches(1.50))
+
+    tb_res = s6.shapes.add_textbox(res_left + Inches(0.12), Inches(5.38), res_w - Inches(0.24), Inches(1.20))
     tf_res = tb_res.text_frame
     tf_res.word_wrap = True
     tf_res.margin_left = tf_res.margin_right = tf_res.margin_top = tf_res.margin_bottom = 0
 
     resources = [
-        ("Live Web Platform", "https://brainforge.info | https://pramaan.brainforge.info\n(Production Vercel Edge with custom domain & Let's Encrypt SSL)"),
-        ("Interactive Backend API & Docs", "https://apaar-id-based-system.onrender.com/docs\n(FastAPI OpenAPI 3.1 live documentation with 73 endpoints across 67 paths)"),
-        ("Open-Source GitHub Repository", "https://github.com/naveeshpcbin/APAAR-ID-BASED-SYSTEM\n(Complete source code, 20 application models, Alembic migrations, test suites)"),
-        ("Verified Test Suite", "66/66 pytest unit tests passing + 20/20 Phase F E2E checks + 10/10 live cloud integration tests verified.")
+        ("Live Web Platform", "https://brainforge.info | https://pramaan.brainforge.info (Vercel Edge, SSL active)"),
+        ("Live Backend & API", "https://apaar-id-based-system.onrender.com/docs (73 OpenAPI endpoints)"),
+        ("Source Repository", "https://github.com/naveeshpcbin/APAAR-ID-BASED-SYSTEM (Full code, tests, migrations)"),
+        ("Verification Status", "66/66 Unit Tests + 20 Phase F E2E Checks + Live Cloud Verified")
     ]
 
     for rs_idx, (rs_title, rs_desc) in enumerate(resources):
         p = tf_res.paragraphs[0] if rs_idx == 0 else tf_res.add_paragraph()
-        p.space_before = Pt(3.5) if rs_idx > 0 else Pt(0)
+        p.space_before = Pt(2.0) if rs_idx > 0 else Pt(0)
         r_tl = p.add_run()
         r_tl.text = f"- {rs_title}: "
         r_tl.font.name = "Arial"
-        r_tl.font.size = Pt(8.5)
+        r_tl.font.size = Pt(8.2)
         r_tl.font.bold = True
         r_tl.font.color.rgb = TEAL
         r_ds = p.add_run()
         r_ds.text = rs_desc
         r_ds.font.name = "Arial"
-        r_ds.font.size = Pt(8.0)
+        r_ds.font.size = Pt(7.8)
         r_ds.font.color.rgb = CHARCOAL
 
     # Save to both target output paths

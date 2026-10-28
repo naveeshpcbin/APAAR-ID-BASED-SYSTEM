@@ -1,0 +1,1465 @@
+{
+  "ref1": {
+    "filename": "sih-winning-ppt-1.pdf",
+    "page_count": 6,
+    "slides": [
+      {
+        "slide_num": 1,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Garamond-Bold",
+            60.0,
+            "0x4574ae"
+          ],
+          [
+            "Arial-BoldMT",
+            34.8,
+            "0x0"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            35.0,
+            "0xffffff"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            33.2,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            34.8,
+            "0x7525"
+          ]
+        ],
+        "text_lines": [
+          "SMART INDIA HACKATHON 2025",
+          "Problem Statement ID : 25070",
+          "Problem Statement Title : Secure Data Wiping for Trustworthy IT Asset Recycling",
+          "Theme : Miscellaneous",
+          "PS Category : Software",
+          "Team ID : 53476",
+          "Team Name : Niet - SafeSecure",
+          "@ N i e t - S a f e S e c u r e\n1"
+        ]
+      },
+      {
+        "slide_num": 2,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            16.0,
+            "0x0"
+          ],
+          [
+            "Garet-Regular",
+            16.9,
+            "0x11e45"
+          ],
+          [
+            "Arial-BoldMT",
+            21.9,
+            "0x0"
+          ],
+          [
+            "Arial-BoldMT",
+            16.0,
+            "0x7acc"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            35.0,
+            "0xffffff"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            33.2,
+            "0xffffff"
+          ],
+          [
+            "Anton-Regular",
+            60.6,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            20.3,
+            "0xffffff"
+          ]
+        ],
+        "text_lines": [
+          "E C O W I P E\n(Secure Wiping for Every Device)\nARCHITECTURE",
+          "- Innovation",
+          "PROBLEM EXISTING",
+          "Data Security Fear : What if someone sees my photos or bank details?",
+          "No Dead Device Solution : My phone is dead, how do I erase my data?",
+          "Complex & Costly Tools : Existing tools are too technical and expensive.",
+          "PROPOSED SOLUTION",
+          "Cross-Platform One-Click Wipe : Works on Windows, Linux & Android, even in hidden areas (HPA/DCO, SSD sectors).",
+          "Tamper-Proof Digital Certificate : Generates signed wipe proof (PDF/JSON) with QR for instant online verification.",
+          "Device Passport : Auto-captures CPU, RAM & serial info for authenticity and resale trust.",
+          "Three-Mode Breakthrough : Online, Offline & Direct E-Waste modes cover every scenario - working + dead devices.",
+          "UVP (UNIQUE VALUE PROPOSITION)",
+          "World’s First App-Generated USB Bootable : Make your own wipe tool at home. USB drive. No cost. No experts required.",
+          "Device Passport + Proof of Wipe : Every device gets a digital passport with CPU/RAM/serial details + a tamper-proof",
+          "certificate for resale trust.",
+          "Cross-Platform & Offline : Runs anywhere unlike expensive complex tools.",
+          "Simple, Secure & Rewarding : Easy-to-use solution that safely wipes data while giving users Eco points for disposal.",
+          "@ N i e t - S a f e S e c u r e\n2"
+        ]
+      },
+      {
+        "slide_num": 3,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Type3 (482 0 R)",
+            19.6,
+            "0xffffff"
+          ],
+          [
+            "DMSans-Bold",
+            19.6,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            15.9,
+            "0x0"
+          ],
+          [
+            "ArialMT",
+            12.0,
+            "0x0"
+          ],
+          [
+            "DMSans-Bold",
+            23.6,
+            "0xffffff"
+          ],
+          [
+            "DMSans-Bold",
+            20.0,
+            "0xf57c00"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            35.0,
+            "0xffffff"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            33.2,
+            "0xffffff"
+          ],
+          [
+            "ArialMT",
+            14.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            20.3,
+            "0xffffff"
+          ]
+        ],
+        "text_lines": [
+          "Can’t Boot Device\nT E C H N I C A L A P P R O A C H",
+          "Device Working OR Dead?\n🚀Start Here",
+          "Dead/Crash\nWorking + Internet Device",
+          "Estimates: 3-5 minutes",
+          "App auto-downloads bootable image + flashes to USB.",
+          "Certificate Generation",
+          "TECH STACK",
+          "@ N i e t - S a f e S e c u r e\n3"
+        ]
+      },
+      {
+        "slide_num": 4,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "ArialMT",
+            20.0,
+            "0x3ff"
+          ],
+          [
+            "Anton-Regular",
+            40.0,
+            "0x0"
+          ],
+          [
+            "Type3 (515 0 R)",
+            20.0,
+            "0x3ff"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            35.0,
+            "0xffffff"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            33.2,
+            "0xffffff"
+          ],
+          [
+            "ArialMT",
+            20.0,
+            "0x0"
+          ],
+          [
+            "LeagueSpartan-Bold",
+            20.0,
+            "0x7acc"
+          ],
+          [
+            "Arial-BoldMT",
+            20.0,
+            "0x0"
+          ]
+        ],
+        "text_lines": [
+          "F E A S I B I L I T Y A N D V I A B I L I T Y",
+          "FEASIBILITY :",
+          "VIABILITY :",
+          "Technical :",
+          "Market : ₹50,000 Cr of idle IT assets; 78% of users hesitant to recycle;",
+          "Proven Tech Stack - Rust, Tauri, PostgreSQL + supporting tools -\nsecure, cross-platform, and extendable.\nData Compliance: NIST SP 800-88 – ensures all deleted data is\nunrecoverable. LINK↗️",
+          "opens huge opportunity for refurbished devices.",
+          "Policy & Revenue : Fits Digital India, Swachh Bharat, Circular",
+          "Economy; revenue from government, enterprise, and certification",
+          "services.",
+          "Innovation : Bootable USB Generation - World's First App-Generated\nBootable Technology - Technically Validated.",
+          "Investment & ROI : Minimal setup cost; Break-even within 18 months;",
+          "Operational : Can be set up quickly and runs smoothly even without\ninternet, on most devices people already have.",
+          "25x ROI projected over 5 years.",
+          "Scalability & Retention : Runs smoothly on the devices people already",
+          "Economic : Uses existing devices, no need to buy new hardware or pay\nfor extra tools.",
+          "have, and the eco-points system motivates users to keep using it.",
+          "TECHNICAL CHALLENGES :\nBUSINESS / USER CHALLENGES :",
+          "Risk : People are often afraid to recycle their old devices because",
+          "Risk : Some devices might not automatically recognize the USB or fail",
+          "they worry about losing data, or they just hold onto them.",
+          "to boot from it.",
+          "Mitigation : We’ll encourage responsible recycling with a points-",
+          "Mitigation : We’ll test the USB on a wide range of devices to make",
+          "based reward system. Government support will also help users feel",
+          "sure it works for most people. If it doesn’t, users can still complete the",
+          "safe and confident when disposing of their devices.",
+          "process easily through a E-mode option.",
+          "@ N i e t - S a f e S e c u r e\n4"
+        ]
+      },
+      {
+        "slide_num": 5,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            19.0,
+            "0x0"
+          ],
+          [
+            "NotoSans-Regular",
+            19.0,
+            "0x0"
+          ],
+          [
+            "SourceSansPro-Bold",
+            22.8,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            23.0,
+            "0xffffff"
+          ],
+          [
+            "Anton-Regular",
+            40.0,
+            "0x0"
+          ],
+          [
+            "ArialMT",
+            19.0,
+            "0x0"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            35.0,
+            "0xffffff"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            33.2,
+            "0xffffff"
+          ],
+          [
+            "GlacialIndifference-Bold",
+            26.4,
+            "0x3a4654"
+          ]
+        ],
+        "text_lines": [
+          "I M P A C T S & B E N E F I T S",
+          "The Economic & Job Creation Impact : Hundreds of millions of old laptops and phones are sitting idle.",
+          "By securely selling/recycling these devices, we can recover ₹50,000 crore in value and generate over",
+          "Study phrases not words",
+          "25,000+ direct jobs in e-waste sector within 3 years.",
+          "Environmental & Sustainability Gains : 5 lakh tonnes of e-waste through nationwide goes to landfills",
+          "every year. Proper recycling of devices gives an electronic device a second life, reduces pollution to our",
+          "land and air and conserves CO₂ and metals.",
+          "Social & Governance Transformation : People worry about data theft when recycling devices. Verified",
+          "wipe certificates and rewards make it safe and encouraging. The project also opens jobs for women and",
+          "rural areas and supports Digital India & Swachh Bharat.",
+          "H O W E C O W I P E W O R K S",
+          "MODE 2: OFFLINE (Dead Device)\nMODE 3: E-WASTE (Completely Dead)",
+          "MODE 1: ONLINE (Working Device)",
+          "For : Device boots normally with internet",
+          "For : Device won't boot but hardware functional",
+          "For : Device totally dead or physically damaged",
+          "Process : Install app → Login → One-click wipe",
+          "Process : App creates USB → Boot dead",
+          "Process : App routes to government center →",
+          "→ Certificate ready",
+          "device → Confirm wipe → Certificate ready",
+          "Professional destruction → Certificate issued",
+          "Time : 5-10 minutes",
+          "Time : 10-20 minutes",
+          "Time : 1-3 days",
+          "Success Rate : 95+%",
+          "Success Rate : 80-90%",
+          "Success Rate : 100%",
+          "Best For : Normal device disposal, working",
+          "Best For : OS crashed, display broken, system",
+          "Best For : Motherboard dead, physical damage,",
+          "laptops/phones",
+          "corrupted",
+          "no power",
+          "@ N i e t - S a f e S e c u r e\n5"
+        ]
+      },
+      {
+        "slide_num": 6,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            19.7,
+            "0x3ff"
+          ],
+          [
+            "ArialMT",
+            22.0,
+            "0x3ff"
+          ],
+          [
+            "Arial-BoldMT",
+            23.0,
+            "0x0"
+          ],
+          [
+            "ArialMT",
+            22.3,
+            "0x3ff"
+          ],
+          [
+            "LeagueSpartan-Bold",
+            26.8,
+            "0x7acc"
+          ],
+          [
+            "Arial-BoldMT",
+            22.3,
+            "0x0"
+          ],
+          [
+            "Anton-Regular",
+            40.0,
+            "0x0"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            35.0,
+            "0xffffff"
+          ],
+          [
+            "TradeGothicLTPro-Bold",
+            33.2,
+            "0xffffff"
+          ],
+          [
+            "ArialMT",
+            22.0,
+            "0x0"
+          ]
+        ],
+        "text_lines": [
+          "R E S E A R C H A N D R E F E R E N C E S",
+          "NIST SP 800-88 Rev.1 is the foundational U.S. government standard that provides guidance for secure data erasure. At the same\ntime, we also considered the NIST SP 800-88 Rev.2 (Draft, 2025) – the updated version. \n      Full Details : NIST SP 800-88 Rev.1 / NIST SP 800-88 Rev.2 (Draft)",
+          "Studies show data wiping is tricky but essential for trust. Links : IEEE  / Jetico",
+          "Market reports highlight growing e-waste and economic opportunity for secure disposal. Links :  Niti /   Geneva",
+          "SOLUTIONS ALREADY EXIST\nOUR SOLUTIONS  STANDS OUT",
+          "One-click : easy for anyone\nCertificate : proof of secure wipe\nCost-effective : affordable for all\nSafe & verified : follows global standards",
+          "Most are complex and expensive, made only for\ncompanies not for general public.",
+          "AVAILABLE APPS :  Blancco  /  Bitraser  /  Youwipe  /  Jetico",
+          "PROJECT RESOURCES",
+          "Demo Video : Click Here",
+          "Prototype : https://ecowipe.figma.site/",
+          "Business Model Canvas : Click Here",
+          "@ N i e t - S a f e S e c u r e\n6"
+        ]
+      }
+    ]
+  },
+  "ref2": {
+    "filename": "sih-winning-ppt-2.pdf",
+    "page_count": 6,
+    "slides": [
+      {
+        "slide_num": 1,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Poppins-Bold",
+            35.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            35.0,
+            "0xc00000"
+          ],
+          [
+            "Poppins-Bold",
+            60.0,
+            "0x1f497d"
+          ]
+        ],
+        "text_lines": [
+          "SMART INDIA HACKATHON 2025",
+          "Problem Statement ID - SIH25175",
+          "Problem Statement Title - MAITRI : An AI Assistant",
+          "for \nPsychological \n& \nPhysical \nWell-Being \nof",
+          "Astronauts",
+          "Theme - Space Technology",
+          "PS Category- Software",
+          "Team ID -57893",
+          "Team Name - Zillion Minds"
+        ]
+      },
+      {
+        "slide_num": 2,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Poppins-Bold",
+            18.2,
+            "0x1800ad"
+          ],
+          [
+            "Poppins-Regular",
+            19.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            19.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            14.2,
+            "0x0"
+          ],
+          [
+            "PlayfairDisplay-ExtraBol",
+            46.4,
+            "0x25cc"
+          ],
+          [
+            "Poppins-Bold",
+            16.8,
+            "0x0"
+          ],
+          [
+            "Poppins-Regular",
+            13.8,
+            "0x191eb1"
+          ],
+          [
+            "Poppins-Black",
+            33.7,
+            "0xffffff"
+          ],
+          [
+            "PlayfairDisplay-Bold",
+            15.0,
+            "0x0"
+          ],
+          [
+            "PlayfairDisplay-Bold",
+            19.3,
+            "0x0"
+          ]
+        ],
+        "text_lines": [
+          "मैत्रीी -MAITRY",
+          "Sashakt",
+          "An AI Assistant for Psychological & Physical Well-Being of Astronauts",
+          "Our Unique Solutions",
+          "Understanding The Problem",
+          "Astronaut-Centric Design: Specifically crafted for space crew’s\nmental & physical well-being.\nLightweight Offline AI: Optimized using ONNX/TensorRT for edge\ndeployment in isolated environments.\nContextual \nIntelligence: \nLearns \nfrom \nprior \ninteractions \nfor\npersonalized, evolving responses.\nCritical Escalation Protocols: Instantly flags emergencies with\ndetailed logs to ground control.\nEmotion-Driven Interventions: Goes beyond detection to deliver\nsituational, supportive actions.\nResilient Functionality: Robust against connectivity loss, noise, and\nequipment interruptions.\nIntegrated Multimodal Setup: Simultaneous analysis of speech\ntone, facial micro-expressions, and textual sentiment.",
+          "Delayed \nDetection: \nLack \nof \nreal-time \nmonitoring \nleads \nto \nlate",
+          "identification of critical health and psychological issues.",
+          "Limited Context: Generic tools fail to capture astronaut-specific",
+          "emotional, cognitive, and physical nuances.",
+          "Fragmented Insights: Audio, video, and behavioral data remain",
+          "unconnected, reducing accuracy and decision-making effectiveness.",
+          "Ineffective \nSupport: \nExisting \nsystems \nlack \nadaptive, \nhuman-like",
+          "interaction for stress relief and emotional resilience building.",
+          "Poor \nAutonomy: \nDependence \non \nground \ncommunication \nslows",
+          "interventions in emergencies, risking mission-critical safety lapses.",
+          "USPs{\n-\n-\n-",
+          "Context-aware",
+          "Seamless\nintegration with\nonboard systems",
+          "Real-time\nemotional\nmapping for\ninstant crew\nwellness checks.",
+          "Lightweight AI",
+          "micro-\ninteractions to\nsustain mental",
+          "tuned for\ndeep-space",
+          "Our Solution",
+          "for autonomous",
+          "isolation\nchallenges.",
+          "Real-Time Monitoring: Continuous multimodal tracking of\nvoice, face, and behavioral cues.\nAdaptive Conversations: Context-aware dialogue engine\noffering stress relief and motivation.\nMultimodal Fusion: Combines audio, video, and text for\naccurate emotional state recognition.\nAutonomous Operation: Fully offline system ensures reliable\nfunctioning without ground dependency.\nActionable Insights: Generates daily wellness trends and\ncritical incident alerts.\nGuided \nInterventions: \nProvides \nrelaxation \ntechniques,\nreminders, and supportive prompts.\nHuman-Like Interaction: Maintains companionship role\nthrough short, low-cognitive-load dialogues.",
+          "resilience.",
+          "support.",
+          "https://maitry-ai.vercel.app/",
+          "Click here  for Prototye:-",
+          "Scan for\nPROTOTYPE",
+          "75% OF THE PROTOTYPE IS ALREADY COMPLETED!!!"
+        ]
+      },
+      {
+        "slide_num": 3,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Poppins-Bold",
+            16.6,
+            "0xc00000"
+          ],
+          [
+            "TimesNRMTPro-Bold",
+            18.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            7.0,
+            "0xffffff"
+          ],
+          [
+            "PlayfairDisplay-Bold",
+            32.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            16.6,
+            "0x0"
+          ],
+          [
+            "PlayfairDisplay-Bold",
+            18.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            15.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Regular",
+            13.3,
+            "0x0"
+          ],
+          [
+            "Type3 (527 0 R)",
+            16.6,
+            "0x0"
+          ]
+        ],
+        "text_lines": [
+          "Technical Approach",
+          "Sashakt",
+          "Implementation Flow\nUser Interface:",
+          "Methodology",
+          "Multimodal Data Acquisition :Capture astronaut’s audio (tone,\nMFCC, \npitch), \nvideo \n(facial \nlandmarks, \nposture \nvia\nCNN/Mediapipe), and optional physiological signals (HRV,\nsleep logs, respiration).\nSignal \nPreprocessing \n: \nApply \nnoise \nreduction \n(spectral\nsubtraction for equipment hum), speech-to-text (ASR), and\nface \ndetection/landmark \ntracking\n(MTCNN/Mediapipe).Synchronize \naudio-video \nstreams \nfor\ntemporal consistency.\nFeature Extraction : Audio: Mel-spectrograms, stress & prosody\nfeatures.Video: Micro-expressions, FACS (Facial Action Coding\nSystem), fatigue metrics. Text: Context embeddings via\nBERT/DistilBERT for intent detection.\nMultimodal Fusion & Emotion Classification : Use Transformer-\nbased \nfusion \n(cross-attention) \nor \nLSTM+CNN \nhybrid \nto\nintegrate features. Classify into emotional states (Calm,\nAnxious, Fatigued, Stressed) with confidence calibration to\nreduce false alerts.\nDecision & Adaptive Response : Decision Layer: Normal →\nSupportive small talk, Moderate → Guided relaxation cues,\nCritical → Escalation with logs. Conversational AI (RLHF-tuned)\nadapts responses over time. Reporting & Logging: Encrypted\nlocal DB, daily wellness reports, secure WebSocket uplink for\ncritical alerts.",
+          "Admin Dashboard",
+          "Tech Stack",
+          "frontend\nAI Layer & Backend\nDatabase & Socket",
+          "Export Report"
+        ]
+      },
+      {
+        "slide_num": 4,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "TimesNRMTPro-Bold",
+            12.6,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            15.0,
+            "0x0"
+          ],
+          [
+            "TimesNRMTPro-Bold",
+            14.6,
+            "0x0"
+          ],
+          [
+            "TimesNRMTPro-Bold",
+            9.6,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            22.0,
+            "0x11863c"
+          ],
+          [
+            "Poppins-Regular",
+            22.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            22.0,
+            "0xff3131"
+          ],
+          [
+            "Poppins-Bold",
+            25.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            27.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Regular",
+            25.0,
+            "0x0"
+          ]
+        ],
+        "text_lines": [
+          "IMPACT AND BENEFITS\nSashakt",
+          "Potential Impact on Astronauts",
+          "Mission & Opeational Benifit",
+          "Early Stress Detection – Identifies signs of fatigue,\nanxiety, or mood shifts before they escalate.\n Emotional Stability – Guided relaxation and micro-\ninteractions sustain psychological balance.\n Companion Role – Human-like conversations\nreduce isolation during long missions.\n Task Readiness – Maintains focus and alertness for\nmission-critical operations.\n Adaptive Support – Personalized responses evolve\nwith each astronaut’s needs.",
+          "Risk Reduction – Continuous monitoring lowers\nchances of human error in space.\nAutonomous Safety – Works offline, ensuring\nreliability during communication blackouts.\nEfficient \nCrew \nManagement \n– \nOptimizes\nassignments based on wellness insights.\nExtended Mission Feasibility – Enables safe long-\nduration missions up to 18 months.\nCrisis \nHandling \n– \nEscalates \nemergencies\ninstantly with detailed logs to ground control.",
+          "Economic and Strategic Gains",
+          "Proportional impact of MAITRI",
+          "across key domains.",
+          "Mission Cost Savings – Prevents medical emergencies during missions, saving an",
+          "10",
+          "estimated $50–100M per mission.",
+          "Reduced\n Ground Support",
+          "Resource Optimization – Lightweight AI reduces spacecraft energy use and eases hardware",
+          "load.",
+          "35",
+          "20",
+          "Psychological",
+          "Scalable Growth – Can expand from simple emotion detection to advanced astronaut",
+          "Autonomy in",
+          "well being",
+          "Space",
+          "healthcare.",
+          "Global Leadership – Establishes a strong position in astronaut-focused AI innovation",
+          "Operational",
+          "Mission",
+          "Efficiency",
+          "worldwide.",
+          "Safety",
+          "15",
+          "20"
+        ]
+      },
+      {
+        "slide_num": 5,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "Poppins-Bold",
+            10.8,
+            "0x0"
+          ],
+          [
+            "PlayfairDisplay-ExtraBol",
+            18.0,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            11.6,
+            "0x0"
+          ],
+          [
+            "Roboto-Bold",
+            9.8,
+            "0xffffff"
+          ],
+          [
+            "Poppins-Bold",
+            17.1,
+            "0x285ac6"
+          ],
+          [
+            "Poppins-Bold",
+            12.2,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            12.8,
+            "0x0"
+          ],
+          [
+            "Calibri",
+            19.5,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            17.1,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            18.0,
+            "0x285ac6"
+          ]
+        ],
+        "text_lines": [
+          "FEASIBILITY AND VIABILITY\nSashakt",
+          "Analysis of the feasibility of the idea:",
+          "Proven Research Base: Emotion recognition via audio-video validated in\nhealthcare & HCI studies.\nHardware Compatibility: Edge devices (Jetson, ARM) can run optimized AI\nmodels.\nScalability: Expandable from emotion detection to advanced mental health\nsupport.\nTraining Data Availability: Open datasets for speech, facial emotion, and\nsentiment.\nOperational Reliability: Offline system works during communication blackouts.\nEnergy Efficiency: Optimized models ensure low power consumption in space\nmodules.",
+          "Before MAITRY\nAfter MAITRY",
+          "Strategies to Overcome Challenges",
+          "Limited Onboard Computing Power",
+          "WHAT IFs....?",
+          "01\n02\n04\n05",
+          "Challenge: Heavy AI models may not run efficiently in space\nhardware.\nStrategy: Use optimized, lightweight AI models (DistilBERT,\nMobileNet, TinyML), model pruning, and quantization for offline\ndeployment.\nAccuracy with Limited Data",
+          "AI misinterprets",
+          "hardware fails mid-",
+          "astronauts reject AI",
+          "prolonged use creates",
+          "extreme conditions",
+          "emotions?",
+          "mission?",
+          "support?",
+          "dependency?",
+          "distort inputs?",
+          "Challenge: Lack of large astronaut-specific datasets may reduce\ndetection accuracy.\nStrategy: Apply transfer learning from large Earth-based datasets,\nsimulate space conditions for synthetic data, and use incremental\nlearning to adapt over time.\n Maintaining Trust & Engagement",
+          "A fallback rule-\nbased system\nensures neutral,\nsafe responses\nwithout\nescalating\nstress.",
+          "Humanized,\ncompanion-like\ninteraction\ndesign\nencourages trust\nand voluntary\nusage.",
+          "Built-in balance\nensures the AI\nassists without\nreplacing\nhuman\ndecision-\nmaking or\nautonomy.",
+          "Noise reduction\nand adaptive\nmodels fine-\ntuned for space\nenvironments\nminimize\nerrors.",
+          "Redundant\nbackup modules\nand lightweight\nsoftware\nreplicas\nmaintain\ncontinuity.",
+          "Challenge: \nAstronauts \nmay \nfind \nresponses \nrepetitive \nor\nmisclassified alerts annoying.\nStrategy: Implement multi-modal detection (voice + facial +\nphysiological signals) with adaptive, personalized conversations\nand confidence scoring to minimize false alerts."
+        ]
+      },
+      {
+        "slide_num": 6,
+        "rect": [
+          0.0,
+          0.0,
+          1440.0,
+          810.0
+        ],
+        "fonts_sample": [
+          [
+            "PlayfairDisplay-Bold",
+            42.7,
+            "0x0"
+          ],
+          [
+            "Poppins-Bold",
+            17.7,
+            "0x0"
+          ],
+          [
+            "CanvaSans-Bold",
+            14.0,
+            "0x434343"
+          ],
+          [
+            "Poppins-Bold",
+            13.0,
+            "0x434343"
+          ],
+          [
+            "PlayfairDisplay-Bold",
+            17.7,
+            "0x285ac6"
+          ],
+          [
+            "Poppins-Regular",
+            13.0,
+            "0x434343"
+          ],
+          [
+            "CanvaSans-Bold",
+            14.0,
+            "0xffffff"
+          ],
+          [
+            "PlayfairDisplay-Bold",
+            16.7,
+            "0x285ac6"
+          ],
+          [
+            "Poppins-Regular",
+            14.0,
+            "0x434343"
+          ],
+          [
+            "CanvaSans-Bold",
+            30.9,
+            "0xc00000"
+          ]
+        ],
+        "text_lines": [
+          "RESEARCH & REFERENCES",
+          "Sashakt",
+          "Research and Datasets references",
+          "Feature\nOur Proposed Solution\nExisting Conventional Solutions",
+          "IEMOCAP — multimodal dataset (speech + text + video)\nwidely used for training MER models.\n https://sail.usc.edu/iemocap/",
+          "Multimodal Fusion:Combines audio\n(voice tone) and visual (facial\nexpressions) data for a comprehensive\nunderstanding.",
+          "Single-Modality: Primarily uses voice\ncommand processing or text-based\ndiagnostics.",
+          "Methodology",
+          "WESAD — dataset for wearable stress and affect detection\nusing physiological signals (HRV, respiration).\n https://archive.ics.uci.edu/ml/datasets/WESAD+ (    \nWearable+Stress+and+Affect+Detection)",
+          "Direct Correlation: Assumes that non-\nverbal cues and subtle data patterns\nare crucial for well-being monitoring.",
+          "Explicit Intent: Assumes user intent is clearly\nexpressed through voice or symptom\nreporting.",
+          "Model\nAssumptions",
+          "Synthetic Astronaut Training Data — NASA/ESA initiatives\non simulating astronaut stress & fatigue signals\nhttps://www.esa.int/Science_Exploration/Human_and_Robotic_Explo\nration/Astronauts/Space_psychology",
+          "Proactive: Monitors for long-term\ntrends and periodic changes in an\nastronaut's emotional state.",
+          "Reactive: Only responds to explicit\ncommands or reported issues, with no long-\nterm analysis.",
+          "Handling of\nPeriodicity",
+          "High Adaptability: Tailors its\nconversational style and interventions\nto the individual astronaut's personality\nand mood.",
+          "Limited Adaptability: Follows pre-\nprogrammed scripts or rigid conversational\nflows.",
+          "RAVDESS — audio-visual emotion dataset including speech\nand facial expression recordings.\nhttps://zenodo.org/record/1188976",
+          "Adaptability",
+          "Higher: Requires more processing\npower for real-time multimodal data\nfusion. Optimized for on-device\noperation to mitigate this.",
+          "Computational\nCost",
+          "Model \ntraining \nthings:Transformer-Based \nFusion \nfor\nMultimodal Signals\n https://arxiv.org/abs/2012.11871",
+          "Lower: Designed for simpler tasks or relies on\nvast cloud-based computational resources.",
+          "Subjective: Evaluated on the accuracy of\nemotion detection and the effectiveness of\ninterventions, \nmeasured \nthrough \nuser\nsatisfaction and well-being metrics.",
+          "Objective: Measured by task success rate\n(e.g., retrieving a document) or diagnostic\naccuracy.",
+          "ONNX & TensorRT Optimizations for Edge AI\nhttps://docs.nvidia.com/deeplearning/tensorrt/developer-\nguide/index.html",
+          "Performance\n(Metrics)",
+          "Task-Specific Data: Requires datasets of\nmedical \nknowledge \nor \noperational\nprocedures.",
+          "Extensive Multimodal Data: Needs large,\ndiverse datasets of audio and video with\ncorresponding emotional labels.",
+          "TinyML for Space Applications\n https://www.nature.com/articles/s42256-021-00399-7",
+          "Data Requirements"
+        ]
+      }
+    ]
+  },
+  "ref3": {
+    "filename": "sih-winning-ppt-3.pdf",
+    "page_count": 6,
+    "slides": [
+      {
+        "slide_num": 1,
+        "rect": [
+          0.0,
+          0.0,
+          1920.0,
+          1080.0
+        ],
+        "fonts_sample": [],
+        "text_lines": []
+      },
+      {
+        "slide_num": 2,
+        "rect": [
+          0.0,
+          0.0,
+          1920.0,
+          1080.0
+        ],
+        "fonts_sample": [],
+        "text_lines": []
+      },
+      {
+        "slide_num": 3,
+        "rect": [
+          0.0,
+          0.0,
+          1920.0,
+          1080.0
+        ],
+        "fonts_sample": [],
+        "text_lines": []
+      },
+      {
+        "slide_num": 4,
+        "rect": [
+          0.0,
+          0.0,
+          1920.0,
+          1080.0
+        ],
+        "fonts_sample": [],
+        "text_lines": []
+      },
+      {
+        "slide_num": 5,
+        "rect": [
+          0.0,
+          0.0,
+          1920.0,
+          1080.0
+        ],
+        "fonts_sample": [],
+        "text_lines": []
+      },
+      {
+        "slide_num": 6,
+        "rect": [
+          0.0,
+          0.0,
+          1920.0,
+          1080.0
+        ],
+        "fonts_sample": [],
+        "text_lines": []
+      }
+    ]
+  },
+  "current": {
+    "filename": "PRAMAAN-AICTE_SIH2026_Idea_Presentation.pdf",
+    "page_count": 6,
+    "slides": [
+      {
+        "slide_num": 1,
+        "rect": [
+          0.0,
+          0.0,
+          960.0,
+          540.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            13.6,
+            "0x112266"
+          ],
+          [
+            "ArialMT",
+            12.0,
+            "0x222222"
+          ],
+          [
+            "Arial-BoldMT",
+            11.5,
+            "0x1a56db"
+          ],
+          [
+            "Garamond-Bold",
+            40.0,
+            "0x1f497d"
+          ],
+          [
+            "TimesNewRomanPS-BoldMT",
+            32.0,
+            "0x0"
+          ],
+          [
+            "Arial-BoldMT",
+            11.5,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            12.5,
+            "0x112266"
+          ],
+          [
+            "ArialMT",
+            11.0,
+            "0x1a365d"
+          ]
+        ],
+        "text_lines": [
+          "SMART INDIA HACKATHON 2026",
+          "TITLE PAGE",
+          "Problem Statement ID: SIH26263",
+          "Problem Statement Title: Development of an APAAR ID-Based Student Data \nManagement and Verification Platform for AICTE-Approved Institutions",
+          "Theme: Smart Automation",
+          "PS Category: Software",
+          "Team ID: TCE_Yquanto",
+          "Team Name: TCE_Yquanto  (Thiagarajar College of Engineering, Madurai)",
+          "Live Repository: https://github.com/naveeshpcbin/APAAR-ID-BASED-SYSTEM",
+          "Hosted Demo Domain: https://pramaan-aicte.yourdomain.com",
+          "[PASTE YOUR CUSTOM DOMAIN HERE]"
+        ]
+      },
+      {
+        "slide_num": 2,
+        "rect": [
+          0.0,
+          0.0,
+          960.0,
+          540.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x112266"
+          ],
+          [
+            "ArialMT",
+            8.5,
+            "0x222222"
+          ],
+          [
+            "SegoeUISymbol",
+            8.5,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            8.5,
+            "0x112266"
+          ],
+          [
+            "ArialMT",
+            8.2,
+            "0x222222"
+          ],
+          [
+            "Arial-BoldMT",
+            8.5,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            16.6,
+            "0x112266"
+          ],
+          [
+            "Calibri",
+            12.0,
+            "0xffffff"
+          ],
+          [
+            "Calibri-Bold",
+            12.0,
+            "0xffffff"
+          ]
+        ],
+        "text_lines": [
+          "PROPOSED SOLUTION: THE PRAMAAN-AICTE REGULATORY ENGINE",
+          "TCE_Yquanto",
+          "1. SMART INGESTION & INTERACTIVE SANDBOX",
+          "LIVE PRODUCTION APEX COMMAND CENTER (IMPLEMENTED UI)",
+          "• Fuzzy Alias Normalizer: Sub-50ms regex mapping automatically resolves 50+ divergent college ERP column \nheaders (e.g. apaar_no, uid -> apaar_id).",
+          "• In-Browser Quarantine: Editable spreadsheet sandbox isolates syntax errors and warns on quota breaches \nbefore permanent council commit.",
+          "2. AUTONOMOUS 3-WAY RECONCILIATION ENGINE",
+          "• Tier 1 Identity Syntax: Dihedral D5 Verhoeff checksum suppresses 100% single-digit and transposition \ntranscription errors.",
+          "• Tier 2 Quota Ceiling Defense: Strict APH 2026-27 compliance isolates General vs Supernumerary seats \n(TFW 5%, EWS 10%, KM, NRI/FN 15%).",
+          "• Tier 3 Collision Radar: Real-time multi-tenant radar flags fraudulent concurrent active admissions across \nuniversities nationwide.",
+          "3. CRYPTOGRAPHIC TRUST & DPDP PRIVACY SHIELD",
+          "AICTE Apex Command Center: Dr. Sunita Deshmukh workspace continuously validating 1,150 sanctioned \nseats.",
+          "• Privacy-by-Design Shield: Keyed HMAC-SHA256 indexing + dynamic masking (XXXX-XXXX-9012) satisfies \nDPDP Act 2023 with zero plaintext APAAR in DB.",
+          "Real-Time Intake Intelligence: Live intake vs enrolment tracking across B.Tech CSE, ECE, Mech, MCA + \nQuota breakdown.",
+          "• Asymmetric Digital Proofs: Issues Ed25519 (Curve25519) signed verification receipts with high-density QR \ncodes for offline validation.",
+          "Multi-Tenant Role Switcher: Instant workspace toggling between AICTE Central, DTU Delhi, and COEP Pune \ndesks.",
+          "• Tamper-Evident Ledger: Sequential SHA-256 hash chaining mathematically guarantees non-repudiation \nacross all regulatory actions.",
+          "✓100% Deterministic Engine\n<50ms Asymmetric Verification\nZero Plaintext APAAR Storage\n59/59 Automated Tests Passing",
+          "2\n@SIH Idea submission- Template"
+        ]
+      },
+      {
+        "slide_num": 3,
+        "rect": [
+          0.0,
+          0.0,
+          960.0,
+          540.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x112266"
+          ],
+          [
+            "Arial-BoldMT",
+            9.0,
+            "0x112266"
+          ],
+          [
+            "Arial-BoldMT",
+            16.6,
+            "0x112266"
+          ],
+          [
+            "Arial-BoldMT",
+            9.0,
+            "0x8c6e"
+          ],
+          [
+            "Calibri",
+            12.0,
+            "0xffffff"
+          ],
+          [
+            "Calibri-Bold",
+            12.0,
+            "0xffffff"
+          ],
+          [
+            "ArialMT",
+            9.0,
+            "0x222222"
+          ]
+        ],
+        "text_lines": [
+          "TECHNICAL APPROACH: 4-LAYER DECOUPLED ARCHITECTURE & PIPELINE",
+          "TCE_Yquanto",
+          "5-STAGE RECONCILIATION PIPELINE",
+          "1. Fuzzy Ingestion Desk: Sub-50ms regex mapping resolves conflicting column \nnames (e.g., student_apaar <-> apaar_id).",
+          "2. Pre-flight Quarantine: Validates Verhoeff syntax, sanctioned capacity limits, \nand isolates supernumerary quotas.",
+          "3. Interactive Sandbox: In-browser spreadsheet enables inline corrections prior \nto permanent council commit.",
+          "4. Dispute Adjudication: Multi-tenant radar triggers automated conflict notices \nwith recorded hearing logs.",
+          "5. Cryptographic Proof: Issues Ed25519-signed verification receipts and \nappends unbroken SHA-256 audit events.",
+          "PRODUCTION TECHNOLOGY STACK",
+          "• Frontend Client: Next.js 14 (App Router), TypeScript (Strict), Tailwind CSS, \nRecharts",
+          "• Backend Services: Python 3.10+, FastAPI (Modular Monolith), Pydantic v2, \nUvicorn",
+          "• Cloud Database: Supabase Cloud PostgreSQL (Port 6543 pooler, RLS) / \nSQLite WAL",
+          "• Security & Crypto: Ed25519 (PyNaCl/RFC 8032), Keyed HMAC-SHA256, \nbcrypt hashing",
+          "3\n@SIH Idea submission- Template"
+        ]
+      },
+      {
+        "slide_num": 4,
+        "rect": [
+          0.0,
+          0.0,
+          960.0,
+          540.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            8.2,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x112266"
+          ],
+          [
+            "Arial-BoldMT",
+            8.2,
+            "0xbe2828"
+          ],
+          [
+            "ArialMT",
+            8.0,
+            "0x222222"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            16.6,
+            "0x112266"
+          ],
+          [
+            "ArialMT",
+            9.5,
+            "0x222222"
+          ],
+          [
+            "Calibri",
+            12.0,
+            "0xffffff"
+          ],
+          [
+            "Calibri-Bold",
+            12.0,
+            "0xffffff"
+          ]
+        ],
+        "text_lines": [
+          "FEASIBILITY, PRODUCTION BENCHMARKS & RISK MITIGATION FRAMEWORK",
+          "TCE_Yquanto",
+          "FEASIBILITY & PRODUCTION BENCHMARKS",
+          "GOVERNANCE RISKS & TECHNICAL COUNTERMEASURES",
+          "1. Data Heterogeneity: Inconsistent college ERP schemas, date formats, and branch codes across 10,000+ colleges.\n→ Solution: Resilient fuzzy normalizer standardizes 50+ divergent column headers automatically.",
+          "• Operational Feasibility: Zero client installation required. Fully responsive interface \noperates seamlessly over standard institutional web browsers on any OS (Windows, Linux, \nmacOS, Android).",
+          "2. Student Privacy Risks: Exposure of plaintext 12-digit student APAAR identifiers breaches DPDP Act 2023.\n→ Solution: Privacy-by-design Keyed HMAC-SHA256 indexing + dynamic masking (XXXX-XXXX-9012) ensures zero \nraw PII in DB.",
+          "• Verified Prototype Maturity: Exhaustively verified engineering baseline with 59/59 \npassing pytest test suite across 6 acceptance gates and 33/33 live verified FastAPI \nendpoints.",
+          "3. Cross-College Collisions: Concurrent technical admissions across universities create deadlocks and seat \nhoarding.",
+          "→ Solution: Real-time duplicate collision radar with side-by-side claim timestamps and 1-click administrative \nadjudication.",
+          "• High-Throughput Performance: Chunked asynchronous database commits process \n5,000+ student records in under 1.8 seconds. Sub-50ms deterministic preflight header \nnormalization.",
+          "4. Record Tampering Risks: Malicious insider modification of sanctioned intake quotas or approved student \nadmission records.",
+          "→ Solution: Append-only sequential SHA-256 hash chaining (Hash_n = SHA256(Record_n || Hash_n-1)) \nmathematically exposes any tampering.",
+          "• Cloud Elastic Scalability: Supabase PostgreSQL connection pooler (port 6543) \neffortlessly absorbs peak nationwide admission season traffic without connection \nstarvation.",
+          "• Zero Vendor Lock-in: Pluggable SQLAlchemy ORM architecture natively supports dual-\ndialect operations (Zero-setup local SQLite WAL mode / Enterprise PostgreSQL Cloud).",
+          "4\n@SIH Idea submission- Template"
+        ]
+      },
+      {
+        "slide_num": 5,
+        "rect": [
+          0.0,
+          0.0,
+          960.0,
+          540.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x112266"
+          ],
+          [
+            "ArialMT",
+            8.5,
+            "0x222222"
+          ],
+          [
+            "Arial-BoldMT",
+            8.5,
+            "0x112266"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            16.6,
+            "0x112266"
+          ],
+          [
+            "ArialMT",
+            9.5,
+            "0x222222"
+          ],
+          [
+            "Arial-BoldMT",
+            9.0,
+            "0x8c6e"
+          ],
+          [
+            "Calibri",
+            12.0,
+            "0xffffff"
+          ],
+          [
+            "Calibri-Bold",
+            12.0,
+            "0xffffff"
+          ]
+        ],
+        "text_lines": [
+          "REGULATORY IMPACT, SOCIAL EQUITY DEFENSE & SIH-R10 COMPLIANCE",
+          "TCE_Yquanto",
+          "MULTI-STAKEHOLDER REGULATORY IMPACT",
+          "SIH-R10 COMPLIANT CERTIFICATE ENGINE",
+          "• AICTE & Regulators: Complete nationwide real-time visibility over technical admissions; instant detection \nof excess enrolments, phantom capacity, and quota manipulation.",
+          "• Approved Institutions: Eliminates cumbersome paper bureaucracy; reduces annual admission \nverification auditing cycles from 3 months to under 5 minutes.",
+          "• Students & Parents: Guarantees authentic seat reservation; transparent supernumerary quota allocation \nprotects deserving students from illegal seat-blocking.",
+          "• Employers & Verifiers: Sub-second zero-trust academic verification via mobile QR scan without \ncontacting institutional registrars or submitting RTI requests.",
+          "• Economic Value: Stops ghost-seat grant diversion and illegal seat-blocking, saving crores in fraudulent \nstate scholarship and tuition reimbursements.",
+          "• Social Equity Defense: Strictly safeguards affirmative action quotas (TFW 5%, EWS 10%, Kashmiri \nMigrants, NRI/FN 15%) from unauthorized commercial reallocation.",
+          "• Environmental Benefit: 100% paperless digital verification workflow eliminates courier delays and \nphysical document falsification across thousands of colleges.",
+          "SIH Requirement 10 Explicitly Fulfilled:",
+          "• Dual-Display Credentials: Degree certificates display Student Roll No (ENR-108410E1) \nalongside Masked APAAR ID (XXXXXXXX7890) with TFW quota.\n• Asymmetric Ed25519 QR Code: Embedded high-density QR code enables offline instant \nauthenticity checks against AICTE public keys with zero raw PII exposure.",
+          "5\n@SIH Idea submission- Template"
+        ]
+      },
+      {
+        "slide_num": 6,
+        "rect": [
+          0.0,
+          0.0,
+          960.0,
+          540.0
+        ],
+        "fonts_sample": [
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0xffffff"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x112266"
+          ],
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0x112266"
+          ],
+          [
+            "Arial-ItalicMT",
+            8.5,
+            "0x64748b"
+          ],
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0x1a56db"
+          ],
+          [
+            "Arial-BoldMT",
+            10.0,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x8c6e"
+          ],
+          [
+            "Arial-BoldMT",
+            16.6,
+            "0x112266"
+          ],
+          [
+            "Arial-BoldMT",
+            9.5,
+            "0x222222"
+          ],
+          [
+            "Calibri",
+            12.0,
+            "0xffffff"
+          ]
+        ],
+        "text_lines": [
+          "RESEARCH CITATIONS, REPOSITORY & LIVE EVALUATION LINKS",
+          "TCE_Yquanto",
+          "FORMAL REGULATORY & RESEARCH CITATIONS",
+          "LIVE SYSTEM EVALUATION & REPOSITORY PORTAL",
+          "• AICTE Approval Process Handbook (APH 2026-27):\nNorms for approved intake capacity, supernumerary seat reservation (TFW 5%, EWS 10%, \nKM), and NRI/OCI/FN category admission boundaries.",
+          "LIVE HOSTED DEMO (CUSTOM DOMAIN):\nhttps://pramaan-aicte.yourdomain.com   [PASTE YOUR CUSTOM DOMAIN HERE]\n(Evaluators: Access the full live production deployment hosted on Vercel Edge CDN)",
+          "• National Education Policy (NEP 2020) & NAD:",
+          "OPEN-SOURCE GITHUB REPOSITORY:",
+          "National Academic Depository (NAD) & Academic Bank of Credits (ABC) frameworks \nestablishing 12-digit APAAR as the lifelong national academic identity.",
+          "https://github.com/naveeshpcbin/APAAR-ID-BASED-SYSTEM",
+          "• IETF RFC 8032: Ed25519 Cryptography:",
+          "(Complete source code, 147 committed files, production Dockerfiles, Supabase DDL)",
+          "Edwards-Curve Digital Signature Algorithm (Curve25519) providing sub-50ms asymmetric \nsignature generation, collision resilience, and quantum tamper-resistance.",
+          "INTERACTIVE API DOCUMENTATION (SWAGGER):",
+          "• Digital Personal Data Protection Act (DPDP Act 2023):",
+          "https://pramaan-backend.onrender.com/docs   (FastAPI OpenAPI 3.1 REST Contracts)",
+          "Section 4 data fiduciary mandates, purpose limitation, identifier pseudonymization, and \nstudent consent management frameworks.",
+          "• NIST SP 800-107 & Verhoeff Checksum Algorithm:",
+          "SUPABASE CLOUD DATABASE:",
+          "Permutation algorithms on Dihedral Group D5 for transcription error suppression and \nsequential SHA-256 cryptographic hash chaining.",
+          "Project Ref: xvuqedqfdeybryvbablt  |  Region: aws-0-ap-south-1 (Mumbai)",
+          "QUICK EVALUATOR DEMO CREDENTIALS:",
+          "• AICTE Central Admin: aicte.admin@pramaan.gov.in  |  Password: Admin@12345\n• DTU Delhi (Nodal): nodal.dtu@dtu.ac.in  |  Password: College@12345\n• Corporate Verifier: verifier.corp@tcs.com  |  Password: Verify@12345",
+          "6\n@SIH Idea submission- Template"
+        ]
+      }
+    ]
+  }
+}
