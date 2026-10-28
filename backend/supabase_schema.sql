@@ -419,11 +419,11 @@ ON CONFLICT (id) DO NOTHING;
 -- 2. Evaluator Demo Users (All Passwords correspond to documented roles)
 -- Password hashes created using standard bcrypt compatible with the application
 INSERT INTO institution_users (id, institution_id, email, hashed_password, full_name, role, is_active) VALUES
-(1, NULL, 'aicte.admin@pramaan.gov.in', '$2b$12$609vR/0G87.kGg9n0fUjD.jN3.5eYv1.gV7Qo4eN7lA6Ff2g0gS3O', 'Dr. Sunita Deshmukh (Advisor-I)', 'AICTE_ADMIN', true),
-(2, NULL, 'ro.mumbai@aicte.gov.in', '$2b$12$609vR/0G87.kGg9n0fUjD.jN3.5eYv1.gV7Qo4eN7lA6Ff2g0gS3O', 'Shri Rajesh Kulkarni (Regional Officer)', 'REGIONAL_OFFICER', true),
-(3, 2, 'nodal.dtu@dtu.ac.in', '$2b$12$609vR/0G87.kGg9n0fUjD.jN3.5eYv1.gV7Qo4eN7lA6Ff2g0gS3O', 'Prof. Amit Srivastava (Nodal Officer)', 'INSTITUTION_NODAL', true),
-(4, 1, 'nodal.coep@coep.ac.in', '$2b$12$609vR/0G87.kGg9n0fUjD.jN3.5eYv1.gV7Qo4eN7lA6Ff2g0gS3O', 'Dr. Sandeep Meshram (Dean Academics)', 'INSTITUTION_NODAL', true),
-(5, NULL, 'verifier.corp@tcs.com', '$2b$12$609vR/0G87.kGg9n0fUjD.jN3.5eYv1.gV7Qo4eN7lA6Ff2g0gS3O', 'Vikramaditya Sen (Corporate Verifier)', 'VERIFIER', true)
+(1, NULL, 'aicte.admin@pramaan.gov.in', '$2b$12$fGKWHLDq8SLtiZBwqNRrUuV0fGAYj0jSjseRGC0iC.SbDoG.hsROi', 'Dr. Sunita Deshmukh (Advisor-I)', 'AICTE_ADMIN', true),
+(2, NULL, 'ro.mumbai@aicte.gov.in', '$2b$12$fGKWHLDq8SLtiZBwqNRrUuV0fGAYj0jSjseRGC0iC.SbDoG.hsROi', 'Shri Rajesh Kulkarni (Regional Officer)', 'REGIONAL_OFFICER', true),
+(3, 2, 'nodal.dtu@dtu.ac.in', '$2b$12$qzNZ1TfmZtS2wL7pgnAwsu6gjr9gf2zWn5FtYGN4nefuBnMs1XTye', 'Prof. Amit Srivastava (Nodal Officer)', 'INSTITUTION_NODAL', true),
+(4, 1, 'nodal.coep@coep.ac.in', '$2b$12$qzNZ1TfmZtS2wL7pgnAwsu6gjr9gf2zWn5FtYGN4nefuBnMs1XTye', 'Dr. Sandeep Meshram (Dean Academics)', 'INSTITUTION_NODAL', true),
+(5, NULL, 'verifier.corp@tcs.com', '$2b$12$fGKWHLDq8SLtiZBwqNRrUuV0fGAYj0jSjseRGC0iC.SbDoG.hsROi', 'Vikramaditya Sen (Corporate Verifier)', 'VERIFIER', true)
 ON CONFLICT (id) DO NOTHING;
 
 -- Reset sequences
