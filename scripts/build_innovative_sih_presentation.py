@@ -243,7 +243,9 @@ def build_presentation():
     create_card(s2, right_x, Inches(1.22), right_w, right_h)
     create_header_badge(s2, right_x + Inches(0.15), Inches(1.10), right_w - Inches(0.30), Inches(0.34), "LIVE PRODUCTION APEX COMMAND CENTER (IMPLEMENTED UI)", NAVY)
 
-    dash_img = r"D:\AICTE\artifacts\verification\dashboard_overview.png"
+    dash_img = r"D:\AICTE\artifacts\live_screenshots\02_dashboard_overview.png"
+    if not os.path.exists(dash_img):
+        dash_img = r"D:\AICTE\artifacts\verification\dashboard_overview.png"
     if os.path.exists(dash_img):
         s2.shapes.add_picture(dash_img, right_x + Inches(0.12), Inches(1.50), right_w - Inches(0.24), Inches(3.25))
 
@@ -420,76 +422,59 @@ def build_presentation():
     create_card(s4, Inches(6.50), Inches(1.22), Inches(6.40), Inches(5.45))
     create_header_badge(s4, Inches(6.70), Inches(1.08), Inches(6.00), Inches(0.38), "GOVERNANCE RISKS & TECHNICAL COUNTERMEASURES", DARK_BLUE)
 
-    tb_r = s4.shapes.add_textbox(Inches(6.65), Inches(1.52), Inches(6.10), Inches(4.95))
+    tb_r = s4.shapes.add_textbox(Inches(6.65), Inches(1.48), Inches(6.10), Inches(3.20))
     tf_r = tb_r.text_frame
     tf_r.word_wrap = True
+    tf_r.margin_left = 0
+    tf_r.margin_right = 0
+    tf_r.margin_top = 0
+    tf_r.margin_bottom = 0
 
     risk_pairs = [
-        ("1. Data Heterogeneity", "Inconsistent college ERP schemas, date formats (DD/MM/YYYY vs YYYY-MM-DD), and branch codes across 10,000+ colleges.",
-         "Resilient fuzzy normalizer with automatic alias dictionary and multi-format date parser standardizes disparate imports automatically."),
-        ("2. Student Privacy Risks", "Exposure or logging of plaintext 12-digit student APAAR identifiers breaches Digital Personal Data Protection (DPDP) Act 2023.",
-         "Privacy-by-design Keyed HMAC-SHA256 indexing + dynamic masking (XXXX-XXXX-9012) ensures zero searchable plaintext exposure in cloud databases."),
-        ("3. Cross-College Collisions", "Concurrent active technical admissions across different universities create jurisdictional deadlocks and seat hoarding.",
-         "Real-time duplicate collision radar with side-by-side claim timestamps, fee proofs, and 1-click administrative adjudication."),
+        ("1. Data Heterogeneity", "Inconsistent college ERP schemas, date formats, and branch codes across 10,000+ colleges.",
+         "Resilient fuzzy normalizer standardizes 50+ divergent column headers automatically."),
+        ("2. Student Privacy Risks", "Exposure of plaintext 12-digit student APAAR identifiers breaches DPDP Act 2023.",
+         "Privacy-by-design Keyed HMAC-SHA256 indexing + dynamic masking (XXXX-XXXX-9012) ensures zero raw PII in DB."),
+        ("3. Cross-College Collisions", "Concurrent technical admissions across universities create deadlocks and seat hoarding.",
+         "Real-time duplicate collision radar with side-by-side claim timestamps and 1-click administrative adjudication."),
         ("4. Record Tampering Risks", "Malicious insider modification of sanctioned intake quotas or approved student admission records.",
-         "Append-only sequential SHA-256 hash chaining (Hash_n = SHA256(... || Hash_n-1)) mathematically exposes any historical database manipulation.")
+         "Append-only sequential SHA-256 hash chaining (Hash_n = SHA256(Record_n || Hash_n-1)) mathematically exposes any tampering.")
     ]
     for idx, (r_title, r_challenge, r_solution) in enumerate(risk_pairs):
         p_c = tf_r.paragraphs[0] if idx == 0 else tf_r.add_paragraph()
-        p_c.space_before = Pt(5) if idx > 0 else Pt(0)
+        p_c.space_before = Pt(3) if idx > 0 else Pt(0)
         r_c_lead = p_c.add_run()
         r_c_lead.text = f"⚠️ {r_title}: "
         r_c_lead.font.name = "Arial"
-        r_c_lead.font.size = Pt(9)
+        r_c_lead.font.size = Pt(8.2)
         r_c_lead.font.bold = True
         r_c_lead.font.color.rgb = RGBColor(190, 40, 40)
         r_c_text = p_c.add_run()
         r_c_text.text = r_challenge
         r_c_text.font.name = "Arial"
-        r_c_text.font.size = Pt(9)
+        r_c_text.font.size = Pt(8.0)
         r_c_text.font.color.rgb = CHARCOAL
 
         p_s = tf_r.add_paragraph()
-        p_s.space_before = Pt(1.5)
+        p_s.space_before = Pt(1)
         r_s_lead = p_s.add_run()
         r_s_lead.text = "   → Solution: "
         r_s_lead.font.name = "Arial"
-        r_s_lead.font.size = Pt(9)
+        r_s_lead.font.size = Pt(8.2)
         r_s_lead.font.bold = True
         r_s_lead.font.color.rgb = TEAL
         r_s_text = p_s.add_run()
         r_s_text.text = r_solution
         r_s_text.font.name = "Arial"
-        r_s_text.font.size = Pt(9)
+        r_s_text.font.size = Pt(8.0)
         r_s_text.font.color.rgb = CHARCOAL
 
-    # Live System Verification Evidence Box on Slide 4
-    ev_box = s4.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(6.65), Inches(5.35), Inches(6.10), Inches(1.15))
-    ev_box.fill.solid()
-    ev_box.fill.fore_color.rgb = BG_TINT
-    ev_box.line.color.rgb = TEAL
-    ev_box.line.width = Pt(1.2)
-    ev_tf = ev_box.text_frame
-    ev_tf.margin_left = Inches(0.08)
-    ev_tf.margin_right = Inches(0.08)
-    ev_tf.margin_top = Inches(0.04)
-    ev_tf.margin_bottom = Inches(0.04)
-    
-    p_ev_head = ev_tf.paragraphs[0]
-    r_eh = p_ev_head.add_run()
-    r_eh.text = "🛡️ VERIFIED IN IMPLEMENTED PRODUCTION PLATFORM:\n"
-    r_eh.font.name = "Arial"
-    r_eh.font.size = Pt(8.5)
-    r_eh.font.bold = True
-    r_eh.font.color.rgb = TEAL
-    
-    p_ev_b = ev_tf.add_paragraph()
-    p_ev_b.space_before = Pt(2)
-    r_eb = p_ev_b.add_run()
-    r_eb.text = "• Case #CONF-2026-0042: Cross-institution conflict between COEP & DTU resolved via 1-click hearing adjudication.\n• 39 sequential SHA-256 audit events verified with 100% unbroken cryptographic hash integrity."
-    r_eb.font.name = "Arial"
-    r_eb.font.size = Pt(8.0)
-    r_eb.font.color.rgb = CHARCOAL
+    # Live System Verification Picture: Real Case #CONF-2026-6DF8B0 for TCE Madurai
+    conflict_img = r"D:\AICTE\artifacts\live_screenshots\03_conflicts_adjudicated.png"
+    if not os.path.exists(conflict_img):
+        conflict_img = r"D:\AICTE\artifacts\verification\conflicts_adjudicated.png"
+    if os.path.exists(conflict_img):
+        s4.shapes.add_picture(conflict_img, Inches(6.65), Inches(4.78), Inches(6.10), Inches(1.80))
 
     # =========================================================================
     # SLIDE 5: IMPACT AND BENEFITS (Impact Cards + SIH-R10 Certificate Engine)
@@ -534,7 +519,9 @@ def build_presentation():
     create_card(s5, Inches(7.50), Inches(1.22), Inches(5.40), Inches(5.45))
     create_header_badge(s5, Inches(7.70), Inches(1.08), Inches(5.00), Inches(0.38), "SIH-R10 COMPLIANT CERTIFICATE ENGINE", DARK_BLUE)
 
-    cert_img = r"D:\AICTE\artifacts\verification\student_certificate_verified.png"
+    cert_img = r"D:\AICTE\artifacts\live_screenshots\08_student_certificate_verified.png"
+    if not os.path.exists(cert_img):
+        cert_img = r"D:\AICTE\artifacts\verification\student_certificate_verified.png"
     if os.path.exists(cert_img):
         s5.shapes.add_picture(cert_img, Inches(7.65), Inches(1.52), Inches(5.10), Inches(3.20))
 
@@ -553,7 +540,7 @@ def build_presentation():
     r_c1.font.color.rgb = TEAL
 
     cert_details = [
-        ("Dual-Display Credentials", "Degree certificates display Student Roll No (DTU-2026-CSE-004) alongside Masked APAAR ID (XXXXXXXX5678)."),
+        ("Dual-Display Credentials", "Degree certificates display Student Roll No (ENR-108410E1) alongside Masked APAAR ID (XXXXXXXX7890) with TFW quota."),
         ("Asymmetric Ed25519 QR Code", "Embedded high-density QR code enables offline instant authenticity checks against AICTE public keys with zero raw PII exposure.")
     ]
     for cd_lead, cd_text in cert_details:
