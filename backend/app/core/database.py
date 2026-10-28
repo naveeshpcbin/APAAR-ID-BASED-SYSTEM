@@ -37,7 +37,11 @@ def sanitize_db_url(raw_url: str) -> str:
                         scheme = "postgresql+psycopg2"
                     except ImportError:
                         pass
-            return f"{scheme}://{username}:{password}@{host_part}"
+            # Clean any accidental brackets in host_part (e.g. aws-0-[ap-southeast-2].pooler.supabase.com)
+        if "[" in host_part or "]" in host_part:
+            host_part = host_part.replace("[", "").replace("]", "")
+
+        return f"{scheme}://{username}:{password}@{host_part}"
     return raw_url
 
 # Select database URL: prioritize SUPABASE_DATABASE_URL if provided, else fallback to DATABASE_URL

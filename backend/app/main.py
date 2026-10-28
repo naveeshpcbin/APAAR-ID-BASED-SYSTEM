@@ -12,8 +12,12 @@ from app.api.v1 import (
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Ensure tables exist
-    Base.metadata.create_all(bind=engine)
+    # Ensure tables exist, catching connection issues gracefully so the API process can boot
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        import logging
+        logging.getLogger("uvicorn.error").warning(f"Database initialization warning on boot: {e}")
     yield
 
 app = FastAPI(
