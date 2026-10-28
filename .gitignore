@@ -18,6 +18,9 @@ backend/storage/uploads/*
 storage/uploads/*
 !storage/uploads/.gitkeep
 
+# Office temp files
+~$*
+
 # Environment variables & secrets
 .env
 .env.local
