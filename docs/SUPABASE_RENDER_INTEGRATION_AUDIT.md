@@ -149,3 +149,4 @@ ModuleNotFoundError: No module named 'psycopg'
 - [x] Alembic migration configuration sanitized
 - [x] 64/64 backend tests passing locally
 - [x] Zero student records or sensitive credentials revealed
+
