@@ -27,6 +27,12 @@ function AppShellContent({ children }: { children: React.ReactNode }) {
   const { user, logout, isLoading } = useAuth();
   const [countdown, setCountdown] = useState<number>(5);
   const [showCentralPrompt, setShowCentralPrompt] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile drawer on route transition
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   const isPublicPage =
     pathname.startsWith("/login") ||
@@ -181,11 +187,31 @@ function AppShellContent({ children }: { children: React.ReactNode }) {
 
   // Authenticated Workspace Layout
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-slate-50 font-sans">
-      <Sidebar />
+    <div className="flex h-screen w-screen overflow-hidden bg-slate-50 font-sans relative">
+      {/* Desktop Persistent Sidebar */}
+      <div className="hidden md:flex h-full shrink-0">
+        <Sidebar />
+      </div>
+
+      {/* Mobile Slide-Out Drawer & Dimmed Backdrop */}
+      {isMobileMenuOpen && (
+        <div id="mobile-sidebar-drawer" className="fixed inset-0 z-50 md:hidden flex">
+          <div
+            id="mobile-sidebar-backdrop"
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity cursor-pointer"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="relative w-72 max-w-[85vw] h-full shadow-2xl z-10 flex flex-col">
+            <Sidebar onClose={() => setIsMobileMenuOpen(false)} isMobile={true} />
+          </div>
+        </div>
+      )}
+
+      {/* Main Workspace Column */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-        <TopBar />
-        <main className="flex-1 overflow-y-auto p-6 bg-slate-50">
+        <TopBar onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)} />
+        <main className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 bg-slate-50 min-w-0">
           {children}
         </main>
       </div>

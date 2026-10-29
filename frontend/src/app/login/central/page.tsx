@@ -88,11 +88,11 @@ export default function CentralLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative select-none">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center px-4 py-8 sm:py-12 sm:px-6 lg:px-8 relative select-none">
       {/* Background Subtle Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-950/20 via-slate-950 to-slate-950 pointer-events-none" />
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center relative z-10">
+      <div className="w-full max-w-md mx-auto text-center relative z-10">
         <Link
           href="/login"
           id="back-to-directory-link"
@@ -120,8 +120,8 @@ export default function CentralLoginPage() {
         </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0 relative z-10">
-        <div className="bg-white py-8 px-6 shadow-2xl rounded-2xl sm:px-10 space-y-6 border border-slate-200">
+      <div className="mt-6 sm:mt-8 w-full max-w-md mx-auto relative z-10">
+        <div className="bg-white py-6 px-4 sm:py-8 sm:px-10 shadow-2xl rounded-2xl space-y-6 border border-slate-200">
           {/* Regulatory Access Notice */}
           <div className="p-3 bg-blue-50/80 border border-blue-200 rounded-xl text-[11px] text-blue-950 leading-relaxed flex items-start gap-2">
             <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
@@ -228,7 +228,7 @@ export default function CentralLoginPage() {
               <span className="text-[10px] text-blue-600 font-medium">Click to fill</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <button
                 id="demo-central-admin-btn"
                 type="button"
@@ -241,7 +241,7 @@ export default function CentralLoginPage() {
                   AICTE Central HQ
                 </span>
                 <span className="text-[10px] text-slate-500">Dr. Sunita Deshmukh</span>
-                <span className="text-[9px] font-mono text-blue-700 mt-1">
+                <span className="text-[9px] font-mono text-blue-700 mt-1 break-all">
                   aicte.admin@pramaan.gov.in
                 </span>
               </button>
@@ -256,7 +256,7 @@ export default function CentralLoginPage() {
                   Regional Office (WRO)
                 </span>
                 <span className="text-[10px] text-slate-500">Rajesh Verma</span>
-                <span className="text-[9px] font-mono text-blue-700 mt-1">
+                <span className="text-[9px] font-mono text-blue-700 mt-1 break-all">
                   ro.mumbai@aicte.gov.in
                 </span>
               </button>

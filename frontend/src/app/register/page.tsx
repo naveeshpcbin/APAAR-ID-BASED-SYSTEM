@@ -210,11 +210,11 @@ export default function RegisterInstitutionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative select-none">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative select-none">
       {/* Background Decorative Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-3xl relative z-10">
+      <div className="w-full max-w-3xl mx-auto relative z-10">
         {/* Navigation Back Link */}
         <Link
           href="/login/college"
@@ -252,7 +252,7 @@ export default function RegisterInstitutionPage() {
             <span className="text-[10px] text-slate-500 font-mono">1-Click Fill</span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
             {PRESET_INSTITUTIONS.map((preset) => (
               <button
                 key={preset.aicte_id}
@@ -275,7 +275,7 @@ export default function RegisterInstitutionPage() {
         </div>
 
         {/* Registration Form Card */}
-        <div className="bg-white text-slate-900 p-6 sm:p-8 rounded-3xl shadow-2xl border border-slate-200 space-y-6">
+        <div className="bg-white text-slate-900 p-4 sm:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 space-y-6">
           {error && (
             <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />

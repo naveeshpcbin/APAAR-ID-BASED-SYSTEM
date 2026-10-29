@@ -89,11 +89,11 @@ export default function CollegeLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative select-none">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center px-4 py-8 sm:py-12 sm:px-6 lg:px-8 relative select-none">
       {/* Background Subtle Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/20 via-slate-950 to-slate-950 pointer-events-none" />
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center relative z-10">
+      <div className="w-full max-w-md mx-auto text-center relative z-10">
         <Link
           href="/login"
           id="back-to-directory-link"
@@ -121,8 +121,8 @@ export default function CollegeLoginPage() {
         </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0 relative z-10">
-        <div className="bg-white py-8 px-6 shadow-2xl rounded-2xl sm:px-10 space-y-6 border border-slate-200">
+      <div className="mt-6 sm:mt-8 w-full max-w-md mx-auto relative z-10">
+        <div className="bg-white py-6 px-4 sm:py-8 sm:px-10 shadow-2xl rounded-2xl space-y-6 border border-slate-200">
           {/* Institution Authorization Requirement Alert */}
           <div className="p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl text-[11px] text-emerald-900 leading-relaxed flex items-start gap-2">
             <Building2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
@@ -229,7 +229,7 @@ export default function CollegeLoginPage() {
               <span className="text-[10px] text-emerald-600 font-medium">Click to fill</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <button
                 id="demo-dtu-btn"
                 type="button"
@@ -240,7 +240,7 @@ export default function CollegeLoginPage() {
                   DTU Delhi Nodal
                 </span>
                 <span className="text-[10px] text-slate-500">Prof. Amit Srivastava</span>
-                <span className="text-[9px] font-mono text-emerald-700 mt-1">
+                <span className="text-[9px] font-mono text-emerald-700 mt-1 break-all">
                   nodal.dtu@dtu.ac.in
                 </span>
               </button>
@@ -255,7 +255,7 @@ export default function CollegeLoginPage() {
                   COEP Pune Nodal
                 </span>
                 <span className="text-[10px] text-slate-500">Dr. Sandeep Meshram</span>
-                <span className="text-[9px] font-mono text-emerald-700 mt-1">
+                <span className="text-[9px] font-mono text-emerald-700 mt-1 break-all">
                   nodal.coep@coep.ac.in
                 </span>
               </button>

@@ -91,7 +91,7 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           <Link
             href="/uploads"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-govTeal-600 hover:bg-govTeal-700 text-white text-xs font-semibold rounded-lg shadow-xs transition"
@@ -214,8 +214,8 @@ export default function DashboardPage() {
       {/* Main Visuals Grid: Large Intake Chart + Category Pie */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left 2 Cols: Intake Utilization by Programme */}
-        <div className="lg:col-span-2 bg-white p-5 rounded-xl border border-slate-200/90 shadow-xs">
-          <div className="flex items-center justify-between mb-4">
+        <div className="lg:col-span-2 bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <div>
               <h2 className="text-sm font-bold text-slate-900">
                 Programme Capacity vs. Active Enrolment
@@ -224,7 +224,7 @@ export default function DashboardPage() {
                 Sanctioned Intake versus committed APAAR-verified students by programme (2026-27).
               </p>
             </div>
-            <span className="text-xs font-mono font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+            <span className="text-xs font-mono font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded self-start sm:self-auto">
               AICTE-APH-2026-V1
             </span>
           </div>
@@ -269,7 +269,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Right 1 Col: Category Distribution */}
-        <div className="bg-white p-5 rounded-xl border border-slate-200/90 shadow-xs flex flex-col">
+        <div className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-xs flex flex-col">
           <div className="mb-2">
             <h2 className="text-sm font-bold text-slate-900">Category Distribution</h2>
             <p className="text-xs text-slate-500">Affirmative action & quota breakdown.</p>
@@ -312,7 +312,7 @@ export default function DashboardPage() {
             {category_distribution.map((item: any, idx: number) => (
               <div key={item.category} className="flex items-center gap-2">
                 <span
-                  className="w-2.5 h-2.5 rounded-full"
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
                   style={{ backgroundColor: CATEGORY_COLORS[idx % CATEGORY_COLORS.length] }}
                 />
                 <span className="text-slate-600 truncate">{item.category}:</span>
@@ -326,23 +326,23 @@ export default function DashboardPage() {
       {/* Bottom Row: Priority Action Queue & Live Audit Ledger Stream */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: High-Priority Regulatory Tasks */}
-        <div className="bg-white p-5 rounded-xl border border-slate-200/90 shadow-xs">
+        <div className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-xs">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-amber-600" />
-              High-Priority Adjudication Queue
+              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+              <span>High-Priority Adjudication Queue</span>
             </h2>
             <Link
               href="/conflicts"
-              className="text-xs text-govTeal-700 hover:text-govTeal-800 font-semibold flex items-center gap-1"
+              className="text-xs text-govTeal-700 hover:text-govTeal-800 font-semibold flex items-center gap-1 shrink-0"
             >
-              <span>View All Cases</span>
+              <span>View All</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
           <div className="space-y-2.5">
-            <div className="p-3 rounded-lg border border-amber-200 bg-amber-50/50 flex items-start justify-between">
+            <div className="p-3 rounded-lg border border-amber-200 bg-amber-50/50 flex flex-col sm:flex-row sm:items-start justify-between gap-2">
               <div>
                 <div className="text-xs font-bold text-slate-900 flex items-center gap-2">
                   <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-mono font-semibold">
@@ -357,13 +357,13 @@ export default function DashboardPage() {
               </div>
               <Link
                 href="/conflicts"
-                className="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded text-xs font-semibold whitespace-nowrap"
+                className="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded text-xs font-semibold whitespace-nowrap self-start sm:self-auto"
               >
                 Adjudicate
               </Link>
             </div>
 
-            <div className="p-3 rounded-lg border border-rose-200 bg-rose-50/50 flex items-start justify-between">
+            <div className="p-3 rounded-lg border border-rose-200 bg-rose-50/50 flex flex-col sm:flex-row sm:items-start justify-between gap-2">
               <div>
                 <div className="text-xs font-bold text-slate-900 flex items-center gap-2">
                   <span className="px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 text-[10px] font-mono font-semibold">
@@ -378,7 +378,7 @@ export default function DashboardPage() {
               </div>
               <Link
                 href="/anomalies"
-                className="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded text-xs font-semibold whitespace-nowrap"
+                className="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded text-xs font-semibold whitespace-nowrap self-start sm:self-auto"
               >
                 Inspect
               </Link>
@@ -387,17 +387,17 @@ export default function DashboardPage() {
         </div>
 
         {/* Right: Live Cryptographic Audit Stream */}
-        <div className="bg-white p-5 rounded-xl border border-slate-200/90 shadow-xs">
+        <div className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-xs">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-              <Activity className="w-4 h-4 text-govTeal-600" />
-              Cryptographic Audit Stream (SHA-256 Ledger)
+              <Activity className="w-4 h-4 text-govTeal-600 shrink-0" />
+              <span>Cryptographic Audit Stream</span>
             </h2>
             <Link
               href="/audit"
-              className="text-xs text-govTeal-700 hover:text-govTeal-800 font-semibold flex items-center gap-1"
+              className="text-xs text-govTeal-700 hover:text-govTeal-800 font-semibold flex items-center gap-1 shrink-0"
             >
-              <span>Verify Hash Chain</span>
+              <span>Verify</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -406,18 +406,18 @@ export default function DashboardPage() {
             {recent_audits.map((a: any) => (
               <div
                 key={a.sequence_no}
-                className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 text-xs"
+                className="flex flex-col sm:flex-row sm:items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 text-xs gap-1"
               >
-                <div className="flex items-center gap-2.5">
-                  <span className="font-mono text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-semibold">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-semibold shrink-0">
                     #{a.sequence_no}
                   </span>
-                  <span className="font-semibold text-slate-800">{a.action}</span>
+                  <span className="font-semibold text-slate-800 truncate">{a.action}</span>
                   <span className="text-slate-400">({a.entity_type})</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-500 text-[11px]">
-                  <span>{a.actor_email}</span>
-                  <span className="text-slate-400 font-mono">{a.created_at}</span>
+                  <span className="truncate">{a.actor_email}</span>
+                  <span className="text-slate-400 font-mono shrink-0">{a.created_at}</span>
                 </div>
               </div>
             ))}

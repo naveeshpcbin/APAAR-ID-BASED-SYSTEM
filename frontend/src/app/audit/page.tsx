@@ -116,16 +116,16 @@ export default function AuditPage() {
       )}
 
       {/* Audit Events Table */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
-        <div className="flex items-center justify-between">
+      <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
           <h2 className="text-sm font-bold text-slate-900">Tamper-Evident Event Ledger</h2>
           <span className="text-xs text-slate-400 font-mono">
             {events.length} sequential cryptographically-linked entries
           </span>
         </div>
 
-        <div className="border border-slate-200 rounded-lg overflow-hidden">
-          <table className="w-full text-xs text-left">
+        <div className="border border-slate-200 rounded-lg overflow-x-auto">
+          <table className="w-full min-w-[780px] text-xs text-left">
             <thead className="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px]">
               <tr>
                 <th className="px-3 py-2.5">Seq #</th>

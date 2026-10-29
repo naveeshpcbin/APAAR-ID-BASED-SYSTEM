@@ -18,6 +18,7 @@ import {
   Award,
   Database,
   Lock,
+  X,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
@@ -34,7 +35,12 @@ interface NavGroup {
   items: NavItem[];
 }
 
-export function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+  isMobile?: boolean;
+}
+
+export function Sidebar({ onClose, isMobile }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const { user } = useAuth();
@@ -189,26 +195,50 @@ export function Sidebar() {
       // Route directly to restricted central route to trigger interceptor
       router.push(item.href);
     }
+    if (onClose) {
+      onClose();
+    }
   };
 
   return (
-    <aside className="w-64 bg-govNavy-950 text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800 select-none">
+    <aside
+      className={`${
+        isMobile
+          ? "w-full h-full"
+          : "w-64 border-r border-slate-800"
+      } bg-govNavy-950 text-slate-300 flex flex-col flex-shrink-0 select-none overflow-hidden`}
+    >
       {/* Brand Header */}
-      <div className="h-16 flex items-center px-5 border-b border-slate-800/80 gap-3">
-        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-govTeal-500 to-govTeal-700 flex items-center justify-center text-white font-bold shadow-md shadow-govTeal-900/40">
-          <ShieldCheck className="w-5 h-5 text-white" />
-        </div>
-        <div>
-          <div className="text-white font-bold tracking-tight text-sm flex items-center gap-1.5">
-            PRAMAAN-AICTE
-            <span className="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-govTeal-600/30 text-govTeal-400 border border-govTeal-500/30">
-              SIH &apos;26
-            </span>
+      <div className="h-14 sm:h-16 flex items-center justify-between px-4 sm:px-5 border-b border-slate-800/80 gap-3 shrink-0">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-br from-govTeal-500 to-govTeal-700 flex items-center justify-center text-white font-bold shadow-md shadow-govTeal-900/40 shrink-0">
+            <ShieldCheck className="w-5 h-5 text-white" />
           </div>
-          <div className="text-[11px] text-slate-400 truncate max-w-[150px]">
-            {isAdmin ? "Central Regulatory HQ" : "College Nodal Portal"}
+          <div className="min-w-0">
+            <div className="text-white font-bold tracking-tight text-sm flex items-center gap-1.5 truncate">
+              <span>PRAMAAN-AICTE</span>
+              <span className="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-govTeal-600/30 text-govTeal-400 border border-govTeal-500/30 shrink-0">
+                SIH &apos;26
+              </span>
+            </div>
+            <div className="text-[11px] text-slate-400 truncate max-w-[150px]">
+              {isAdmin ? "Central Regulatory HQ" : "College Nodal Portal"}
+            </div>
           </div>
         </div>
+
+        {/* Mobile Close Button */}
+        {onClose && (
+          <button
+            id="mobile-sidebar-close-btn"
+            type="button"
+            aria-label="Close Navigation Menu"
+            onClick={onClose}
+            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800/80 rounded-lg md:hidden flex items-center justify-center cursor-pointer transition"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
       {/* Tenant / Role Context Badge */}

@@ -116,7 +116,7 @@ export default function AdmissionsPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setShowManualModal(true)}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-govTeal-600 hover:bg-govTeal-700 text-white text-xs font-semibold rounded-lg shadow-xs transition"
@@ -156,17 +156,17 @@ export default function AdmissionsPage() {
           </div>
           <button
             type="submit"
-            className="px-4 py-2 bg-govNavy-900 hover:bg-govNavy-800 text-white rounded-lg text-xs font-semibold transition"
+            className="px-4 py-2 bg-govNavy-900 hover:bg-govNavy-800 text-white rounded-lg text-xs font-semibold transition shrink-0"
           >
             Search
           </button>
         </form>
 
-        <div className="flex items-center gap-2 w-full md:w-auto">
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full md:w-auto">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="text-xs border border-slate-300 rounded-lg p-2 bg-white"
+            className="text-xs border border-slate-300 rounded-lg p-2 bg-white flex-1 sm:flex-none"
           >
             <option value="">All Statuses</option>
             <option value="ACTIVE">ACTIVE</option>
@@ -178,7 +178,7 @@ export default function AdmissionsPage() {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="text-xs border border-slate-300 rounded-lg p-2 bg-white"
+            className="text-xs border border-slate-300 rounded-lg p-2 bg-white flex-1 sm:flex-none"
           >
             <option value="">All Categories</option>
             <option value="OPEN">OPEN</option>
@@ -191,8 +191,8 @@ export default function AdmissionsPage() {
       </div>
 
       {/* Admissions Table */}
-      <div className="bg-white rounded-xl border border-slate-200/90 shadow-xs overflow-hidden">
-        <table className="w-full text-xs text-left">
+      <div className="bg-white rounded-xl border border-slate-200/90 shadow-xs overflow-x-auto">
+        <table className="w-full min-w-[850px] text-xs text-left">
           <thead className="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px]">
             <tr>
               <th className="px-4 py-3">Student Name</th>
@@ -286,11 +286,11 @@ export default function AdmissionsPage() {
 
       {/* Manual Entry Modal */}
       {showManualModal && (
-        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl space-y-4">
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-xl space-y-4 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <h2 className="text-sm font-bold text-slate-900">Add Individual Student Admission</h2>
-              <button onClick={() => setShowManualModal(false)} className="text-slate-400 hover:text-slate-600">
+              <button onClick={() => setShowManualModal(false)} className="text-slate-400 hover:text-slate-600 text-base">
                 &times;
               </button>
             </div>
@@ -311,7 +311,7 @@ export default function AdmissionsPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-slate-700 font-medium mb-1">Student Full Name</label>
                   <input
@@ -334,7 +334,7 @@ export default function AdmissionsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-slate-700 font-medium mb-1">Programme Code</label>
                   <input
@@ -357,7 +357,7 @@ export default function AdmissionsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-slate-700 font-medium mb-1">Category</label>
                   <select
@@ -386,7 +386,7 @@ export default function AdmissionsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl">
                 <div>
                   <label className="block text-slate-700 font-medium mb-1">Nationality / Status (Req. 2)</label>
                   <select

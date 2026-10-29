@@ -158,8 +158,8 @@ export default function ConflictsPage() {
         {selectedCase ? (
           <div className="lg:col-span-2 space-y-6">
             {/* Case Overview Card */}
-            <div className="bg-white p-5 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-bold text-slate-900">
@@ -173,7 +173,7 @@ export default function ConflictsPage() {
                     Flagged by Explainable Admission Reconciliation Engine
                   </p>
                 </div>
-                <div className="text-right text-xs">
+                <div className="text-left sm:text-right text-xs">
                   <div className="text-slate-400">Student APAAR:</div>
                   <div className="font-mono font-bold text-slate-800">
                     {selectedCase.student?.apaar_masked}
@@ -342,11 +342,11 @@ export default function ConflictsPage() {
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-3 pt-2">
+                <div className="flex flex-col sm:flex-row justify-end gap-3 pt-2">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-5 py-2 bg-govNavy-900 hover:bg-govNavy-800 disabled:opacity-50 text-white rounded-lg text-xs font-semibold shadow-xs flex items-center gap-2 transition"
+                    className="w-full sm:w-auto px-5 py-2 bg-govNavy-900 hover:bg-govNavy-800 disabled:opacity-50 text-white rounded-lg text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition"
                   >
                     {isSubmitting ? (
                       <>

@@ -110,7 +110,7 @@ export default function VerificationPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Issue Receipt */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
           <div>
             <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
               <FileKey className="w-4 h-4 text-govTeal-600" />
@@ -159,13 +159,13 @@ export default function VerificationPage() {
           {/* Generated Receipt Result */}
           {issuedReceipt && (
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                 <img
                   src={issuedReceipt.qr_code_base64}
                   alt="Verification QR Code"
-                  className="w-28 h-28 rounded-lg border border-slate-300 bg-white p-1"
+                  className="w-28 h-28 rounded-lg border border-slate-300 bg-white p-1 shrink-0"
                 />
-                <div className="space-y-1 text-xs">
+                <div className="space-y-1 text-xs w-full min-w-0">
                   <div className="text-[10px] uppercase font-bold text-slate-400">
                     Opaque Receipt Token
                   </div>
@@ -175,7 +175,7 @@ export default function VerificationPage() {
                   <div className="text-[11px] text-slate-500">
                     Expires: {new Date(issuedReceipt.expires_at).toLocaleDateString()}
                   </div>
-                  <div className="pt-1 flex gap-2">
+                  <div className="pt-1 flex flex-wrap gap-2">
                     <button
                       onClick={() => copyToClipboard(issuedReceipt.receipt_token)}
                       className="px-2 py-1 bg-white border border-slate-300 rounded text-[11px] font-medium flex items-center gap-1 hover:bg-slate-50"
@@ -196,7 +196,7 @@ export default function VerificationPage() {
               </div>
 
               {/* Cryptographic Proof Details */}
-              <div className="pt-2 border-t border-slate-200 text-[11px] space-y-1 font-mono text-slate-600">
+              <div className="pt-2 border-t border-slate-200 text-[11px] space-y-1 font-mono text-slate-600 overflow-hidden">
                 <div className="truncate">
                   <span className="text-slate-400">SHA-256 Digest:</span> {issuedReceipt.payload_digest}
                 </div>
@@ -209,7 +209,7 @@ export default function VerificationPage() {
         </div>
 
         {/* Right: Verify Receipt Gateway */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
           <div>
             <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-govTeal-600" />

@@ -609,10 +609,10 @@ export default function ReferenceDataPage() {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex border-b border-slate-200 text-xs font-semibold gap-6">
+      <div className="flex border-b border-slate-200 text-xs font-semibold gap-4 sm:gap-6 overflow-x-auto whitespace-nowrap pb-px">
         <button
           onClick={() => setActiveTab("apaar")}
-          className={`pb-2.5 transition border-b-2 ${
+          className={`pb-2.5 transition border-b-2 shrink-0 ${
             activeTab === "apaar"
               ? "border-govTeal-600 text-govTeal-700 font-bold"
               : "border-transparent text-slate-500 hover:text-slate-800"
@@ -622,7 +622,7 @@ export default function ReferenceDataPage() {
         </button>
         <button
           onClick={() => setActiveTab("approvals")}
-          className={`pb-2.5 transition border-b-2 ${
+          className={`pb-2.5 transition border-b-2 shrink-0 ${
             activeTab === "approvals"
               ? "border-govTeal-600 text-govTeal-700 font-bold"
               : "border-transparent text-slate-500 hover:text-slate-800"
@@ -632,7 +632,7 @@ export default function ReferenceDataPage() {
         </button>
         <button
           onClick={() => setActiveTab("declarations")}
-          className={`pb-2.5 transition border-b-2 ${
+          className={`pb-2.5 transition border-b-2 shrink-0 ${
             activeTab === "declarations"
               ? "border-govTeal-600 text-govTeal-700 font-bold"
               : "border-transparent text-slate-500 hover:text-slate-800"
@@ -642,7 +642,7 @@ export default function ReferenceDataPage() {
         </button>
         <button
           onClick={() => setActiveTab("revalidate")}
-          className={`pb-2.5 transition border-b-2 ${
+          className={`pb-2.5 transition border-b-2 shrink-0 ${
             activeTab === "revalidate"
               ? "border-govNavy-900 text-govNavy-900 font-bold"
               : "border-transparent text-slate-500 hover:text-slate-800"
@@ -654,23 +654,23 @@ export default function ReferenceDataPage() {
 
       {/* TAB 1: Synthetic APAAR Registry */}
       {activeTab === "apaar" && (
-        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-xs space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <div className="relative">
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2">
+              <div className="relative w-full sm:w-auto">
                 <Search className="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-400" />
                 <input
                   type="text"
                   placeholder="Search APAAR ID or Name..."
                   value={apaarSearch}
                   onChange={(e) => setApaarSearch(e.target.value)}
-                  className="pl-8 pr-3 py-1.5 border border-slate-300 rounded-lg text-xs w-60 focus:outline-none focus:ring-1 focus:ring-govTeal-600 text-slate-900"
+                  className="pl-8 pr-3 py-1.5 border border-slate-300 rounded-lg text-xs w-full sm:w-60 focus:outline-none focus:ring-1 focus:ring-govTeal-600 text-slate-900"
                 />
               </div>
               <select
                 value={apaarStatusFilter}
                 onChange={(e) => setApaarStatusFilter(e.target.value)}
-                className="px-3 py-1.5 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-govTeal-600 text-slate-900"
+                className="px-3 py-1.5 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-govTeal-600 text-slate-900 w-full sm:w-auto"
               >
                 <option value="">All Statuses</option>
                 <option value="DEMO_REFERENCE_MATCH">DEMO_REFERENCE_MATCH</option>
@@ -827,8 +827,8 @@ export default function ReferenceDataPage() {
           )}
 
           {/* Records Table */}
-          <div className="border border-slate-200 rounded-lg overflow-hidden">
-            <table className="w-full text-xs text-left">
+          <div className="border border-slate-200 rounded-lg overflow-x-auto">
+            <table className="w-full min-w-[700px] text-xs text-left">
               <thead className="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px]">
                 <tr>
                   <th className="px-3 py-2.5">ID</th>
@@ -892,7 +892,7 @@ export default function ReferenceDataPage() {
 
       {/* TAB 2: Approved Intakes & Policy Quotas */}
       {activeTab === "approvals" && (
-        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-xs space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
             <div>
               <h2 className="text-sm font-bold text-slate-900">Sanctioned AICTE Approved Intakes</h2>
@@ -902,7 +902,7 @@ export default function ReferenceDataPage() {
             </div>
             <button
               onClick={() => setIsAddingProgramme(!isAddingProgramme)}
-              className="px-3.5 py-1.5 bg-govTeal-600 hover:bg-govTeal-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition shadow-xs cursor-pointer"
+              className="px-3.5 py-1.5 bg-govTeal-600 hover:bg-govTeal-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition shadow-xs cursor-pointer self-start sm:self-auto"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>{isAddingProgramme ? "Close Form" : "+ Add Approved Programme"}</span>
@@ -998,8 +998,8 @@ export default function ReferenceDataPage() {
             </form>
           )}
 
-          <div className="border border-slate-200 rounded-lg overflow-hidden">
-            <table className="w-full text-xs text-left">
+          <div className="border border-slate-200 rounded-lg overflow-x-auto">
+            <table className="w-full min-w-[650px] text-xs text-left">
               <thead className="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px]">
                 <tr>
                   <th className="px-3 py-2.5">ID</th>
@@ -1078,8 +1078,8 @@ export default function ReferenceDataPage() {
             </p>
           </div>
 
-          <div className="border border-slate-200 rounded-lg overflow-hidden">
-            <table className="w-full text-xs text-left">
+          <div className="border border-slate-200 rounded-lg overflow-x-auto">
+            <table className="w-full min-w-[650px] text-xs text-left">
               <thead className="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px]">
                 <tr>
                   <th className="px-3 py-2.5">ID</th>
@@ -1150,7 +1150,7 @@ export default function ReferenceDataPage() {
 
       {/* TAB 4: Live Dynamic Revalidation (Tests A-E Demo) */}
       {activeTab === "revalidate" && (
-        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-6">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-xs space-y-6">
           <div>
             <h2 className="text-sm font-bold text-slate-900">Dynamic Revalidation Runner (SIH Requirement 10)</h2>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -1159,11 +1159,11 @@ export default function ReferenceDataPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <select
               value={selectedBatchId || ""}
               onChange={(e) => setSelectedBatchId(Number(e.target.value))}
-              className="px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium w-80 focus:outline-none focus:ring-2 focus:ring-govNavy-500 text-slate-900"
+              className="px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-govNavy-500 text-slate-900"
             >
               {batches.map((b) => (
                 <option key={b.id} value={b.id}>
@@ -1175,7 +1175,7 @@ export default function ReferenceDataPage() {
             <button
               onClick={handleTriggerRevalidation}
               disabled={!selectedBatchId || isRevalidating}
-              className="px-5 py-2 bg-govNavy-900 hover:bg-govNavy-800 disabled:opacity-50 text-white rounded-lg text-xs font-semibold shadow-xs flex items-center gap-2 transition"
+              className="px-5 py-2 bg-govNavy-900 hover:bg-govNavy-800 disabled:opacity-50 text-white rounded-lg text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition"
             >
               {isRevalidating ? (
                 <>
@@ -1193,8 +1193,8 @@ export default function ReferenceDataPage() {
 
           {/* Revalidation Outcome Display */}
           {revalidationResult && (
-            <div className="p-5 bg-slate-50 border border-govTeal-200 rounded-xl space-y-4">
-              <div className="flex items-center justify-between">
+            <div className="p-4 sm:p-5 bg-slate-50 border border-govTeal-200 rounded-xl space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span className="px-2 py-0.5 rounded bg-govNavy-900 text-white text-[11px] font-mono font-bold">
                     Validation Run #{revalidationResult.run_number}
@@ -1237,7 +1237,7 @@ export default function ReferenceDataPage() {
               </div>
 
               {/* Discrepancy Metric */}
-              <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-center justify-between text-xs">
+              <div className="p-3 bg-white rounded-lg border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-xs">
                 <div>
                   <span className="text-slate-500 font-medium">Declared Intake Target: </span>
                   <span className="font-bold text-slate-900">{revalidationResult.disposition.declared_intake}</span>
@@ -1255,8 +1255,8 @@ export default function ReferenceDataPage() {
                 <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
                   Live Rule Evaluation Findings ({revalidationResult.findings.length})
                 </h4>
-                <div className="border border-slate-200 rounded-lg overflow-hidden bg-white">
-                  <table className="w-full text-xs text-left">
+                <div className="border border-slate-200 rounded-lg overflow-x-auto bg-white">
+                  <table className="w-full min-w-[650px] text-xs text-left">
                     <thead className="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px]">
                       <tr>
                         <th className="px-3 py-2">Row</th>

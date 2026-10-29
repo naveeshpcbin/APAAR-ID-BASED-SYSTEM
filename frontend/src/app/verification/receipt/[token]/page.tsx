@@ -45,9 +45,9 @@ export default function PublicReceiptVerificationPage() {
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col justify-between p-4 sm:p-6">
       {/* Top Banner */}
-      <header className="max-w-2xl mx-auto w-full flex items-center justify-between pb-4">
+      <header className="max-w-2xl mx-auto w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-govTeal-600 text-white flex items-center justify-center font-bold">
+          <div className="w-8 h-8 rounded-lg bg-govTeal-600 text-white flex items-center justify-center font-bold shrink-0">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
@@ -59,7 +59,7 @@ export default function PublicReceiptVerificationPage() {
             </div>
           </div>
         </div>
-        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-700">
+        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-700 shrink-0">
           Ed25519 Verified
         </span>
       </header>
@@ -87,8 +87,8 @@ export default function PublicReceiptVerificationPage() {
             </div>
 
             {/* Certificate Details */}
-            <div className="p-6 space-y-5">
-              <div className="grid grid-cols-2 gap-4 text-xs pb-4 border-b border-slate-100">
+            <div className="p-4 sm:p-6 space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs pb-4 border-b border-slate-100">
                 <div>
                   <div className="text-slate-400 font-medium uppercase text-[10px]">
                     Student Full Name
@@ -112,8 +112,8 @@ export default function PublicReceiptVerificationPage() {
                   <div className="text-slate-400 font-medium text-[10px] uppercase">
                     AICTE Approved Technical Institution
                   </div>
-                  <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5 mt-0.5">
-                    <Building2 className="w-3.5 h-3.5 text-slate-400" />
+                  <div className="text-xs font-bold text-slate-900 flex flex-wrap items-center gap-1.5 mt-0.5">
+                    <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                     <span>{result.canonical_payload.institution_name}</span>
                     <span className="text-slate-400 font-mono text-[11px]">
                       (AICTE ID: {result.canonical_payload.aicte_id})
@@ -125,8 +125,8 @@ export default function PublicReceiptVerificationPage() {
                   <div className="text-slate-400 font-medium text-[10px] uppercase">
                     Approved Technical Programme
                   </div>
-                  <div className="text-xs font-semibold text-govTeal-700 flex items-center gap-1.5 mt-0.5">
-                    <GraduationCap className="w-3.5 h-3.5" />
+                  <div className="text-xs font-semibold text-govTeal-700 flex flex-wrap items-center gap-1.5 mt-0.5">
+                    <GraduationCap className="w-3.5 h-3.5 shrink-0" />
                     <span>{result.canonical_payload.programme_name}</span>
                     <span className="font-mono text-slate-500">
                       ({result.canonical_payload.programme_code})
@@ -134,7 +134,7 @@ export default function PublicReceiptVerificationPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2">
                   <div>
                     <div className="text-slate-400 font-medium text-[10px] uppercase">
                       Academic Session
@@ -155,18 +155,18 @@ export default function PublicReceiptVerificationPage() {
               </div>
 
               {/* Cryptographic Signature Footer */}
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] font-mono text-slate-500 space-y-1">
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] font-mono text-slate-500 space-y-1 overflow-hidden">
                 <div className="flex items-center gap-1.5 text-slate-700 font-semibold text-xs">
-                  <Lock className="w-3.5 h-3.5 text-govTeal-600" />
+                  <Lock className="w-3.5 h-3.5 text-govTeal-600 shrink-0" />
                   <span>Cryptographic Assertion Provenance</span>
                 </div>
                 <div className="truncate">
-                  <span>Signature (Base64):</span> {result.signature}
+                  <span>Signature:</span> {result.signature}
                 </div>
                 <div className="truncate">
                   <span>SHA-256 Digest:</span> {result.payload_digest}
                 </div>
-                <div className="text-slate-400 text-[10px] pt-1">
+                <div className="text-slate-400 text-[10px] pt-1 truncate">
                   Verified against PRAMAAN Trust Root | Token: {token}
                 </div>
               </div>

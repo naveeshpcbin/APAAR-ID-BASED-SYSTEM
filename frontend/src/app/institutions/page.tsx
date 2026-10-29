@@ -37,7 +37,7 @@ export default function InstitutionsPage() {
             Nationwide institutional records, AICTE approval IDs, state jurisdictions, and active programmes.
           </p>
         </div>
-        <div className="relative w-72">
+        <div className="relative w-full sm:w-72">
           <Search className="w-4 h-4 absolute left-3 top-3 text-slate-400" />
           <input
             type="text"

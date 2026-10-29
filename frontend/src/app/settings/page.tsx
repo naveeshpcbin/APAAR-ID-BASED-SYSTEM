@@ -25,7 +25,7 @@ export default function SettingsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Card 1: Cryptographic Trust Root */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
           <div className="flex items-center gap-2">
             <Key className="w-5 h-5 text-govTeal-600" />
             <h2 className="text-sm font-bold text-slate-900">
@@ -62,7 +62,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Card 2: Identity Provider Adapter */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
           <div className="flex items-center gap-2">
             <Server className="w-5 h-5 text-govTeal-600" />
             <h2 className="text-sm font-bold text-slate-900">

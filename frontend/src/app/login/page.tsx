@@ -20,7 +20,7 @@ export default function PortalDirectoryPage() {
   const { user, logout, isLoading } = useAuth();
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
       {/* Background Decorative Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
 
@@ -94,7 +94,7 @@ export default function PortalDirectoryPage() {
           <Link
             id="college-portal-entry-btn"
             href="/login/college"
-            className="group relative p-8 bg-slate-900/90 hover:bg-slate-900 border-2 border-slate-800 hover:border-emerald-500/80 rounded-2xl transition-all duration-200 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:shadow-emerald-950/40 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="group relative p-5 sm:p-8 bg-slate-900/90 hover:bg-slate-900 border-2 border-slate-800 hover:border-emerald-500/80 rounded-2xl transition-all duration-200 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:shadow-emerald-950/40 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500"
           >
             <div>
               <div className="flex items-center justify-between mb-5">
@@ -147,7 +147,7 @@ export default function PortalDirectoryPage() {
           <Link
             id="central-portal-entry-btn"
             href="/login/central"
-            className="group relative p-8 bg-slate-900/90 hover:bg-slate-900 border-2 border-slate-800 hover:border-blue-500/80 rounded-2xl transition-all duration-200 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:shadow-blue-950/40 text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="group relative p-5 sm:p-8 bg-slate-900/90 hover:bg-slate-900 border-2 border-slate-800 hover:border-blue-500/80 rounded-2xl transition-all duration-200 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:shadow-blue-950/40 text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <div>
               <div className="flex items-center justify-between mb-5">

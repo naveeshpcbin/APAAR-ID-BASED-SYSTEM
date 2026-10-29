@@ -631,11 +631,11 @@ export default function UploadsPage() {
       )}
 
       {/* Ingestion Mode Selector Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-200">
+      <div className="flex items-center gap-2 border-b border-slate-200 overflow-x-auto whitespace-nowrap pb-px">
         <button
           type="button"
           onClick={() => setIngestionMode("GENERATE_ON_WEB")}
-          className={`pb-3 px-4 text-xs font-semibold flex items-center gap-2 border-b-2 transition ${
+          className={`pb-3 px-4 text-xs font-semibold flex items-center gap-2 border-b-2 shrink-0 transition ${
             ingestionMode === "GENERATE_ON_WEB"
               ? "border-govTeal-600 text-govTeal-800 bg-govTeal-50/60 rounded-t-lg"
               : "border-transparent text-slate-500 hover:text-slate-800"
@@ -650,7 +650,7 @@ export default function UploadsPage() {
         <button
           type="button"
           onClick={() => setIngestionMode("UPLOAD_FILE")}
-          className={`pb-3 px-4 text-xs font-semibold flex items-center gap-2 border-b-2 transition ${
+          className={`pb-3 px-4 text-xs font-semibold flex items-center gap-2 border-b-2 shrink-0 transition ${
             ingestionMode === "UPLOAD_FILE"
               ? "border-govTeal-600 text-govTeal-800 bg-govTeal-50/60 rounded-t-lg"
               : "border-transparent text-slate-500 hover:text-slate-800"
@@ -663,7 +663,7 @@ export default function UploadsPage() {
 
       {/* MODE 1: In-Browser Dataset Generator & Interactive Table Builder */}
       {ingestionMode === "GENERATE_ON_WEB" && (
-        <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
@@ -1013,7 +1013,7 @@ export default function UploadsPage() {
 
       {/* MODE 2: External File Drag-and-Drop Uploader */}
       {ingestionMode === "UPLOAD_FILE" && (
-        <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs">
           <h2 className="text-sm font-bold text-slate-900 mb-1">Upload External Spreadsheet File</h2>
           <p className="text-xs text-slate-500 mb-4">
             Select or drag an existing institutional spreadsheet (.csv, .xlsx, .xls) containing APAAR numbers, student details, and programme codes.
@@ -1070,7 +1070,7 @@ export default function UploadsPage() {
       {/* PRE-FLIGHT RESULTS & LIVE SPREADSHEET WORKSPACE                            */}
       {/* ========================================================================= */}
       {preflightData && (
-        <div className="bg-white p-6 rounded-xl border border-govTeal-300 shadow-md space-y-6">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-govTeal-300 shadow-md space-y-6">
           {/* Header & Quick Action Buttons */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
@@ -1683,7 +1683,7 @@ export default function UploadsPage() {
       )}
 
       {/* Batch Upload History */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs">
+      <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs">
         <h2 className="text-sm font-bold text-slate-900 mb-1">Ingestion Batch History</h2>
         <p className="text-xs text-slate-500 mb-4">Historical upload batches, status, and reconciliation outcomes.</p>
 

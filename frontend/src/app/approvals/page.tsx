@@ -69,11 +69,11 @@ export default function ApprovalsPage() {
       {/* Grid: Approvals List & Live Capacity Simulator */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Approvals Table */}
-        <div className="lg:col-span-2 bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="lg:col-span-2 bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
           <h2 className="text-sm font-bold text-slate-900">Active Programme Approvals</h2>
 
-          <div className="border border-slate-200 rounded-lg overflow-hidden">
-            <table className="w-full text-xs text-left">
+          <div className="border border-slate-200 rounded-lg overflow-x-auto">
+            <table className="w-full min-w-[650px] text-xs text-left">
               <thead className="bg-slate-100 text-slate-600 font-semibold uppercase text-[10px]">
                 <tr>
                   <th className="px-4 py-2.5">Programme Code</th>
@@ -111,7 +111,7 @@ export default function ApprovalsPage() {
         </div>
 
         {/* Live Capacity Evaluation Simulator */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs space-y-4">
           <div className="flex items-center gap-2">
             <Calculator className="w-4 h-4 text-govTeal-600" />
             <h2 className="text-sm font-bold text-slate-900">Intake Capacity Simulator</h2>

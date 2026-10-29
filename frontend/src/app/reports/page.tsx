@@ -159,7 +159,7 @@ export default function ReportsPage() {
           return (
             <div
               key={idx}
-              className="bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-slate-300 transition"
+              className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-slate-300 transition"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -174,7 +174,7 @@ export default function ReportsPage() {
                 <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">{r.description}</p>
               </div>
 
-              <div className="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
+              <div className="pt-4 sm:pt-6 border-t border-slate-100 mt-6 flex flex-wrap items-center justify-between gap-2">
                 <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">
                   {r.format}
                 </span>
