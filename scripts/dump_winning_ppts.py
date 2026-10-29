@@ -14,3 +14,4 @@ for fname in ['sih-winning-ppt-2.pdf', 'sih-winning-ppt-3.pdf']:
                 if t:
                     f.write(f"  [{b[0]:.1f}, {b[1]:.1f}, {b[2]:.1f}, {b[3]:.1f}] -> {t}\n")
     print(f"Dumped {out_name}")
+
